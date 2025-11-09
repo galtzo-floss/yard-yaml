@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
   # See: https://github.com/panorama-ed/memo_wise/pull/397
   spec.version = Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/yard/yaml/version.rb", mod) }::Yard::Yaml::Version::VERSION
-  spec.authors = ["Annibelle Boling"]
-  spec.email = ["annibelle.boling@gmail.com"]
+  spec.authors = ["Aboling0", "Peter H. Boling"]
+  spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🥨 A YARD plugin for YAML documents"
   spec.description = "🥨 A YARD plugin for YAML documents"
