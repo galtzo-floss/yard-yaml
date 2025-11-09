@@ -2,6 +2,10 @@ module Yard
   module Yaml
     VERSION: String
 
+    # Global configuration accessors
+    def self.config: () -> Yard::Yaml::Config
+    def self.configure: (?Hash[untyped, untyped] overrides) { (Yard::Yaml::Config) -> void } -> Yard::Yaml::Config
+
     class Config
       DEFAULT_INCLUDE: Array[String]
       DEFAULT_EXCLUDE: Array[String]
@@ -27,9 +31,18 @@ module Yard
       def apply: (Hash[untyped, untyped]) -> Config
     end
 
+    module Cli
+      def self.parse: (Array[String] argv) -> Hash[untyped, untyped]
+    end
+
     module Plugin
       def self.activated?: () -> bool
-      def self.activate: () -> void
+      def self.activate: (?Array[String] argv) -> void
+    end
+
+    class Converter
+      def self.from_string: (String yaml, ?Hash[untyped, untyped] options, ?config: Yard::Yaml::Config) -> Hash[untyped, untyped]
+      def self.from_file: (String path, ?Hash[untyped, untyped] options, ?config: Yard::Yaml::Config) -> Hash[untyped, untyped]
     end
 
     class Error < ::StandardError

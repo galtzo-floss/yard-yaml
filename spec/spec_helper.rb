@@ -24,6 +24,13 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  # Ensure global state from Yard::Yaml does not leak across examples
+  config.after(:each) do
+    if defined?(::Yard::Yaml) && ::Yard::Yaml.respond_to?(:__reset_state__)
+      ::Yard::Yaml.__reset_state__
+    end
+  end
 end
 
 require "yard/yaml"

@@ -80,17 +80,38 @@ module Yard
           when :include then @include = Array(value).map(&:to_s)
           when :exclude then @exclude = Array(value).map(&:to_s)
           when :out_dir then @out_dir = value.to_s
-          when :index then @index = !!value
+          when :index then @index = coerce_bool(value)
           when :toc then @toc = value.to_s
           when :converter_options then @converter_options = value || {}
-          when :front_matter then @front_matter = !!value
-          when :strict then @strict = !!value
-          when :allow_erb then @allow_erb = !!value
+          when :front_matter then @front_matter = coerce_bool(value)
+          when :strict then @strict = coerce_bool(value)
+          when :allow_erb then @allow_erb = coerce_bool(value)
           else
             # Intentionally ignore unknown keys in Phase 0
           end
         end
         self
+      end
+
+      private
+
+      # Coerce various truthy/falsey representations to a boolean.
+      # Accepts common string/number forms used in CLI and config files.
+      def coerce_bool(value)
+        case value
+        when true then true
+        when false, nil then false
+        when Integer
+          return true if value == 1
+          return false if value == 0
+          !!value
+        else
+          str = value.to_s.strip.downcase
+          return true if %w[true 1 yes y on].include?(str)
+          return false if %w[false 0 no n off].include?(str)
+          # Fallback to Ruby truthiness for anything else
+          !!value
+        end
       end
     end
   end

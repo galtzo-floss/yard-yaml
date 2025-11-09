@@ -2,10 +2,7 @@
 
 module Yard
   module Yaml
-    # Plugin activation scaffold for yard-yaml.
-    #
-    # Phase 0: This module intentionally performs no registration on load.
-    # In later phases, #activate will register tags, templates, and hooks with YARD.
+    # Plugin activation for yard-yaml (Phase 1: config only; no YARD registrations).
     module Plugin
       @activated = false
 
@@ -18,12 +15,31 @@ module Yard
           @activated
         end
 
-        # Activate the plugin (placeholder; no side effects in Phase 0).
-        # Later phases will register template paths, tags, and hooks here.
+        # Activate the plugin.
         #
+        # Phase 1 behavior:
+        # - Optionally parse argv for `--yard_yaml-*` flags and apply to configuration.
+        # - Do NOT register tags, templates, or handlers yet.
+        #
+        # @param argv [Array<String>, nil] optional argument vector to parse
         # @return [void]
-        def activate
+        def activate(argv = nil)
+          # Parse and apply CLI overrides if provided
+          begin
+            overrides = Cli.parse(argv || [])
+            Yard::Yaml.configure(overrides) unless overrides.empty?
+          rescue StandardError
+            # Parsing failures should not prevent activation in Phase 1
+          end
+
           @activated = true
+          nil
+        end
+
+        # Test-helper: reset internal activation flag.
+        # Not part of public API; used from test teardown to avoid state leakage.
+        def __reset_state__
+          @activated = false
           nil
         end
       end
