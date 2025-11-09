@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'fileutils'
+require "fileutils"
 
 module Yard
   module Yaml
@@ -34,15 +34,15 @@ module Yard
             slug = page_slug(page)
             path = File.join(base, "#{slug}.html")
             html = render_page_html(page)
-            atomic_write(path, html)
+            atomic_write(path, html, strict: config.strict)
             written << path
           end
 
           # Index (optional)
           if config.index
-            index_path = File.join(base, 'index.html')
+            index_path = File.join(base, "index.html")
             html = render_index_html(pages)
-            atomic_write(index_path, html)
+            atomic_write(index_path, html, strict: config.strict)
             written << index_path
           end
 
@@ -60,7 +60,7 @@ module Yard
 
         def page_slug(page)
           meta = page[:meta] || {}
-          slug = meta['slug'] || meta[:slug]
+          slug = meta["slug"] || meta[:slug]
           return sanitize_slug(slug) if slug && !slug.to_s.empty?
 
           title = page[:title].to_s
@@ -71,84 +71,86 @@ module Yard
             return sanitize_slug(base)
           end
 
-          'page'
+          "page"
         end
 
         def sanitize_slug(s)
-          s.to_s.strip.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/^-+|-+$/,'')
+          s.to_s.strip.downcase.gsub(/[^a-z0-9]+/, "-").gsub(/^-+|-+$/, "")
         end
 
         def render_page_html(page)
-          title = page[:title] || 'Untitled'
-          desc  = page[:description]
-          body  = page[:html].to_s
+          title = page[:title] || "Untitled"
+          desc = page[:description]
+          body = page[:html].to_s
           <<~HTML
-          <!doctype html>
-          <html lang="en">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>#{escape_html(title)}</title>
-            <style>
-              /* minimal, namespaced styles */
-              .yyaml-page { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-              .yyaml-title { margin: 0.2em 0 0.4em; font-size: 1.6em; }
-              .yyaml-desc { color: #444; margin-bottom: 1em; }
-              .yyaml-body { line-height: 1.5; }
-            </style>
-          </head>
-          <body class="yyaml-page">
-            <h1 class="yyaml-title">#{escape_html(title)}</h1>
-            #{desc ? "<p class=\"yyaml-desc\">#{escape_html(desc)}</p>" : ''}
-            <div class="yyaml-body">#{body}</div>
-          </body>
-          </html>
+            <!doctype html>
+            <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>#{escape_html(title)}</title>
+              <style>
+                /* minimal, namespaced styles */
+                .yyaml-page { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+                .yyaml-title { margin: 0.2em 0 0.4em; font-size: 1.6em; }
+                .yyaml-desc { color: #444; margin-bottom: 1em; }
+                .yyaml-body { line-height: 1.5; }
+              </style>
+            </head>
+            <body class="yyaml-page">
+              <h1 class="yyaml-title">#{escape_html(title)}</h1>
+              #{"<p class=\"yyaml-desc\">#{escape_html(desc)}</p>" if desc}
+              <div class="yyaml-body">#{body}</div>
+            </body>
+            </html>
           HTML
         end
 
         def render_index_html(pages)
           rows = pages.map do |p|
             title = p[:title] || page_slug(p)
-            slug  = page_slug(p)
-            desc  = p[:description]
-            %Q(<li><a href="#{escape_html(slug)}.html">#{escape_html(title)}</a>#{desc ? " — #{escape_html(desc)}" : ''}</li>)
+            slug = page_slug(p)
+            desc = p[:description]
+            %(<li><a href="#{escape_html(slug)}.html">#{escape_html(title)}</a>#{" — #{escape_html(desc)}" if desc}</li>)
           end.join("\n")
 
           <<~HTML
-          <!doctype html>
-          <html lang="en">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>YAML Index</title>
-            <style>
-              .yyaml-index { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-              .yyaml-index h1 { font-size: 1.8em; }
-              .yyaml-index ul { list-style: disc; padding-left: 1.4em; }
-            </style>
-          </head>
-          <body class="yyaml-index">
-            <h1>YAML Documents</h1>
-            <ul>
-              #{rows}
-            </ul>
-          </body>
-          </html>
+            <!doctype html>
+            <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>YAML Index</title>
+              <style>
+                .yyaml-index { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+                .yyaml-index h1 { font-size: 1.8em; }
+                .yyaml-index ul { list-style: disc; padding-left: 1.4em; }
+              </style>
+            </head>
+            <body class="yyaml-index">
+              <h1>YAML Documents</h1>
+              <ul>
+                #{rows}
+              </ul>
+            </body>
+            </html>
           HTML
         end
 
-        def atomic_write(path, content)
+        def atomic_write(path, content, strict: false)
           dir = File.dirname(path)
           FileUtils.mkdir_p(dir)
           tmp = File.join(dir, ".#{$$}.#{Time.now.to_i}.tmp")
-          File.open(tmp, 'wb') { |f| f.write(content.to_s) }
+          File.open(tmp, "wb") { |f| f.write(content.to_s) }
           FileUtils.mv(tmp, path)
         rescue StandardError => e
-          # Defer strict handling to caller in a later phase; warn for now
-          if defined?(::Yard) && ::Yard.const_defined?(:Yaml)
-            ::Yard::Yaml.warn("write failed for #{path}: #{e.message}")
+          message = "write failed for #{path}: #{e.message}"
+          if strict
+            raise Yard::Yaml::Error, message
+          elsif defined?(::Yard) && ::Yard.const_defined?(:Yaml)
+            ::Yard::Yaml.warn(message)
           else
-            Kernel.warn("yard-yaml: write failed for #{path}: #{e.message}")
+            Kernel.warn("yard-yaml: #{message}")
           end
         ensure
           begin
@@ -160,11 +162,11 @@ module Yard
 
         def escape_html(s)
           s.to_s
-           .gsub('&','&amp;')
-           .gsub('<','&lt;')
-           .gsub('>','&gt;')
-           .gsub('"','&quot;')
-           .gsub("'",'&#39;')
+            .gsub("&", "&amp;")
+            .gsub("<", "&lt;")
+            .gsub(">", "&gt;")
+            .gsub('"', "&quot;")
+            .gsub("'", "&#39;")
         end
       end
     end

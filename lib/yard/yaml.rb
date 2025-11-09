@@ -34,9 +34,7 @@ module Yard
       # Access collected pages (Phase 3). Nil until plugin activation performs discovery.
       # Each page is a Hash with keys: :path, :html, :title, :description, :meta
       # @return [Array<Hash>, nil]
-      def pages
-        @pages
-      end
+      attr_reader :pages
 
       # Internal: set collected pages (used by Plugin during activation)
       def __set_pages__(list)

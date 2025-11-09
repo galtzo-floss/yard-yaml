@@ -7,8 +7,8 @@ module Yard
     # Phase 1: Only parses configuration flags and returns a Hash suitable for
     # Yard::Yaml::Config#apply. It does not mutate global state.
     module Cli
-      PREFIX = "--yard_yaml-".freeze
-      NO_PREFIX = "--no-yard_yaml-".freeze
+      PREFIX = "--yard_yaml-"
+      NO_PREFIX = "--no-yard_yaml-"
 
       class << self
         # Parse argv for yard-yaml flags.
@@ -149,8 +149,16 @@ module Yard
           low = s.strip.downcase
           return true if %w[true yes y on 1].include?(low)
           return false if %w[false no n off 0].include?(low)
-          return Integer(s) rescue nil if s.match?(/\A[+-]?\d+\z/)
-          return Float(s) rescue nil if s.match?(/\A[+-]?(?:\d+\.)?\d+\z/)
+          begin
+            return Integer(s)
+          rescue
+            nil
+          end if s.match?(/\A[+-]?\d+\z/)
+          begin
+            return Float(s)
+          rescue
+            nil
+          end if s.match?(/\A[+-]?(?:\d+\.)?\d+\z/)
           s
         end
 

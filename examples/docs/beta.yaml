@@ -1,8 +1,9 @@
 ---
+# Front matter
 title: Beta Page
 nav_order: 2
-description: The second example YAML page.
+description: The second example page.
 ---
-features:
-  - name: beta
-    enabled: true
+settings:
+  name: beta
+  retries: 3

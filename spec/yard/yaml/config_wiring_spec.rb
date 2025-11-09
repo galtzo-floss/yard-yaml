@@ -19,9 +19,12 @@ RSpec.describe Yard::Yaml do
   describe Yard::Yaml::Cli do
     it "parses repeatable include and exclude flags" do
       argv = [
-        "--yard_yaml-include", "docs/**/*.yml",
-        "--yard_yaml-include", "*.yaml",
-        "--yard_yaml-exclude", "**/_*.yml"
+        "--yard_yaml-include",
+        "docs/**/*.yml",
+        "--yard_yaml-include",
+        "*.yaml",
+        "--yard_yaml-exclude",
+        "**/_*.yml",
       ]
       overrides = described_class.parse(argv)
       expect(overrides[:include]).to(eq(["docs/**/*.yml", "*.yaml"]))
@@ -63,7 +66,7 @@ RSpec.describe Yard::Yaml do
       argv = [
         "--yard_yaml-include",
         "--yard_yaml-out_dir",
-        "--yard_yaml-converter_options"
+        "--yard_yaml-converter_options",
       ]
       output = capture(:stderr) { described_class.parse(argv) }
       expect(output).to(include("missing value for --yard_yaml-include"))
@@ -95,9 +98,11 @@ RSpec.describe Yard::Yaml do
   describe Yard::Yaml::Plugin do
     it "applies argv overrides when activated" do
       argv = [
-        "--yard_yaml-include", "examples/**/*.yml",
+        "--yard_yaml-include",
+        "examples/**/*.yml",
         "--yard_yaml-index=false",
-        "--yard_yaml-out_dir", "yaml_docs",
+        "--yard_yaml-out_dir",
+        "yaml_docs",
       ]
       expect { described_class.activate(argv) }.not_to(raise_error)
       cfg = Yard::Yaml.config

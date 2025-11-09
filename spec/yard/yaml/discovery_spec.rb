@@ -39,13 +39,13 @@ RSpec.describe Yard::Yaml::Discovery do
 
   describe ".collect" do
     it "converts discovered files and returns normalized pages" do
-      p1 = write("docs/one.yml", "title: One\n---\nkey: v\n")
-      p2 = write("docs/two.yaml", "title: Two\n---\nkey: v\n")
+      write("docs/one.yml", "title: One\n---\nkey: v\n")
+      write("docs/two.yaml", "title: Two\n---\nkey: v\n")
 
       Dir.chdir(tmpdir) do
         cfg = Yard::Yaml::Config.new(
           include: ["docs/**/*.y{a,}ml"],
-          exclude: []
+          exclude: [],
         )
 
         allow(Yard::Yaml::Converter).to(receive(:from_file)) do |path, _opts, config:|
@@ -53,14 +53,14 @@ RSpec.describe Yard::Yaml::Discovery do
             html: "<p>#{File.basename(path)}</p>",
             title: File.basename(path, ".yml").sub(/\.yaml\z/, ""),
             description: nil,
-            meta: { "source" => path, "strict" => config.strict }
+            meta: {"source" => path, "strict" => config.strict},
           }
         end
 
         pages = described_class.collect(cfg)
         expect(pages.size).to(eq(2))
         names = pages.map { |h| h[:title] }
-        expect(names).to(match_array(["one", "two"]))
+        expect(names).to(contain_exactly("one", "two"))
         expect(pages.first).to(include(:path, :html, :title, :description, :meta))
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe Yard::Yaml::Discovery do
       _p1 = write("docs/act.yml", "x: 1\n")
 
       Dir.chdir(tmpdir) do
-        allow(Yard::Yaml::Converter).to(receive(:from_file)).and_return({ html: "<p>ok</p>", title: "act", description: nil, meta: {} })
+        allow(Yard::Yaml::Converter).to(receive(:from_file)).and_return({html: "<p>ok</p>", title: "act", description: nil, meta: {}})
         expect(Yard::Yaml.pages).to(be_nil)
         Yard::Yaml::Plugin.activate(["--yard_yaml-include", "docs/**/*.y{a,}ml", "--yard_yaml-exclude", "**/_*.y{a,}ml"])
         pages = Yard::Yaml.pages

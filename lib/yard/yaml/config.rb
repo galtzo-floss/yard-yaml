@@ -12,23 +12,23 @@ module Yard
       # Default glob patterns to include during discovery.
       DEFAULT_INCLUDE = [
         "docs/**/*.y{a,}ml",
-        "*.y{a,}ml"
+        "*.y{a,}ml",
       ].freeze
 
       # Default glob patterns to exclude during discovery.
       DEFAULT_EXCLUDE = [
-        "**/_*.y{a,}ml"
+        "**/_*.y{a,}ml",
       ].freeze
 
       # Directory (under YARD output) where converted pages will be written.
-      DEFAULT_OUT_DIR = "yaml".freeze
+      DEFAULT_OUT_DIR = "yaml"
 
       # Whether to generate an index page for YAML documents.
       DEFAULT_INDEX = true
 
       # Table of contents generation strategy.
       # "auto" defers to converter/page size; additional options may be added later.
-      DEFAULT_TOC = "auto".freeze
+      DEFAULT_TOC = "auto"
 
       # Options forwarded to yaml-converter.
       DEFAULT_CONVERTER_OPTIONS = {}.freeze
@@ -43,14 +43,14 @@ module Yard
       DEFAULT_ALLOW_ERB = false
 
       attr_accessor :include,
-                    :exclude,
-                    :out_dir,
-                    :index,
-                    :toc,
-                    :converter_options,
-                    :front_matter,
-                    :strict,
-                    :allow_erb
+        :exclude,
+        :out_dir,
+        :index,
+        :toc,
+        :converter_options,
+        :front_matter,
+        :strict,
+        :allow_erb
 
       # Create a new Config with defaults, optionally overridden via a hash.
       #

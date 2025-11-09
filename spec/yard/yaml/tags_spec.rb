@@ -15,14 +15,14 @@ RSpec.describe Yard::Yaml::Tags do
       end
     end
 
-    Object.send(:remove_const, :YARD) if defined?(::YARD)
+    Object.send(:remove_const, :YARD) if defined?(YARD)
     Object.const_set(:YARD, Module.new)
-    ::YARD.const_set(:Tags, stub)
+    YARD.const_set(:Tags, stub)
   end
 
   it "registers @yaml and @yaml_file tags when YARD is available" do
     described_class.register!
-    calls = ::YARD::Tags::Library.calls
+    calls = YARD::Tags::Library.calls
     expect(calls).to(be_a(Array))
     names = calls.map { |args| args[1] }
     expect(names).to(include(:yaml))

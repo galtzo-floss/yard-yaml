@@ -6,12 +6,12 @@ RSpec.describe Yard::Yaml::Converter do
       class << self
         attr_accessor :last
         def convert(yaml, options)
-          self.last = { yaml: yaml, options: options }
+          self.last = {yaml: yaml, options: options}
           {
             html: "<p>ok</p>",
             title: options[:title] || "Title",
             description: "Desc",
-            meta: { source: options[:source_path] }
+            meta: {source: options[:source_path]},
           }
         end
       end
@@ -27,7 +27,7 @@ RSpec.describe Yard::Yaml::Converter do
     expect(result[:html]).to(eq("<p>ok</p>"))
     expect(result[:title]).to(eq("Title"))
     expect(result[:description]).to(eq("Desc"))
-    expect(result[:meta]).to(eq({ source: nil }))
+    expect(result[:meta]).to(eq({source: nil}))
     # ensure options included from config
     expect(backend.last[:options]).to(include(:allow_erb, :front_matter))
   end
@@ -37,8 +37,8 @@ RSpec.describe Yard::Yaml::Converter do
     begin
       file.write("a: 2\n")
       file.flush
-      Yard::Yaml.configure(converter_options: { "wrap" => 80, "pretty" => false })
-      result = described_class.from_file(file.path, { "wrap" => 100, title: "Hello" })
+      Yard::Yaml.configure(converter_options: {"wrap" => 80, "pretty" => false})
+      result = described_class.from_file(file.path, {"wrap" => 100, :title => "Hello"})
       expect(result[:html]).to(eq("<p>ok</p>"))
       expect(result[:title]).to(eq("Hello"))
       expect(backend.last[:options]["wrap"]).to(eq(100)) # caller overrides config
@@ -53,7 +53,10 @@ RSpec.describe Yard::Yaml::Converter do
   it "returns empty result and warns when backend missing (non-strict)", :check_output do
     described_class.backend = nil
     Yard::Yaml.configure(strict: false)
-    output = capture(:stderr) { res = described_class.from_string("bad"); expect(res[:html]).to(eq("")) }
+    output = capture(:stderr) {
+      res = described_class.from_string("bad")
+      expect(res[:html]).to(eq(""))
+    }
     expect(output).to(include("yard-yaml:"))
   end
 
@@ -66,7 +69,10 @@ RSpec.describe Yard::Yaml::Converter do
   it "warns and returns empty result when file does not exist (non-strict)", :check_output do
     described_class.backend = backend
     Yard::Yaml.configure(strict: false)
-    output = capture(:stderr) { res = described_class.from_file("/no/such/file.yml"); expect(res[:html]).to(eq("")) }
+    output = capture(:stderr) {
+      res = described_class.from_file("/no/such/file.yml")
+      expect(res[:html]).to(eq(""))
+    }
     expect(output).to(include("yard-yaml:"))
   end
 end

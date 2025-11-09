@@ -8,7 +8,7 @@ RSpec.describe "Inline ERB integration for yard-yaml" do
     backend = Class.new do
       class << self
         def convert(yaml, options)
-          { html: "<pre>#{yaml.strip}</pre>", title: options[:title], description: nil, meta: {} }
+          {html: "<pre>#{yaml.strip}</pre>", title: options[:title], description: nil, meta: {}}
         end
       end
     end
@@ -25,6 +25,7 @@ RSpec.describe "Inline ERB integration for yard-yaml" do
         @yaml_blocks = yaml_blocks
         @yaml_files = yaml_files
       end
+
       def tags(name)
         case name
         when :yaml then @yaml_blocks
@@ -36,7 +37,7 @@ RSpec.describe "Inline ERB integration for yard-yaml" do
 
     o = obj.new(
       yaml_blocks: [tag.new("a: 1\n")],
-      yaml_files:  [tag.new("#{__FILE__}")]
+      yaml_files:  [tag.new("#{__FILE__}")],
     )
 
     # Render ERB with a local variable `object`
@@ -54,8 +55,9 @@ RSpec.describe "Inline ERB integration for yard-yaml" do
       def initialize(files)
         @files = files
       end
+
       def tags(name)
-        name == :yaml_file ? @files : []
+        (name == :yaml_file) ? @files : []
       end
     end
 

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: IMPLEMENTATION_PLAN
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "IMPLEMENTATION_PLAN";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: IMPLEMENTATION_PLAN</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="implementation-plan--yard-yaml-plugin-html-from-yaml-using-yaml-converter">IMPLEMENTATION PLAN — YARD YAML Plugin (HTML from YAML using <code>yaml-converter</code>)</h1>
+
+<p>Status: Draft<br>
+Date: 2025-11-09<br>
+Owners: yard-yaml maintainers</p>
+
+<p>This plan breaks the work into discrete, verifiable phases. It adheres to the project’s Development Guidelines (testing, coverage, linting, and docs via YARD). Each phase lists scope, tasks, acceptance criteria, and notes.</p>
+
+<h2 id="phase-0--project-prep-and-scaffolding">Phase 0 — Project Prep and Scaffolding</h2>
+<p>Scope: Add dependency, baseline structure, and scaffolding for a YARD plugin without changing behavior yet.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Update <code>yard-yaml.gemspec</code> runtime deps to include <code>yaml-converter</code> (minimum version TBD; pin to the latest stable supporting safe load).</li>
+  <li>Ensure <code>yard</code> is present in development dependencies if not already.</li>
+  <li>Establish plugin entry points under <code>lib/yard/yaml/</code>:
+    <ul>
+      <li>
+<code>lib/yard/yaml.rb</code> (require submodules)</li>
+      <li><code>lib/yard/yaml/version.rb</code></li>
+      <li>
+<code>lib/yard/yaml/plugin.rb</code> (activation/registration)</li>
+      <li>
+<code>lib/yard/yaml/config.rb</code> (config struct + defaults)</li>
+    </ul>
+  </li>
+  <li>Add RBS signatures under <code>sig/yard/yaml/</code> for any new public APIs.</li>
+  <li>Create initial spec files mirroring <code>lib/</code> structure.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>
+<code>bundle install</code> succeeds.</li>
+  <li>
+<code>bin/rspec</code> passes with existing specs; coverage thresholds unchanged.</li>
+  <li>
+<code>bundle exec rake rubocop_gradual:autocorrect &amp;&amp; bundle exec rake reek</code> pass or have only known smells captured in REEK snapshot.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>Do not modify <code>.envrc</code>. Prefer exporting env vars per-run. Use <code>K_SOUP_COV_FORMATTERS="json" bin/rspec</code> to generate coverage locally.</li>
+</ul>
+
+<h2 id="phase-1--configuration-and-cliopts-wiring">Phase 1 — Configuration and CLI/opts wiring</h2>
+<p>Scope: Load and surface configuration from <code>.yardopts</code>/ENV and programmatic hooks.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Implement <code>Yard::Yaml::Config</code> with defaults:
+    <ul>
+      <li>include: [“docs/<em>*/</em>.ya,ml”, “*.ya,ml”]</li>
+      <li>exclude: [“<em>*/_</em>.ya,ml”]</li>
+      <li>out_dir: “yaml”</li>
+      <li>index: true</li>
+      <li>toc: “auto”</li>
+      <li>converter_options: {}</li>
+      <li>front_matter: true</li>
+      <li>strict: false</li>
+      <li>allow_erb: false</li>
+    </ul>
+  </li>
+  <li>Parse <code>.yardopts</code> flags with <code>--yard_yaml-*</code> to override config.</li>
+  <li>Allow programmatic config via <code>YARD::Registry.store[:yard_yaml_config]</code> or a documented API method.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Unit tests cover default and overridden values.</li>
+  <li>Invalid flags emit warnings and are ignored.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>Use <code>rspec-stubbed_env</code> if any ENV-driven behavior is introduced.</li>
+</ul>
+
+<h2 id="phase-2--converter-wrapper">Phase 2 — Converter Wrapper</h2>
+<p>Scope: Provide a thin wrapper around <code>yaml-converter</code> with safe defaults and a stable API.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Implement <code>Yard::Yaml::Converter</code>:
+    <ul>
+      <li>Accept a <code>String</code> YAML or a file path.</li>
+      <li>Options mapping to <code>yaml-converter</code> (safe load, pretty, wrapping, etc.).</li>
+      <li>Gate any unsafe features (<code>allow_unsafe</code>, ERB) behind config.</li>
+      <li>Return a structured result: <code>{ html:, title:, description:, meta: }</code>.</li>
+    </ul>
+  </li>
+  <li>Unit tests exercising success, failure, and edge cases (bad YAML, empty input, front matter only).</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Converter wrapper returns expected HTML (basic assertions, not deep HTML diffs).</li>
+  <li>Errors raise or warn depending on <code>strict</code> config.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>Keep output deterministic; avoid timestamps in HTML.</li>
+</ul>
+
+<h2 id="phase-3--file-discovery-and-registry-integration">Phase 3 — File Discovery and Registry Integration</h2>
+<p>Scope: Find YAML files and register them so that templates can render them and navigation can link to them.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Implement file discovery using include/exclude globs.</li>
+  <li>For each discovered file:
+    <ul>
+      <li>Convert via <code>Yard::Yaml::Converter</code>.</li>
+      <li>Create a <code>YARD::CodeObjects::ExtraFileObject</code> (or a custom code object) with metadata (title, path, order).</li>
+      <li>Store results for template phase.</li>
+    </ul>
+  </li>
+  <li>Generate warnings for missing or unreadable files.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>When running <code>yard doc</code> (with plugin enabled), registry contains extra file objects for all matched YAML files.</li>
+  <li>Unit tests confirm object creation and metadata mapping.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>Use stable identifiers for objects to enable linking from tags.</li>
+</ul>
+
+<h2 id="phase-4--templates-and-output-emission">Phase 4 — Templates and Output Emission</h2>
+<p>Scope: Render converted YAML into the final YARD site under a dedicated directory.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Register template path: <code>templates/yard_yaml</code>.</li>
+  <li>Create ERB templates:
+    <ul>
+      <li>
+<code>yaml_file.erb</code> for individual YAML pages.</li>
+      <li>
+<code>yaml_index.erb</code> to list all YAML pages.</li>
+      <li>Minimal CSS partial with namespaced classes (e.g., <code>.yyaml-*</code>).</li>
+    </ul>
+  </li>
+  <li>Hook into <code>YARD::Templates::Engine</code> to emit files to <code>&lt;output&gt;/yaml/</code>.</li>
+  <li>Optionally generate per-page TOC when <code>toc</code> is enabled.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Generated site includes <code>yaml/index.html</code> and <code>yaml/&lt;basename&gt;.html</code> for each file.</li>
+  <li>Pages render titles and descriptions from front matter when present.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>Follow YARD default theme styles; keep CSS minimal.</li>
+</ul>
+
+<h2 id="phase-5--inline-tags-yaml-and-yaml_file">Phase 5 — Inline Tags (<code>@yaml</code> and <code>@yaml_file</code>)</h2>
+<p>Scope: Support inline YAML blocks and references in docstrings.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Define new tags using <code>YARD::Tags::Library.define_tag</code>:
+    <ul>
+      <li>
+<code>@yaml</code> (block tag) renders inline converted HTML from the tag body.</li>
+      <li>
+<code>@yaml_file path</code> (text tag) links to or embeds the converted page.</li>
+    </ul>
+  </li>
+  <li>Extend templates to render these tags in object documentation pages.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Example docstrings produce visible, styled output within API docs.</li>
+  <li>Missing <code>@yaml_file</code> targets produce warnings unless <code>strict</code>.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>Respect output silencing in tests; tag specs with <code>:check_output</code> only when asserting on emitted logs.</li>
+</ul>
+
+<h2 id="phase-6--indexing-ordering-and-navigation">Phase 6 — Indexing, Ordering, and Navigation</h2>
+<p>Scope: Provide a discoverable index and sensible nav ordering.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Build a YAML pages index sorted by <code>nav_order</code> from front matter or by title.</li>
+  <li>Add sidebar group “YAML” with links to pages.</li>
+  <li>Ensure breadcrumb/back links follow YARD conventions.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Index lists all pages with titles and optional descriptions.</li>
+  <li>Sidebar group appears without breaking existing navigation.</li>
+</ul>
+
+<h2 id="phase-7--error-handling-strict-mode-and-logging">Phase 7 — Error Handling, Strict Mode, and Logging</h2>
+<p>Scope: Robust behavior across failure modes.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Implement structured warnings for:
+    <ul>
+      <li>Conversion failures</li>
+      <li>Missing files</li>
+      <li>Unsafe options denied by config</li>
+    </ul>
+  </li>
+  <li>
+<code>strict: true</code> converts these into errors that fail the build.</li>
+  <li>Tests covering warning vs error paths and message content.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Build continues on non-strict failures; fails on strict.</li>
+</ul>
+
+<h2 id="phase-8--tests-coverage-types-and-yard-docs">Phase 8 — Tests, Coverage, Types, and YARD Docs</h2>
+<p>Scope: Bring implementation to project standards.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Unit specs for all public classes/methods; branch coverage for config toggles and error paths.</li>
+  <li>Use <code>include_context 'with stubbed env'</code> when manipulating ENV-driven behavior.</li>
+  <li>Add RBS types in <code>sig/yard/yaml.rbs</code> for public APIs.</li>
+  <li>Add inline YARD <code>@param</code>/<code>@return</code> docs for all public methods.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>
+<code>bin/rspec</code> green with coverage thresholds met.</li>
+  <li>
+<code>bundle exec rake yard</code> generates docs including new APIs.</li>
+</ul>
+
+<h2 id="phase-9--linting-smell-checks-and-docs-polishing">Phase 9 — Linting, Smell Checks, and Docs Polishing</h2>
+<p>Scope: Align with static analysis and project documentation rules.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Run <code>bundle exec rake rubocop_gradual:autocorrect</code> and resolve remaining offenses.</li>
+  <li>Run <code>bundle exec rake reek</code> and update REEK snapshot if intentional smells remain (with justification in CHANGELOG).</li>
+  <li>Update <code>README.md</code> with usage:
+    <ul>
+      <li>Enabling plugin via <code>.yardopts</code>
+</li>
+      <li>Config options and examples</li>
+      <li>Inline tags examples</li>
+    </ul>
+  </li>
+  <li>Add CHANGELOG entries for releases below.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Lint and smell checks pass locally.</li>
+  <li>README includes quickstart and configuration examples.</li>
+</ul>
+
+<h2 id="phase-10--examples-and-manual-verification">Phase 10 — Examples and Manual Verification</h2>
+<p>Scope: Provide a small example set to validate user experience.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Add sample YAML files under <code>examples/docs/</code> (kept small; not part of gem runtime).</li>
+  <li>Add a script or documented commands to generate docs locally:
+    <ul>
+      <li><code>K_SOUP_COV_FORMATTERS="json" bundle exec yard --plugin yard-yaml</code></li>
+    </ul>
+  </li>
+  <li>Verify HTML outputs and links locally.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>Manual run produces expected HTML pages and inline renderings.</li>
+</ul>
+
+<h2 id="phase-11--ci-and-compatibility-matrix-optional-via-appraisal">Phase 11 — CI and Compatibility Matrix (optional via Appraisal)</h2>
+<p>Scope: Ensure CI runs default suite; optionally verify with multiple dependency sets.</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Ensure default GitHub workflow runs <code>rake spec</code> (already wired by project).</li>
+  <li>Optionally add an Appraisal to test with multiple <code>yard</code> versions.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>CI green with coverage collected in JSON (per project norms).</li>
+</ul>
+
+<h2 id="phase-12--versioning-and-release">Phase 12 — Versioning and Release</h2>
+<p>Scope: Prepare gem release(s).</p>
+
+<p>Tasks:</p>
+<ul>
+  <li>Bump version to <code>0.1.0</code>.</li>
+  <li>Ensure gem signing is skipped locally unless configured:
+    <ul>
+      <li>Use <code>SKIP_GEM_SIGNING=true bundle exec rake build</code> during local tests.</li>
+    </ul>
+  </li>
+  <li>Publish release notes in CHANGELOG.</li>
+</ul>
+
+<p>Acceptance:</p>
+<ul>
+  <li>
+<code>gem build</code> and <code>bundle exec rake build</code> succeed locally with signing skipped.</li>
+</ul>
+
+<hr>
+
+<h2 id="milestones--rough-timeline">Milestones &amp; Rough Timeline</h2>
+<ul>
+  <li>M1 (0.1.0): Phases 0–7 complete — core plugin, file conversion, inline tags, index, errors.</li>
+  <li>M2 (0.2.0): Phases 8–10 — quality gates, docs, examples.</li>
+  <li>M3 (1.0.0): Phase 11–12 — CI matrix (optional), harden API, release.</li>
+</ul>
+
+<h2 id="testing-commands-cheat-sheet">Testing Commands Cheat Sheet</h2>
+<ul>
+  <li>Full suite: <code>bin/rspec</code>
+</li>
+  <li>With coverage JSON: <code>K_SOUP_COV_FORMATTERS="json" bin/rspec</code>
+</li>
+  <li>Focused example (bypass hard coverage): <code>K_SOUP_COV_MIN_HARD=false bin/rspec spec/yard/yaml/converter_spec.rb:42</code>
+</li>
+  <li>Lint: <code>bundle exec rake rubocop_gradual:autocorrect</code>
+</li>
+  <li>Smells: <code>bundle exec rake reek</code>
+</li>
+  <li>YARD docs: <code>bundle exec rake yard</code>
+</li>
+</ul>
+
+<h2 id="risks--mitigations-implementation">Risks &amp; Mitigations (Implementation)</h2>
+<ul>
+  <li>Dependency drift of <code>yaml-converter</code>: Pin compatible minor version; add CI to detect breakages.</li>
+  <li>Template conflicts: Namespaced assets and isolated template path.</li>
+  <li>Performance regressions: Cache by mtime/hash for conversions (defer to 0.2.0 if needed).</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Sun Nov  9 11:36:52 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.7).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -49,22 +49,20 @@ module Yard
           results = []
 
           files.each do |path|
-            begin
-              converted = Yard::Yaml::Converter.from_file(path, {}, config: config)
-              results << {
-                path: path,
-                html: converted[:html],
-                title: converted[:title],
-                description: converted[:description],
-                meta: converted[:meta] || {},
-              }
-            rescue Yard::Yaml::Error
-              # In strict mode Converter will raise; re-raise to fail the build
-              raise
-            rescue StandardError => e
-              # Non-strict converter errors are already warned; skip file
-              warn_fallback("skipping #{path}: #{e.class}: #{e.message}")
-            end
+            converted = Yard::Yaml::Converter.from_file(path, {}, config: config)
+            results << {
+              path: path,
+              html: converted[:html],
+              title: converted[:title],
+              description: converted[:description],
+              meta: converted[:meta] || {},
+            }
+          rescue Yard::Yaml::Error
+            # In strict mode Converter will raise; re-raise to fail the build
+            raise
+          rescue StandardError => e
+            # Non-strict converter errors are already warned; skip file
+            warn_fallback("skipping #{path}: #{e.class}: #{e.message}")
           end
 
           # Deterministic ordering by nav_order (if present) then title then path.
@@ -78,16 +76,24 @@ module Yard
         # so those entries sort after any numeric ones.
         def nav_order_value(meta)
           return Float::INFINITY unless meta.is_a?(Hash)
-          val = meta[:nav_order] || meta['nav_order']
+          val = meta[:nav_order] || meta["nav_order"]
           case val
           when Integer, Float
             val
           when String
             s = val.strip
             if s.match?(/\A[+-]?\d+\z/)
-              Integer(s) rescue Float::INFINITY
+              begin
+                Integer(s)
+              rescue
+                Float::INFINITY
+              end
             elsif s.match?(/\A[+-]?(?:\d+\.)?\d+\z/)
-              Float(s) rescue Float::INFINITY
+              begin
+                Float(s)
+              rescue
+                Float::INFINITY
+              end
             else
               Float::INFINITY
             end

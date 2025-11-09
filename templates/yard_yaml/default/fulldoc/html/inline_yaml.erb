@@ -1,0 +1,3 @@
+<%# Inline YAML rendering within default theme object pages %>
+<% base = (object.respond_to?(:file) && object.file) ? File.dirname(object.file) : Dir.pwd %>
+<%= ::Yard::Yaml::TagRenderer.render_for(object, base_dir: base, config: ::Yard::Yaml.config) %>

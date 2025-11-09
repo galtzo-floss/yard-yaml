@@ -1,0 +1,87 @@
+{
+  "lib/yard/yaml.rb:2908065942": [
+    [31, 9, 7, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 651502127],
+    [41, 9, 6, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2772849829],
+    [42, 34, 6, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2772849829],
+    [43, 9, 6, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2772849829],
+    [83, 9, 7, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 651502127],
+    [84, 9, 6, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2772849829]
+  ],
+  "lib/yard/yaml/converter.rb:2188103790": [
+    [18, 9, 20, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1030055096],
+    [44, 18, 8, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2956345505],
+    [44, 39, 8, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2956345505],
+    [44, 52, 8, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2956345505],
+    [50, 11, 8, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2956345505],
+    [67, 18, 28, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 1661341325]
+  ],
+  "lib/yard/yaml/plugin.rb:3864057238": [
+    [15, 11, 10, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2309947960],
+    [47, 11, 10, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2309947960],
+    [54, 11, 10, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2309947960]
+  ],
+  "lib/yard/yaml/tag_renderer.rb:2663601606": [
+    [22, 26, 35, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 3332593819]
+  ],
+  "spec/yard/yaml/cli_additional_spec.rb:2529045058": [
+    [13, 29, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [14, 36, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [15, 30, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [16, 33, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [27, 29, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [28, 36, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [29, 30, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [30, 33, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  ],
+  "spec/yard/yaml/config_spec.rb:4139511057": [
+    [10, 28, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [13, 35, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [14, 29, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [15, 32, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [33, 28, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [36, 35, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [37, 29, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [38, 32, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [53, 28, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [54, 35, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [55, 29, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  ],
+  "spec/yard/yaml/config_wiring_spec.rb:2671119638": [
+    [3, 1, 25, "RSpec/SpecFilePathFormat: Spec path should end with `yard/yaml*_spec.rb`.", 2046032422],
+    [42, 36, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [43, 43, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [44, 37, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [45, 40, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [81, 30, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [110, 28, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [118, 42, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  ],
+  "spec/yard/yaml/converter_spec.rb:1413545740": [
+    [7, 9, 19, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 3960408256],
+    [45, 51, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  ],
+  "spec/yard/yaml/discovery_spec.rb:1721863499": [
+    [29, 7, 17, "ThreadSafety/DirChdir: Avoid using `Dir.chdir` due to its process-wide effect.", 2834783191],
+    [45, 7, 17, "ThreadSafety/DirChdir: Avoid using `Dir.chdir` due to its process-wide effect.", 2834783191],
+    [73, 7, 17, "ThreadSafety/DirChdir: Avoid using `Dir.chdir` due to its process-wide effect.", 2834783191]
+  ],
+  "spec/yard/yaml/inline_integration_spec.rb:2033689905": [
+    [3, 16, 38, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 1031125190],
+    [40, 29, 13, "Style/RedundantInterpolation: Prefer `to_s` over string interpolation.", 1952400070]
+  ],
+  "spec/yard/yaml/plugin_spec.rb:1195930876": [
+    [5, 43, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [10, 43, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  ],
+  "spec/yard/yaml/sidebar_spec.rb:1338491629": [
+    [3, 16, 27, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 863439518]
+  ],
+  "spec/yard/yaml/tag_renderer_spec.rb:4269166835": [
+    [10, 7, 23, "RSpec/LeakyConstantDeclaration: Stub constant instead of declaring explicitly.", 2760620745]
+  ],
+  "spec/yard/yaml/tags_spec.rb:3853130383": [
+    [7, 7, 196, "RSpec/LeakyConstantDeclaration: Stub module constant instead of declaring explicitly.", 2912059727],
+    [9, 11, 20, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1841157115],
+    [18, 5, 33, "RSpec/RemoveConst: Do not use remove_const in specs. Consider using e.g. `stub_const`.", 2307019709]
+  ]
+}

@@ -61,8 +61,8 @@ module Yard
 
       def wrap_section(html, kind:)
         return "" if html.to_s.empty?
-        css = kind == :yaml ? "yyaml-inline" : "yyaml-file"
-        %Q(<div class="#{css}">#{html}</div>)
+        css = (kind == :yaml) ? "yyaml-inline" : "yyaml-file"
+        %(<div class="#{css}">#{html}</div>)
       end
       module_function :wrap_section
     end

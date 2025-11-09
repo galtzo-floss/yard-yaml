@@ -2,16 +2,15 @@
 
 RSpec.describe Yard::Yaml::Emitter do
   let(:tmpdir) { Dir.mktmpdir("yyaml-out-") }
+  let(:pages) do
+    [
+      {path: "/docs/a.yml", html: "<p>A</p>", title: "Alpha", description: "First", meta: {}},
+      {path: "/docs/b.yaml", html: "<p>B</p>", title: "Beta", description: nil, meta: {"slug" => "custom-b"}},
+    ]
+  end
 
   after do
     FileUtils.remove_entry(tmpdir) if tmpdir && Dir.exist?(tmpdir)
-  end
-
-  let(:pages) do
-    [
-      { path: "/docs/a.yml", html: "<p>A</p>", title: "Alpha", description: "First", meta: {} },
-      { path: "/docs/b.yaml", html: "<p>B</p>", title: "Beta", description: nil, meta: { "slug" => "custom-b" } },
-    ]
   end
 
   it "emits per-page files and an index when enabled" do
@@ -40,7 +39,7 @@ RSpec.describe Yard::Yaml::Emitter do
 
   it "derives slug from title or path when missing" do
     cfg = Yard::Yaml::Config.new
-    pgs = [ { path: "/x/y/z.yml", html: "<p>Z</p>", title: nil, description: nil, meta: {} } ]
+    pgs = [{path: "/x/y/z.yml", html: "<p>Z</p>", title: nil, description: nil, meta: {}}]
     described_class.emit!(pages: pgs, output_dir: tmpdir, config: cfg)
     expect(File).to(exist(File.join(tmpdir, cfg.out_dir, "z.html")))
   end

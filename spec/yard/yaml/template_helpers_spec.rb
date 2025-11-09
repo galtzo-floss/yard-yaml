@@ -5,7 +5,7 @@ RSpec.describe Yard::Yaml::TemplateHelpers do
     Class.new do
       class << self
         def convert(yaml, options)
-          { html: "<pre>#{yaml.strip}</pre>", title: options[:title], description: nil, meta: {} }
+          {html: "<pre>#{yaml.strip}</pre>", title: options[:title], description: nil, meta: {}}
         end
       end
     end

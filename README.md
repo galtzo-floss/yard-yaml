@@ -553,3 +553,93 @@ Thanks for RTFM. ☺️
 [💎appraisal2]: https://github.com/appraisal-rb/appraisal2
 [💎appraisal2-img]: https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
+
+
+
+## Quickstart — YARD YAML Plugin
+
+Add the plugin and run YARD to generate HTML from your YAML files alongside API docs.
+
+1) Install dependencies
+
+```
+bundle install
+```
+
+2) Add flags to your `.yardopts`
+
+```
+--plugin yard-yaml
+--yard_yaml-include docs/**/*.yml
+--yard_yaml-include docs/**/*.yaml
+--yard_yaml-exclude **/_*.y{a,}ml
+--yard_yaml-out_dir yaml
+--yard_yaml-index
+--yard_yaml-converter_options pretty:true,wrap:80
+```
+
+3) Generate docs
+
+```
+bundle exec yard --plugin yard-yaml
+```
+
+This will emit converted pages under `doc/yaml/` (configurable via `--yard_yaml-out_dir`). When `index` is enabled (default), an index page is written to `doc/yaml/index.html`.
+
+### Configuration Flags
+
+- Repeatable arrays:
+  - `--yard_yaml-include <glob>` (repeat)
+  - `--yard_yaml-exclude <glob>` (repeat)
+- Strings:
+  - `--yard_yaml-out_dir <dir>`
+  - `--yard_yaml-toc <mode>`
+- Booleans (two forms supported):
+  - `--yard_yaml-index` / `--no-yard_yaml-index`
+  - `--yard_yaml-front_matter[=true|false]`
+  - `--yard_yaml-strict[=true|false]`
+  - `--yard_yaml-allow_erb[=true|false]`
+- Key-value map:
+  - `--yard_yaml-converter_options key:value[,key:value]`
+
+Notes:
+- Unknown/invalid flags are ignored with a warning.
+- Booleans accept: `true/false/yes/no/on/off/1/0`.
+
+### Inline Tags
+
+Render YAML directly inside docstrings:
+
+```
+# @yaml
+#   database:
+#     host: localhost
+#     port: 5432
+```
+
+Render a YAML file inline or link to it (depending on your templates):
+
+```
+# @yaml_file docs/examples/config.yml
+```
+
+### Strict Mode and Safety
+
+- By default, failures warn and continue. Set `--yard_yaml-strict=true` to raise `Yard::Yaml::Error` on failures (missing files, converter errors, write failures).
+- ERB processing inside YAML is disabled by default; enable with `--yard_yaml-allow_erb=true` if you trust the inputs.
+
+### Examples
+
+Sample YAML inputs are provided under `examples/docs/`. Try:
+
+```
+bundle exec yard --plugin yard-yaml
+open doc/yaml/index.html  # macOS; use xdg-open on Linux
+```
+
+### Troubleshooting
+
+- No output? Ensure `.yardopts` includes `--plugin yard-yaml` and your include globs match your files.
+- Missing file warnings from `@yaml_file`: provide a path relative to the file being documented, or use an absolute path.
+- Coverage thresholds failing on focused runs: run with `K_SOUP_COV_MIN_HARD=false` while iterating, and rerun the full suite before committing.
+- Local gem build hanging? Skip signing locally: `SKIP_GEM_SIGNING=true bundle exec rake build`.

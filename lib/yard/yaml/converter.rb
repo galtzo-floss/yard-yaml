@@ -47,10 +47,8 @@ module Yard
           rescue LoadError
             # ignore; backend may be set by tests
           end
-          if defined?(::Yaml) && ::Yaml.const_defined?(:Converter)
-            @backend = ::Yaml::Converter
-          else
-            @backend = nil
+          @backend = if defined?(::Yaml) && ::Yaml.const_defined?(:Converter)
+            ::Yaml::Converter
           end
         end
 
@@ -99,7 +97,7 @@ module Yard
         end
 
         def empty_result
-          { html: "", title: nil, description: nil, meta: {} }
+          {html: "", title: nil, description: nil, meta: {}}
         end
 
         def handle_error(error, strict:, context: nil)

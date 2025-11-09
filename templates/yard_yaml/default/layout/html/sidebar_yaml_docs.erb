@@ -1,0 +1,14 @@
+<%# Sidebar section for YAML Docs within default layout %>
+<% pages = (defined?(::Yard) && ::Yard.const_defined?(:Yaml)) ? ::Yard::Yaml.pages : [] %>
+<% if pages && !pages.empty? %>
+  <div class="yyaml-sidebar">
+    <h3>YAML Docs</h3>
+    <ul>
+      <% pages.each do |p| %>
+        <% slug = (defined?(::Yard) && ::Yard.const_defined?(:Yaml) && ::Yard::Yaml.const_defined?(:Emitter)) ? ::Yard::Yaml::Emitter.slug_for(p) : (p[:title] || p[:path]).to_s %>
+        <% out_dir = (defined?(::Yard) && ::Yard.const_defined?(:Yaml)) ? ::Yard::Yaml.config.out_dir : "yaml" %>
+        <li><a href="/<%= ERB::Util.html_escape(out_dir) %>/<%= ERB::Util.html_escape(slug) %>.html"><%= ERB::Util.html_escape(p[:title] || slug) %></a></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -30,7 +30,7 @@ RSpec.describe Yard::Yaml::TagRenderer do
       html = described_class.render_for(o)
       expect(Yard::Yaml::TemplateHelpers).to have_received(:render_yaml_block).with("a: 1\n", config: Yard::Yaml.config)
       expect(html).to include('<div class="yyaml-inline">')
-      expect(html).to include('<pre>ok</pre>')
+      expect(html).to include("<pre>ok</pre>")
     end
 
     it "renders @yaml_file entries using TemplateHelpers, resolves and wraps output" do
@@ -39,7 +39,7 @@ RSpec.describe Yard::Yaml::TagRenderer do
       html = described_class.render_for(o, base_dir: Dir.pwd)
       expect(Yard::Yaml::TemplateHelpers).to have_received(:render_yaml_file).with("docs/x.yml", base_dir: Dir.pwd, config: Yard::Yaml.config)
       expect(html).to include('<div class="yyaml-file">')
-      expect(html).to include('<p>file</p>')
+      expect(html).to include("<p>file</p>")
     end
 
     it "bubbles up strict errors from TemplateHelpers.render_yaml_file" do
