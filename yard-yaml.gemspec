@@ -23,10 +23,10 @@ Gem::Specification.new do |spec|
   spec.authors = ["Annibelle Boling"]
   spec.email = ["annibelle.boling@gmail.com"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
-  spec.license = "MIT"
+  spec.summary = "🥨 A YARD plugin for YAML documents"
+  spec.description = "🥨 A YARD plugin for YAML documents"
+  spec.homepage = "https://github.com/galtzo-floss/yard-yaml"
+  spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 3.2.0"
 
   # Linux distros often package gems and securely certify them independent
