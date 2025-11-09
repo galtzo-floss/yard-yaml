@@ -2,9 +2,11 @@ module Yard
   module Yaml
     VERSION: String
 
-    # Global configuration accessors
+    # Global configuration and pages accessors
     def self.config: () -> Yard::Yaml::Config
     def self.configure: (?Hash[untyped, untyped] overrides) { (Yard::Yaml::Config) -> void } -> Yard::Yaml::Config
+    def self.pages: () -> (Array[Hash[untyped, untyped]] | nil)
+    def self.__set_pages__: (Array[Hash[untyped, untyped]] list) -> Array[Hash[untyped, untyped]]
 
     class Config
       DEFAULT_INCLUDE: Array[String]
@@ -38,6 +40,11 @@ module Yard
     module Plugin
       def self.activated?: () -> bool
       def self.activate: (?Array[String] argv) -> void
+    end
+
+    module Discovery
+      def self.find_files: (Array[String] include_globs, Array[String] exclude_globs) -> Array[String]
+      def self.collect: (?Yard::Yaml::Config config) -> Array[Hash[untyped, untyped]]
     end
 
     class Converter
