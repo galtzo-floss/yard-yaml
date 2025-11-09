@@ -19,16 +19,28 @@ Please file a bug if you notice a violation of semantic versioning.
 ## [Unreleased]
 
 ### Added
+- Inline tag rendering for `@yaml` and `@yaml_file`, placed inline in object docstrings via template hooks.
+- Sidebar group "YAML Docs" listing discovered pages with deterministic ordering.
+- File discovery ordering by `meta.nav_order` (numeric) → title (case-insensitive) → path.
+- Unified logging helpers `Yard::Yaml.warn` and `Yard::Yaml.error` with fallback to `Kernel.warn`.
+- Emitter to write per-page HTML and optional index, with stable slugs via `Emitter.slug_for`.
+- Examples under `examples/docs/` for manual verification.
+- Additional specs increasing coverage of slugs and write-error warnings.
 
 ### Changed
+- Converter/Discovery/Emitter/CLI now route warnings through unified helpers; strict mode behavior standardized.
 
 ### Deprecated
+- None.
 
 ### Removed
+- None.
 
 ### Fixed
+- Reduced noisy constant redefinition in tag registration in most contexts (tests still exercise re-registration).
 
 ### Security
+- Safe defaults maintained; ERB remains disabled by default; strict mode converts warnings to errors.
 
 ## [0.1.0] - 2025-11-08
 

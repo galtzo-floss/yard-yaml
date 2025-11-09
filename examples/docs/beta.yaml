@@ -1,0 +1,8 @@
+---
+title: Beta Page
+nav_order: 2
+description: The second example YAML page.
+---
+features:
+  - name: beta
+    enabled: true
