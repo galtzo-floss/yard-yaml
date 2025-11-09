@@ -155,8 +155,9 @@ module Yard
         end
 
         def warn_unknown(message)
-          if defined?(::YARD) && ::YARD.const_defined?(:Logger)
-            ::YARD::Logger.instance.warn("yard-yaml: #{message}")
+          # Delegate to unified helper to avoid NameError when a partial YARD stub exists.
+          if defined?(::Yard) && ::Yard.const_defined?(:Yaml)
+            ::Yard::Yaml.warn(message)
           else
             Kernel.warn("yard-yaml: #{message}")
           end

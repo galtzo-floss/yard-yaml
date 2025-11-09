@@ -7,6 +7,10 @@ require_relative "yaml/plugin"
 require_relative "yaml/converter"
 require_relative "yaml/discovery"
 require_relative "yaml/emitter"
+require_relative "yaml/template_helpers"
+require_relative "yaml/tag_renderer"
+require_relative "yaml/tags"
+require_relative "yaml/templates"
 
 module Yard
   module Yaml
@@ -54,6 +58,28 @@ module Yard
         cfg
       end
 
+      # Public: emit a warning message via YARD logger when available, otherwise stderr.
+      # Prefix is standardized to "yard-yaml: ".
+      # @param message [String]
+      def warn(message)
+        __warn(message)
+      end
+
+      # Public: emit an error-level log message (does not raise).
+      # Uses YARD::Logger.error if available, else falls back to stderr with prefix.
+      # @param message [String]
+      def error(message)
+        if defined?(::YARD) && ::YARD.const_defined?(:Logger)
+          begin
+            ::YARD::Logger.instance.error("yard-yaml: #{message}")
+            return
+          rescue StandardError
+            # fall back
+          end
+        end
+        Kernel.warn("yard-yaml: ERROR: #{message}")
+      end
+
       # Test-helper: reset memoized config to defaults (not public API)
       def __reset_state__
         @config = nil
@@ -65,6 +91,21 @@ module Yard
       end
 
       private
+
+      # Internal: unified warning helper to avoid constants errors when a partial
+      # YARD stub is present in tests. Prefer using this helper over direct
+      # YARD::Logger usage.
+      def __warn(message)
+        if defined?(::YARD) && ::YARD.const_defined?(:Logger)
+          begin
+            ::YARD::Logger.instance.warn("yard-yaml: #{message}")
+            return
+          rescue StandardError
+            # fall back
+          end
+        end
+        Kernel.warn("yard-yaml: #{message}")
+      end
 
       def mirror_to_registry(cfg)
         return unless defined?(::YARD) && ::YARD.const_defined?(:Registry)

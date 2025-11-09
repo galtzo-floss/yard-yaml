@@ -67,15 +67,40 @@ module Yard
             end
           end
 
-          # Deterministic ordering by title then path, falling back as needed
-          results.sort_by { |h| [h[:title].to_s.downcase, h[:path]] }
+          # Deterministic ordering by nav_order (if present) then title then path.
+          # nav_order values sort numerically; missing/non-numeric values are treated as Infinity (i.e., after any numeric ones).
+          results.sort_by { |h| [nav_order_value(h[:meta]), h[:title].to_s.downcase, h[:path]] }
         end
 
         private
 
+        # Extract a numeric nav_order from meta. Returns Infinity when absent or non-numeric
+        # so those entries sort after any numeric ones.
+        def nav_order_value(meta)
+          return Float::INFINITY unless meta.is_a?(Hash)
+          val = meta[:nav_order] || meta['nav_order']
+          case val
+          when Integer, Float
+            val
+          when String
+            s = val.strip
+            if s.match?(/\A[+-]?\d+\z/)
+              Integer(s) rescue Float::INFINITY
+            elsif s.match?(/\A[+-]?(?:\d+\.)?\d+\z/)
+              Float(s) rescue Float::INFINITY
+            else
+              Float::INFINITY
+            end
+          else
+            Float::INFINITY
+          end
+        rescue StandardError
+          Float::INFINITY
+        end
+
         def warn_fallback(message)
-          if defined?(::YARD) && ::YARD.const_defined?(:Logger)
-            ::YARD::Logger.instance.warn("yard-yaml: #{message}")
+          if defined?(::Yard) && ::Yard.const_defined?(:Yaml)
+            ::Yard::Yaml.warn(message)
           else
             Kernel.warn("yard-yaml: #{message}")
           end

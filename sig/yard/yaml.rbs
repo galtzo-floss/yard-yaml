@@ -7,6 +7,8 @@ module Yard
     def self.configure: (?Hash[untyped, untyped] overrides) { (Yard::Yaml::Config) -> void } -> Yard::Yaml::Config
     def self.pages: () -> (Array[Hash[untyped, untyped]] | nil)
     def self.__set_pages__: (Array[Hash[untyped, untyped]] list) -> Array[Hash[untyped, untyped]]
+    def self.warn: (String message) -> void
+    def self.error: (String message) -> void
 
     class Config
       DEFAULT_INCLUDE: Array[String]
@@ -54,6 +56,20 @@ module Yard
 
     class Emitter
       def self.emit!: (pages: Array[Hash[untyped, untyped]], output_dir: String, ?config: Yard::Yaml::Config) -> Array[String]
+      def self.slug_for: (Hash[untyped, untyped] page) -> String
+    end
+
+    module TemplateHelpers
+      def self.render_yaml_block: (String text, ?config: Yard::Yaml::Config) -> String
+      def self.render_yaml_file: (String path, ?base_dir: String, ?config: Yard::Yaml::Config) -> String
+    end
+
+    module TagRenderer
+      def self.render_for: (untyped object, ?base_dir: String, ?config: Yard::Yaml::Config) -> String
+    end
+
+    module Tags
+      def self.register!: () -> void
     end
 
     class Error < ::StandardError

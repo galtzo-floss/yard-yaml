@@ -49,6 +49,13 @@ module Yard
           written
         end
 
+        # Public: derive a stable slug for a page hash. Shared by templates.
+        # @param page [Hash]
+        # @return [String]
+        def slug_for(page)
+          page_slug(page)
+        end
+
         private
 
         def page_slug(page)
@@ -138,8 +145,8 @@ module Yard
           FileUtils.mv(tmp, path)
         rescue StandardError => e
           # Defer strict handling to caller in a later phase; warn for now
-          if defined?(::YARD) && ::YARD.const_defined?(:Logger)
-            ::YARD::Logger.instance.warn("yard-yaml: write failed for #{path}: #{e.message}")
+          if defined?(::Yard) && ::Yard.const_defined?(:Yaml)
+            ::Yard::Yaml.warn("write failed for #{path}: #{e.message}")
           else
             Kernel.warn("yard-yaml: write failed for #{path}: #{e.message}")
           end

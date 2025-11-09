@@ -1,0 +1,25 @@
+<%# Inline YAML rendering hook for yard-yaml
+  - Expects to run inside a YARD object page template where `object` is the
+    current code object and `options`/`serializer` are available from YARD.
+  - This partial is intentionally tiny and delegates all logic to
+    Yard::Yaml::TagRenderer so it stays theme-agnostic.
+%>
+<%=
+  begin
+    base_dir = if object && object.respond_to?(:file) && object.file
+      File.dirname(object.file.to_s)
+    else
+      Dir.pwd
+    end
+    Yard::Yaml::TagRenderer.render_for(object, base_dir: base_dir, config: Yard::Yaml.config)
+  rescue => e
+    # Be defensive in templates to avoid breaking the entire page rendering.
+    # In strict mode, upstream should already have raised before reaching here;
+    # this rescue is a last resort to keep generation running in non-strict.
+    if Yard::Yaml.config.strict
+      raise
+    else
+      ""
+    end
+  end
+%>

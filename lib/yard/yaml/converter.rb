@@ -107,8 +107,8 @@ module Yard
             raise Yard::Yaml::Error, error.message
           else
             message = context ? "#{error.class}: #{error.message} (#{context})" : "#{error.class}: #{error.message}"
-            if defined?(::YARD) && ::YARD.const_defined?(:Logger)
-              ::YARD::Logger.instance.warn("yard-yaml: #{message}")
+            if defined?(::Yard) && ::Yard.const_defined?(:Yaml)
+              ::Yard::Yaml.__send__(:__warn, message)
             else
               Kernel.warn("yard-yaml: #{message}")
             end
