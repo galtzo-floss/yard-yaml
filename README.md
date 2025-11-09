@@ -50,7 +50,15 @@
 
 ## 🌻 Synopsis
 
+## Enabling the Plugin
 
+To enable the `yard-yaml` plugin, add the following line to your `.yardopts` file:
+
+```text
+--plugin yaml
+```
+
+This will activate the plugin during the `yard doc` generation process.
 
 ## 💡 Info you can shake a stick at
 
@@ -165,11 +173,54 @@ NOTE: Be prepared to track down certs for signed gems and add them the same way 
 
 ## ⚙️ Configuration
 
+The `yard-yaml` plugin supports the following configuration options:
 
+- **include**: Array of file patterns to include (default: `["docs/**/*.y{a,}ml", "*.y{a,}ml"]`).
+- **exclude**: Array of file patterns to exclude (default: `["**/_*.y{a,}ml"]`).
+- **out_dir**: Output directory for YAML files (default: `"yaml"`).
+- **index**: Whether to generate an index page (default: `true`).
+- **toc**: Table of contents generation mode (default: `"auto"`).
+- **converter_options**: Options passed to the YAML converter (default: `{}`).
+- **front_matter**: Whether to parse front matter (default: `true`).
+- **strict**: Raise errors on conversion failures (default: `false`).
+- **allow_erb**: Allow ERB processing in YAML files (default: `false`).
+
+### Example `.yardopts` Configuration
+
+```text
+--plugin yaml
+--yard_yaml-include "examples//*.yml"
+--yard_yaml-exclude "/drafts/*.yml"
+--yard_yaml-out_dir "custom_output"
+--yard_yaml-strict
+```
 
 ## 🔧 Basic Usage
 
+### Inline Tags
 
+The `yard-yaml` plugin introduces two new tags for use in docstrings:
+
+1. **`@yaml`**: Embeds converted YAML content as HTML.
+2. **`@yaml_file`**: Links to or embeds a converted YAML file.
+
+### Examples
+
+#### `@yaml` Tag
+
+```ruby
+# @yaml
+# ---
+# title: Example YAML
+# description: This is an example YAML block.
+# ---
+```
+
+#### `@yaml_file` Tag
+
+```ruby
+# @yaml_file path/to/example.yml
+```
 
 ## 🦷 FLOSS Funding
 
