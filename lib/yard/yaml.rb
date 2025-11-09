@@ -6,6 +6,7 @@ require_relative "yaml/cli"
 require_relative "yaml/plugin"
 require_relative "yaml/converter"
 require_relative "yaml/discovery"
+require_relative "yaml/emitter"
 
 module Yard
   module Yaml

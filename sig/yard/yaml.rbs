@@ -52,6 +52,10 @@ module Yard
       def self.from_file: (String path, ?Hash[untyped, untyped] options, ?config: Yard::Yaml::Config) -> Hash[untyped, untyped]
     end
 
+    class Emitter
+      def self.emit!: (pages: Array[Hash[untyped, untyped]], output_dir: String, ?config: Yard::Yaml::Config) -> Array[String]
+    end
+
     class Error < ::StandardError
     end
   end
