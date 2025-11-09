@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    yard-yaml (0.1.0)
+      kettle-dev (~> 1.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    kettle-dev (1.1.52)
+
+PLATFORMS
+  ruby
+  x86_64-darwin-24
+
+DEPENDENCIES
+  yard-yaml!
+
+BUNDLED WITH
+   2.7.2
