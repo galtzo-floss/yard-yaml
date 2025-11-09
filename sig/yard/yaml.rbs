@@ -1,6 +1,38 @@
 module Yard
   module Yaml
     VERSION: String
-    # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+
+    class Config
+      DEFAULT_INCLUDE: Array[String]
+      DEFAULT_EXCLUDE: Array[String]
+      DEFAULT_OUT_DIR: String
+      DEFAULT_INDEX: bool
+      DEFAULT_TOC: String
+      DEFAULT_CONVERTER_OPTIONS: Hash[untyped, untyped]
+      DEFAULT_FRONT_MATTER: bool
+      DEFAULT_STRICT: bool
+      DEFAULT_ALLOW_ERB: bool
+
+      attr_accessor include: Array[String]
+      attr_accessor exclude: Array[String]
+      attr_accessor out_dir: String
+      attr_accessor index: bool
+      attr_accessor toc: String
+      attr_accessor converter_options: Hash[untyped, untyped]
+      attr_accessor front_matter: bool
+      attr_accessor strict: bool
+      attr_accessor allow_erb: bool
+
+      def initialize: (?Hash[untyped, untyped] overrides) -> void
+      def apply: (Hash[untyped, untyped]) -> Config
+    end
+
+    module Plugin
+      def self.activated?: () -> bool
+      def self.activate: () -> void
+    end
+
+    class Error < ::StandardError
+    end
   end
 end
