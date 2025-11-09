@@ -14,10 +14,10 @@ PATH
   remote: .
   specs:
     yard-yaml (0.1.0)
-      kettle-dev (~> 1.1)
+      version_gem (~> 1.1, >= 1.1.9)
+      yaml-converter (~> 0.1)
 
 GEM
-  remote: https://rubygems.org/
   remote: https://gem.coop/
   specs:
     addressable (2.8.7)
@@ -112,6 +112,7 @@ GEM
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
+    matrix (0.4.3)
     mutex_m (0.3.0)
     nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
@@ -120,8 +121,13 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
+    pdf-core (0.10.0)
     pp (0.6.3)
       prettyprint
+    prawn (2.5.0)
+      matrix (~> 0.4)
+      pdf-core (~> 0.10.0)
+      ttfunk (~> 1.8)
     prettyprint (0.2.0)
     prism (1.6.0)
     psych (5.2.6)
@@ -281,10 +287,17 @@ GEM
       rspec (~> 3.0)
       timecop (>= 0.7, < 1)
     tsort (0.2.0)
+    ttfunk (1.8.0)
+      bigdecimal (~> 3.1)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
     version_gem (1.1.9)
+    yaml-converter (0.1.0)
+      kramdown (>= 2.4, < 3)
+      kramdown-parser-gfm (~> 1.1)
+      prawn (>= 2.5, < 3)
+      version_gem (~> 1.1, >= 1.1.9)
     yard (0.9.37)
     yard-fence (0.8.0)
       rdoc (~> 6.11)

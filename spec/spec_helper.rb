@@ -26,4 +26,4 @@ RSpec.configure do |config|
   end
 end
 
-require "yaml/converter"
+require "yard/yaml"
