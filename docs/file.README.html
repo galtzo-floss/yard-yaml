@@ -844,28 +844,14 @@ Please consider sponsoring me or the project.</p>
 
 <p>Thanks for RTFM. ☺️</p>
 
-<h2 id="quickstart--yard-yaml-plugin-1">Quickstart — YARD YAML Plugin</h2>
+</div></div>
 
-<p>Add the plugin and run YARD to integrate YAML into your documentation workflow.</p>
+      <div id="footer">
+  Generated on Mon Nov 10 03:06:20 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.7).
+</div>
 
-<h3 id="1-install-dependencies-1">1. Install dependencies</h3>
-
-<pre class="code language-bash"><code class="language-bash">bundle install
-</code></pre>
-
-<h3 id="2-configure-yardopts-1">2. Configure <code>.yardopts</code>
-</h3>
-
-<p>Minimal example (adjust globs/output for your project):</p>
-
-<pre class="code language-text"><code class="language-text">--plugin yaml
---markup markdown
---markup-provider kramdown
---output docs
---yard_yaml-include docs/**/*.y{a,}ml
---yard_yaml-exclude **/_*.y{a,}ml
---yard_yaml-out_dir yaml
---yard_yaml-index
-</code></pre>
-
-<p>NOTE: This gem uses <code>--plugin fence -e yard/fence/hoist.rb</code> for its own documentation. <code>yaml-fence</code> hoists fenced blocks inside code object docstrings, so that th
+    </div>
+  </body>
+</html>

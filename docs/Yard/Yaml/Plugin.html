@@ -218,4 +218,189 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
 56</pre>
     </td>
     <td>
-      <pre class="code"><sp
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___reset_state__'>__reset_state__</span>
+  <span class='ivar'>@activated</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="activate-class_method">
+  
+    .<strong>activate</strong>(argv = nil)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Activate the plugin.</p>
+
+<p>Phase 3 behavior:</p>
+<ul>
+  <li>Parse argv for <code>--yard_yaml-*</code> flags and apply to configuration.</li>
+  <li>Run discovery to collect YAML pages and mirror to registry store.</li>
+  <li>Do NOT register tags, templates, or handlers yet.</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>optional argument vector to parse</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_activate'>activate</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='comment'># Parse and apply CLI overrides if provided
+</span>  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_overrides'>overrides</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Cli.html" title="Yard::Yaml::Cli (module)">Cli</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="Cli.html#parse-class_method" title="Yard::Yaml::Cli.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'><span class='object_link'><a href="../Yaml.html#configure-class_method" title="Yard::Yaml.configure (method)">configure</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_overrides'>overrides</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_overrides'>overrides</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span>
+    <span class='comment'># Parsing failures should not prevent activation in Phase 3
+</span>  <span class='kw'>end</span>
+
+  <span class='comment'># Collect pages via discovery using current config
+</span>  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_pages'>pages</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Discovery.html" title="Yard::Yaml::Discovery (module)">Discovery</a></span></span><span class='period'>.</span><span class='id identifier rubyid_collect'><span class='object_link'><a href="Discovery.html#collect-class_method" title="Yard::Yaml::Discovery.collect (method)">collect</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_config'><span class='object_link'><a href="../Yaml.html#config-class_method" title="Yard::Yaml.config (method)">config</a></span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid___set_pages__'><span class='object_link'><a href="../Yaml.html#__set_pages__-class_method" title="Yard::Yaml.__set_pages__ (method)">__set_pages__</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pages'>pages</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error.html" title="Yard::Yaml::Error (class)">Error</a></span></span>
+    <span class='comment'># strict mode surfaced an error; re-raise to fail activation/build
+</span>    <span class='id identifier rubyid_raise'>raise</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span>
+    <span class='comment'># Non-strict errors are already warned by converter/discovery
+</span>  <span class='kw'>end</span>
+
+  <span class='ivar'>@activated</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="activated?-class_method">
+  
+    .<strong>activated?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Whether the plugin has been activated for the current process.<br />
+Activation is explicit; requiring this file does not activate anything.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_activated?'>activated?</span>
+  <span class='ivar'>@activated</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Mon Nov 10 03:06:20 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.7).
+</div>
+
+    </div>
+  </body>
+</html>
