@@ -66,7 +66,7 @@ This will activate the plugin during the `yard doc` generation process.
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Works with JRuby        | ![JRuby 9.1 Compat][💎jruby-9.1i] ![JRuby 9.2 Compat][💎jruby-9.2i] ![JRuby 9.3 Compat][💎jruby-9.3i] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                          |
 | Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.0 Compat][💎truby-23.0i] <br/> [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎9-t-wf] [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                            |
-| Works with MRI Ruby 3   | [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                         |
+| Works with MRI Ruby 3   | [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                                                                                                                  |
 | Support & Community     | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                       |
 | Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                         |
 | Documentation           | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki]                                                                                          |
@@ -88,12 +88,12 @@ Compatible with MRI Ruby 3.2.0+, and concordant releases of JRuby, and TruffleRu
 <details markdown="1">
   <summary>Find this repo on federated forges (Coming soon!)</summary>
 
-| Federated [DVCS][💎d-in-dvcs] Repository        | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
-|-------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
+| Federated [DVCS][💎d-in-dvcs] Repository          | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
+|---------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
 | 🧪 [galtzo-floss/yard-yaml on GitLab][📜src-gl]   | The Truth                                                             | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜gl-wiki]           | 🐭 Tiny Matrix           | ➖                            |
 | 🧊 [galtzo-floss/yard-yaml on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate])                             | [💚][🤝cb-issues]         | [💚][🤝cb-pulls]         | ➖                         | ⭕️ No Matrix             | ➖                            |
 | 🐙 [galtzo-floss/yard-yaml on GitHub][📜src-gh]   | Another Mirror                                                        | [💚][🤝gh-issues]         | [💚][🤝gh-pulls]         | [💚][📜gh-wiki]           | 💯 Full Matrix           | [💚][gh-discussions]         |
-| 🎮️ [Discord Server][✉️discord-invite]          | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
+| 🎮️ [Discord Server][✉️discord-invite]            | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
 
 </details>
 
@@ -221,6 +221,190 @@ The `yard-yaml` plugin introduces two new tags for use in docstrings:
 ```ruby
 # @yaml_file path/to/example.yml
 ```
+
+#### Include .yml/.yaml files as pages
+
+- Generate docs (plugin loads; discovery config comes from flags you pass):
+  ```bash
+  bundle exec yard
+  ```
+- Then emit converted pages into your YARD output dir (replace globs/output to match your project):
+  ```bash
+  ruby -r yard/yaml -e 'Yard::Yaml::Plugin.activate(%w[--yard_yaml-include docs/**/*.y{a,}ml --yard_yaml-exclude **/_*.y{a,}ml]); Yard::Yaml::Emitter.emit!(pages: Yard::Yaml.pages, output_dir: "docs", config: Yard::Yaml.config)'
+  ```
+  Result: `docs/yaml/<slug>.html` and `docs/yaml/index.html` (when index enabled). Front matter supports `title`, `description`, `nav_order`, optional `slug`.
+
+#### Inline YAML in Markdown (GFM) fences
+
+- In code object docstrings, prefer the tags above; they convert and render after the docstring via this plugin’s theme hook.
+- In standalone Markdown pages, fenced ```yaml blocks render as code by Markdown; this plugin doesn’t auto‑convert them yet. Use either:
+  - Link to an emitted page (after emission), e.g. `[See config](./yaml/config.html)`.
+  - Pre‑convert and paste HTML (Kramdown allows raw HTML):
+    ```bash
+    ruby -r yard/yaml -e 'print Yard::Yaml::Converter.from_string(File.read(ARGV[0]))[:html]' path/to/file.yml > tmp.html
+    ```
+    Then paste the HTML (optionally wrapped in `<div class="yyaml-inline">…</div>`).
+
+## Quickstart — YARD YAML Plugin
+
+Add the plugin and run YARD to integrate YAML into your documentation workflow.
+
+### 1. Install dependencies
+
+```bash
+bundle install
+```
+
+### 2. Configure `.yardopts`
+
+Minimal example (adjust globs/output for your project):
+
+```text
+--plugin yaml
+--markup markdown
+--markup-provider kramdown
+--output docs
+--yard_yaml-include docs/**/*.y{a,}ml
+--yard_yaml-exclude **/_*.y{a,}ml
+--yard_yaml-out_dir yaml
+--yard_yaml-index
+```
+
+NOTE: This gem uses `--plugin fence -e yard/fence/hoist.rb` for its own documentation. `yaml-fence` hoists fenced blocks inside code object docstrings, so that they are transformed to UNICODE fences before YARD sees them, to avoid the `InvalidLink` warnings, but does not convert YAML fences.
+
+### 3. Generate API docs & collect YAML (discovery only)
+
+Running `yard` loads the plugin but does not auto-emit standalone YAML pages. Discovery + conversion occur only when you explicitly activate and emit.
+
+```bash
+bundle exec yard
+```
+
+### 4. Emit standalone YAML pages (manual step)
+
+Invoke activation + emission in a separate Ruby process (pass the same flags you used in `.yardopts` so discovery matches):
+
+```bash
+ruby -r yard/yaml -e 'Yard::Yaml::Plugin.activate(%w[--yard_yaml-include docs/**/*.y{a,}ml --yard_yaml-exclude **/_*.y{a,}ml --yard_yaml-out_dir yaml --yard_yaml-index]); Yard::Yaml::Emitter.emit!(pages: Yard::Yaml.pages, output_dir: "docs", config: Yard::Yaml.config)'
+```
+
+Result:
+
+- Pages written to `docs/yaml/<slug>.html`
+- Index (if enabled) at `docs/yaml/index.html`
+- Sidebar entries (via theme hooks) link to these pages
+
+### 5. Inline YAML in code object docstrings
+
+Preferred: use tags.
+
+```ruby
+# @yaml
+# ---
+# title: Inline Example
+# description: Demonstrates inline conversion.
+# ---
+# a: 1
+# b: 2
+```
+
+```ruby
+# @yaml_file docs/config/app.yml
+```
+
+Theme hooks insert converted HTML right after the main docstring. Strict mode governs failure behavior.
+
+### 6. YAML in Markdown (GFM) fenced blocks
+
+Standalone Markdown pages (e.g. README sections) treat:
+
+~~~markdown
+```yaml
+key: value
+```
+~~~
+
+as a code block. This plugin does NOT yet auto-convert fenced YAML in arbitrary Markdown pages.
+
+Workarounds:
+
+- Link to emitted page: `[Full Config](./yaml/config.html)`
+- Pre-convert & paste HTML:
+  ```bash
+  ruby -r yard/yaml -e 'print Yard::Yaml::Converter.from_string(File.read(ARGV[0]))[:html]' docs/config/app.yml > tmp.html
+  ```
+  Paste the resulting HTML (Kramdown allows raw HTML). Optionally wrap:
+  ```html
+  <div class="yyaml-inline">(converted YAML html here)</div>
+  ```
+
+### Front Matter Support
+
+Example `docs/config/app.yml`:
+
+```yaml
+---
+# Front matter fields consumed by yaml-converter
+title: Application Configuration
+nav_order: 10
+description: Core settings
+slug: app-config
+---
+app:
+  name: demo
+  enabled: true
+```
+
+Parsed fields:
+- `title`, `description` for page heading & sidebar
+- `nav_order` for ordering
+- `slug` overrides derived slug
+
+### Strict Mode & Safety
+
+- `--yard_yaml-strict=true`: raise `Yard::Yaml::Error` on missing file, conversion, or write errors.
+- Default (non-strict): warn and skip.
+- ERB disabled by default (`allow_erb=false`); enable only if you trust sources: `--yard_yaml-allow_erb=true`.
+
+### Converter Options
+
+Customize yaml-converter behavior (example):
+
+```text
+--yard_yaml-converter_options pretty:true,wrap:80
+```
+
+Boolean/number coercion is handled automatically.
+
+### Why not `yaml-markdown`?
+
+Unnecessary here. YARD already processes Markdown via `--markup markdown --markup-provider kramdown`. This plugin focuses on YAML discovery, conversion, tagging, and emission, leveraging the `yaml-converter` dependency.
+
+### Limitations & Roadmap
+
+Current limitations:
+
+- No automatic emission during `yard` run (manual step required)
+- No automatic conversion of fenced YAML in standalone Markdown pages
+- Minimal default HTML for emitted pages (simple inline styles)
+
+Planned improvements (subject to change):
+
+- Automatic emission hook in the generation pipeline
+- Optional fenced YAML auto-conversion in Markdown
+- Enhanced theming & TOC modes beyond `auto`
+- Search integration across YAML content
+
+### Troubleshooting Quick Reference
+
+| Symptom                    | Fix                                                      |
+|----------------------------|----------------------------------------------------------|
+| Sidebar links 404          | Run emission step (Step 4)                               |
+| Missing expected YAML page | Verify include/exclude globs & rerun emission            |
+| Inline tag shows empty     | Ensure YAML content is valid; check strict mode warnings |
+| Fenced YAML not converted  | Use tags or pre-convert & paste HTML                     |
+| ERB ignored                | Enable `--yard_yaml-allow_erb=true` (security trade-off) |
+| Build fails in strict mode | Rerun without strict to inspect warnings                 |
 
 ## 🦷 FLOSS Funding
 
@@ -609,88 +793,157 @@ Thanks for RTFM. ☺️
 
 ## Quickstart — YARD YAML Plugin
 
-Add the plugin and run YARD to generate HTML from your YAML files alongside API docs.
+Add the plugin and run YARD to integrate YAML into your documentation workflow.
 
-1) Install dependencies
+### 1. Install dependencies
 
-```
+```bash
 bundle install
 ```
 
-2) Add flags to your `.yardopts`
+### 2. Configure `.yardopts`
 
-```
---plugin yard-yaml
---yard_yaml-include docs/**/*.yml
---yard_yaml-include docs/**/*.yaml
+Minimal example (adjust globs/output for your project):
+
+```text
+--plugin yaml
+--markup markdown
+--markup-provider kramdown
+--output docs
+--yard_yaml-include docs/**/*.y{a,}ml
 --yard_yaml-exclude **/_*.y{a,}ml
 --yard_yaml-out_dir yaml
 --yard_yaml-index
+```
+
+(You already have `--plugin fence -e yard/fence/hoist.rb` in this repo; that hoists fenced blocks inside code object docstrings but does not convert YAML fences.)
+
+### 3. Generate API docs & collect YAML (discovery only)
+
+Running `yard` loads the plugin but does not auto-emit standalone YAML pages. Discovery + conversion occur only when you explicitly activate and emit.
+
+```bash
+bundle exec yard
+```
+
+### 4. Emit standalone YAML pages (manual step)
+
+Invoke activation + emission in a separate Ruby process (pass the same flags you used in `.yardopts` so discovery matches):
+
+```bash
+ruby -r yard/yaml -e 'Yard::Yaml::Plugin.activate(%w[--yard_yaml-include docs/**/*.y{a,}ml --yard_yaml-exclude **/_*.y{a,}ml --yard_yaml-out_dir yaml --yard_yaml-index]); Yard::Yaml::Emitter.emit!(pages: Yard::Yaml.pages, output_dir: "docs", config: Yard::Yaml.config)'
+```
+
+Result:
+- Pages written to `docs/yaml/<slug>.html`
+- Index (if enabled) at `docs/yaml/index.html`
+- Sidebar entries (via theme hooks) link to these pages
+
+### 5. Inline YAML in code object docstrings
+
+Preferred: use tags.
+
+```ruby
+# @yaml
+# ---
+# title: Inline Example
+# description: Demonstrates inline conversion.
+# ---
+# a: 1
+# b: 2
+```
+
+```ruby
+# @yaml_file docs/config/app.yml
+```
+
+Theme hooks insert converted HTML right after the main docstring. Strict mode governs failure behavior.
+
+### 6. YAML in Markdown (GFM) fenced blocks
+
+Standalone Markdown pages (e.g. README sections) treat:
+
+````markdown
+```yaml
+key: value
+```
+````
+
+as a code block. This plugin does NOT yet auto-convert fenced YAML in arbitrary Markdown pages.
+
+Workarounds:
+- Link to emitted page: `[Full Config](./yaml/config.html)`
+- Pre-convert & paste HTML:
+  ```bash
+  ruby -r yard/yaml -e 'print Yard::Yaml::Converter.from_string(File.read(ARGV[0]))[:html]' docs/config/app.yml > tmp.html
+  ```
+  Paste the resulting HTML (Kramdown allows raw HTML). Optionally wrap:
+  ```html
+  <div class="yyaml-inline">(converted YAML html here)</div>
+  ```
+
+### Front Matter Support
+
+Example `docs/config/app.yml`:
+
+```yaml
+---
+# Front matter fields consumed by yaml-converter
+title: Application Configuration
+nav_order: 10
+description: Core settings
+slug: app-config
+---
+app:
+  name: demo
+  enabled: true
+```
+
+Parsed fields:
+- `title`, `description` for page heading & sidebar
+- `nav_order` for ordering
+- `slug` overrides derived slug
+
+### Strict Mode & Safety
+
+- `--yard_yaml-strict=true`: raise `Yard::Yaml::Error` on missing file, conversion, or write errors.
+- Default (non-strict): warn and skip.
+- ERB disabled by default (`allow_erb=false`); enable only if you trust sources: `--yard_yaml-allow_erb=true`.
+
+### Converter Options
+
+Customize yaml-converter behavior (example):
+
+```text
 --yard_yaml-converter_options pretty:true,wrap:80
 ```
 
-3) Generate docs
+Boolean/number coercion is handled automatically.
 
-```
-bundle exec yard --plugin yard-yaml
-```
+### Why not `yaml-markdown`?
 
-This will emit converted pages under `doc/yaml/` (configurable via `--yard_yaml-out_dir`). When `index` is enabled (default), an index page is written to `doc/yaml/index.html`.
+Unnecessary here. YARD already processes Markdown via `--markup markdown --markup-provider kramdown`. This plugin focuses on YAML discovery, conversion, tagging, and emission, leveraging the `yaml-converter` dependency.
 
-### Configuration Flags
+### Limitations & Roadmap
 
-- Repeatable arrays:
-  - `--yard_yaml-include <glob>` (repeat)
-  - `--yard_yaml-exclude <glob>` (repeat)
-- Strings:
-  - `--yard_yaml-out_dir <dir>`
-  - `--yard_yaml-toc <mode>`
-- Booleans (two forms supported):
-  - `--yard_yaml-index` / `--no-yard_yaml-index`
-  - `--yard_yaml-front_matter[=true|false]`
-  - `--yard_yaml-strict[=true|false]`
-  - `--yard_yaml-allow_erb[=true|false]`
-- Key-value map:
-  - `--yard_yaml-converter_options key:value[,key:value]`
+Current limitations:
+- No automatic emission during `yard` run (manual step required)
+- No automatic conversion of fenced YAML in standalone Markdown pages
+- Minimal default HTML for emitted pages (simple inline styles)
 
-Notes:
-- Unknown/invalid flags are ignored with a warning.
-- Booleans accept: `true/false/yes/no/on/off/1/0`.
+Planned improvements (subject to change):
+- Automatic emission hook in the generation pipeline
+- Optional fenced YAML auto-conversion in Markdown
+- Enhanced theming & TOC modes beyond `auto`
+- Search integration across YAML content
 
-### Inline Tags
+### Troubleshooting Quick Reference
 
-Render YAML directly inside docstrings:
-
-```
-# @yaml
-#   database:
-#     host: localhost
-#     port: 5432
-```
-
-Render a YAML file inline or link to it (depending on your templates):
-
-```
-# @yaml_file docs/examples/config.yml
-```
-
-### Strict Mode and Safety
-
-- By default, failures warn and continue. Set `--yard_yaml-strict=true` to raise `Yard::Yaml::Error` on failures (missing files, converter errors, write failures).
-- ERB processing inside YAML is disabled by default; enable with `--yard_yaml-allow_erb=true` if you trust the inputs.
-
-### Examples
-
-Sample YAML inputs are provided under `examples/docs/`. Try:
-
-```
-bundle exec yard --plugin yard-yaml
-open doc/yaml/index.html  # macOS; use xdg-open on Linux
-```
-
-### Troubleshooting
-
-- No output? Ensure `.yardopts` includes `--plugin yard-yaml` and your include globs match your files.
-- Missing file warnings from `@yaml_file`: provide a path relative to the file being documented, or use an absolute path.
-- Coverage thresholds failing on focused runs: run with `K_SOUP_COV_MIN_HARD=false` while iterating, and rerun the full suite before committing.
-- Local gem build hanging? Skip signing locally: `SKIP_GEM_SIGNING=true bundle exec rake build`.
+| Symptom | Fix |
+|---------|-----|
+| Sidebar links 404 | Run emission step (Step 4) |
+| Missing expected YAML page | Verify include/exclude globs & rerun emission |
+| Inline tag shows empty | Ensure YAML content is valid; check strict mode warnings |
+| Fenced YAML not converted | Use tags or pre-convert & paste HTML |
+| ERB ignored | Enable `--yard_yaml-allow_erb=true` (security trade-off) |
+| Build fails in strict mode | Rerun without strict to inspect warnings |
