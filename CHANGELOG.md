@@ -30,7 +30,18 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+## [0.1.0] - 2025-11-10
+
+- TAG: [v0.1.0][0.1.0t]
+- COVERAGE: 91.13% -- 421/462 lines in 12 files
+- BRANCH COVERAGE: 75.47% -- 120/159 branches in 12 files
+- 84.38% documented
+
+### Added
+
 - Initial release
+
+### Security
 
 [Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/galtzo-floss/yard-yaml/compare/ffbe883471d11462dc28675867d852372ea3a481...v0.1.0
