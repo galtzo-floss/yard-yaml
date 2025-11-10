@@ -64,6 +64,26 @@ RSpec.describe Yard::Yaml::Discovery do
         expect(pages.first).to(include(:path, :html, :title, :description, :meta))
       end
     end
+
+    it "includes .cff files by default (CITATION.cff is YAML)" do
+      write("docs/citation.cff", "title: Cite\n---\nkey: v\n")
+
+      Dir.chdir(tmpdir) do
+        cfg = Yard::Yaml::Config.new
+        allow(Yard::Yaml::Converter).to(receive(:from_file)) do |path, _opts, config:|
+          {
+            html: "<p>#{File.basename(path)}</p>",
+            title: File.basename(path, File.extname(path)),
+            description: nil,
+            meta: {"source" => path, "strict" => config.strict},
+          }
+        end
+
+        pages = described_class.collect(cfg)
+        titles = pages.map { |p| p[:title] }
+        expect(titles).to(include("citation"))
+      end
+    end
   end
 
   describe "integration via Plugin.activate" do

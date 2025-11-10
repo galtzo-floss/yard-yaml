@@ -4,8 +4,8 @@ RSpec.describe Yard::Yaml::Config do
   describe "::new" do
     it "sets conservative defaults" do
       cfg = described_class.new
-      expect(cfg.include).to(eq(["docs/**/*.y{a,}ml", "*.y{a,}ml"]))
-      expect(cfg.exclude).to(eq(["**/_*.y{a,}ml"]))
+      expect(cfg.include).to(eq(["docs/**/*.y{a,}ml", "*.y{a,}ml", "docs/**/*.cff", "*.cff"]))
+      expect(cfg.exclude).to(eq(["**/_*.y{a,}ml", "**/_*.cff"]))
       expect(cfg.out_dir).to(eq("yaml"))
       expect(cfg.index).to(eq(true))
       expect(cfg.toc).to(eq("auto"))

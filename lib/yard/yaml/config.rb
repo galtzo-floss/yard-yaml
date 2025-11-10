@@ -13,11 +13,15 @@ module Yard
       DEFAULT_INCLUDE = [
         "docs/**/*.y{a,}ml",
         "*.y{a,}ml",
+        # CFF (Citation File Format) files are valid YAML; include them by default.
+        "docs/**/*.cff",
+        "*.cff",
       ].freeze
 
       # Default glob patterns to exclude during discovery.
       DEFAULT_EXCLUDE = [
         "**/_*.y{a,}ml",
+        "**/_*.cff",
       ].freeze
 
       # Directory (under YARD output) where converted pages will be written.
