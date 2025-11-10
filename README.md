@@ -204,9 +204,9 @@ The `yard-yaml` plugin introduces two new tags for use in docstrings:
 1. **`@yaml`**: Embeds converted YAML content as HTML.
 2. **`@yaml_file`**: Links to or embeds a converted YAML file.
 
-### Examples
+#### Examples
 
-#### `@yaml` Tag
+##### `@yaml` Tag
 
 ```ruby
 # @yaml
@@ -216,7 +216,7 @@ The `yard-yaml` plugin introduces two new tags for use in docstrings:
 # ---
 ```
 
-#### `@yaml_file` Tag
+##### `@yaml_file` Tag
 
 ```ruby
 # @yaml_file path/to/example.yml
@@ -378,7 +378,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        Copyright (c) 2023, 2025 Peter H. Boling, of
+        Copyright (c) 2025 Aboling0 & Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>

@@ -23,6 +23,9 @@
   "lib/yard/yaml/tag_renderer.rb:2663601606": [
     [22, 26, 35, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 3332593819]
   ],
+  "lib/yard/yaml/tags.rb:849442142": [
+    [29, 15, 20, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1841157115]
+  ],
   "spec/yard/yaml/cli_additional_spec.rb:2529045058": [
     [13, 29, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
     [14, 36, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
@@ -59,6 +62,11 @@
   "spec/yard/yaml/converter_spec.rb:1413545740": [
     [7, 9, 19, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 3960408256],
     [45, 51, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  ],
+  "spec/yard/yaml/discovery_ordering_spec.rb:2262203647": [
+    [49, 5, 2, "Naming/VariableName: Use snake_case for variable names.", 5861592],
+    [55, 12, 2, "Naming/VariableName: Use snake_case for variable names.", 5861592],
+    [60, 5, 17, "ThreadSafety/DirChdir: Avoid using `Dir.chdir` due to its process-wide effect.", 2834783191]
   ],
   "spec/yard/yaml/discovery_spec.rb:1721863499": [
     [29, 7, 17, "ThreadSafety/DirChdir: Avoid using `Dir.chdir` due to its process-wide effect.", 2834783191],
