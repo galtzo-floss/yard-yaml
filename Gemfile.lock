@@ -83,7 +83,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.18.1)
+    json (2.19.2)
     kettle-dev (2.0.0)
     kettle-soup-cover (1.0.10)
       simplecov (~> 0.22)
