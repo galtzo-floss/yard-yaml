@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-RSpec.describe Yard::Yaml do
+RSpec.describe "Yard::Yaml config wiring" do
   describe "configuration defaults" do
     it "exposes defaults via .config" do
-      cfg = described_class.config
+      cfg = Yard::Yaml.config
       expect(cfg.include).to(eq(Yard::Yaml::Config::DEFAULT_INCLUDE))
       expect(cfg.exclude).to(eq(Yard::Yaml::Config::DEFAULT_EXCLUDE))
       expect(cfg.out_dir).to(eq(Yard::Yaml::Config::DEFAULT_OUT_DIR))
-      expect(cfg.index).to(eq(Yard::Yaml::Config::DEFAULT_INDEX))
+      expect(cfg.index).to(be(Yard::Yaml::Config::DEFAULT_INDEX))
       expect(cfg.toc).to(eq(Yard::Yaml::Config::DEFAULT_TOC))
       expect(cfg.converter_options).to(eq(Yard::Yaml::Config::DEFAULT_CONVERTER_OPTIONS))
-      expect(cfg.front_matter).to(eq(Yard::Yaml::Config::DEFAULT_FRONT_MATTER))
-      expect(cfg.strict).to(eq(Yard::Yaml::Config::DEFAULT_STRICT))
-      expect(cfg.allow_erb).to(eq(Yard::Yaml::Config::DEFAULT_ALLOW_ERB))
+      expect(cfg.front_matter).to(be(Yard::Yaml::Config::DEFAULT_FRONT_MATTER))
+      expect(cfg.strict).to(be(Yard::Yaml::Config::DEFAULT_STRICT))
+      expect(cfg.allow_erb).to(be(Yard::Yaml::Config::DEFAULT_ALLOW_ERB))
     end
   end
 
@@ -39,10 +39,10 @@ RSpec.describe Yard::Yaml do
         "--yard_yaml-allow_erb",
       ]
       overrides = described_class.parse(argv)
-      expect(overrides[:index]).to(eq(false))
-      expect(overrides[:front_matter]).to(eq(false))
-      expect(overrides[:strict]).to(eq(true))
-      expect(overrides[:allow_erb]).to(eq(true))
+      expect(overrides[:index]).to(be(false))
+      expect(overrides[:front_matter]).to(be(false))
+      expect(overrides[:strict]).to(be(true))
+      expect(overrides[:allow_erb]).to(be(true))
     end
 
     it "parses converter_options as key:value pairs with scalar coercions" do
@@ -78,7 +78,7 @@ RSpec.describe Yard::Yaml do
       argv = ["--yard_yaml-index=maybe"]
       output = capture(:stderr) { @ov = described_class.parse(argv) }
       expect(output).to(include("invalid boolean"))
-      expect(@ov[:index]).to(eq(false))
+      expect(@ov[:index]).to(be(false))
     end
 
     it "warns on invalid converter option pair and ignores it", :check_output do
@@ -107,7 +107,7 @@ RSpec.describe Yard::Yaml do
       expect { described_class.activate(argv) }.not_to(raise_error)
       cfg = Yard::Yaml.config
       expect(cfg.include).to(include("examples/**/*.yml"))
-      expect(cfg.index).to(eq(false))
+      expect(cfg.index).to(be(false))
       expect(cfg.out_dir).to(eq("yaml_docs"))
     end
 
@@ -115,7 +115,7 @@ RSpec.describe Yard::Yaml do
       argv = ["--yard_yaml-index=true"]
       described_class.activate(argv)
       Yard::Yaml.configure(index: false)
-      expect(Yard::Yaml.config.index).to(eq(false))
+      expect(Yard::Yaml.config.index).to(be(false))
     end
   end
 end

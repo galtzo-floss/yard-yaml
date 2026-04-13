@@ -24,14 +24,10 @@ module Yard
             end
           else
             # Create a minimal shim that records define_tag calls
+            calls = []
             lib = Module.new
-            class << lib
-              attr_accessor :calls
-              def define_tag(*args)
-                self.calls ||= []
-                self.calls << args
-              end
-            end
+            lib.define_singleton_method(:calls) { calls }
+            lib.define_singleton_method(:define_tag) { |*args| calls << args }
             begin
               ::YARD::Tags.const_set(:Library, lib)
             rescue StandardError

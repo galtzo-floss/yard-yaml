@@ -2,16 +2,18 @@
 
 RSpec.describe Yard::Yaml::TagRenderer do
   let(:obj) do
+    tag_class = Struct.new(:text)
     Class.new do
       def initialize(yaml_blocks: [], yaml_files: [])
         @yaml_blocks = yaml_blocks
         @yaml_files = yaml_files
       end
-      Tag = Struct.new(:text)
+      define_method(:tag_class) { tag_class }
+
       def tags(name)
         case name
-        when :yaml then @yaml_blocks.map { |t| Tag.new(t) }
-        when :yaml_file then @yaml_files.map { |t| Tag.new(t) }
+        when :yaml then @yaml_blocks.map { |t| tag_class.new(t) }
+        when :yaml_file then @yaml_files.map { |t| tag_class.new(t) }
         else []
         end
       end

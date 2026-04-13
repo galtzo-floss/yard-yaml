@@ -46,18 +46,18 @@ RSpec.describe Yard::Yaml::Discovery do
   it "treats string numerics as numbers and sorts before non-numeric" do
     s1 = write("docs/s1.yml", "---\ntitle: One\nnav_order: '1'\n---\n")
     s2 = write("docs/s2.yml", "---\ntitle: Two\nnav_order: '2.1'\n---\n")
-    sN = write("docs/sN.yml", "---\ntitle: Enn\nnav_order: 'n/a'\n---\n")
+    s_n = write("docs/sN.yml", "---\ntitle: Enn\nnav_order: 'n/a'\n---\n")
 
     allow(Yard::Yaml::Converter).to receive(:from_file) do |path, _opts, **|
       case path
       when s1 then {html: "", title: "One", description: nil, meta: {"nav_order" => "1"}}
       when s2 then {html: "", title: "Two", description: nil, meta: {"nav_order" => "2.1"}}
-      when sN then {html: "", title: "Enn", description: nil, meta: {"nav_order" => "n/a"}}
+      when s_n then {html: "", title: "Enn", description: nil, meta: {"nav_order" => "n/a"}}
       else {html: "", title: File.basename(path), description: nil, meta: {}}
       end
     end
 
-    Dir.chdir(tmpdir) do
+    FileUtils.cd(tmpdir) do
       cfg = Yard::Yaml::Config.new(include: ["docs/**/*.yml"], exclude: [])
       pages = described_class.collect(cfg)
       expect(pages.map { |p| p[:title] }).to eq(["One", "Two", "Enn"]) # numeric first

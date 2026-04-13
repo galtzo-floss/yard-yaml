@@ -19,7 +19,7 @@ module Yard
       # @param config [Yard::Yaml::Config]
       # @return [String] HTML fragment (may be empty string)
       def render_for(object, base_dir: Dir.pwd, config: Yard::Yaml.config)
-        return "" unless object && object.respond_to?(:tags)
+        return "" unless object&.respond_to?(:tags)
 
         parts = []
 

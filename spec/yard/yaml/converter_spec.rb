@@ -2,18 +2,17 @@
 
 RSpec.describe Yard::Yaml::Converter do
   let(:backend) do
+    last_result = {}
     Class.new do
-      class << self
-        attr_accessor :last
-        def convert(yaml, options)
-          self.last = {yaml: yaml, options: options}
-          {
-            html: "<p>ok</p>",
-            title: options[:title] || "Title",
-            description: "Desc",
-            meta: {source: options[:source_path]},
-          }
-        end
+      define_singleton_method(:last) { last_result[:value] }
+      define_singleton_method(:convert) do |yaml, options|
+        last_result[:value] = {yaml: yaml, options: options}
+        {
+          html: "<p>ok</p>",
+          title: options[:title] || "Title",
+          description: "Desc",
+          meta: {source: options[:source_path]},
+        }
       end
     end
   end
@@ -42,7 +41,7 @@ RSpec.describe Yard::Yaml::Converter do
       expect(result[:html]).to(eq("<p>ok</p>"))
       expect(result[:title]).to(eq("Hello"))
       expect(backend.last[:options]["wrap"]).to(eq(100)) # caller overrides config
-      expect(backend.last[:options]["pretty"]).to(eq(false))
+      expect(backend.last[:options]["pretty"]).to(be(false))
       expect(backend.last[:options][:source_path]).to(eq(file.path))
     ensure
       file.close

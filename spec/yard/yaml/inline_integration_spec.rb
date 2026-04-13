@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Inline ERB integration for yard-yaml" do
+RSpec.describe Yard::Yaml::TagRenderer, "Inline ERB integration for yard-yaml" do
   let(:erb_path) { File.join(Dir.pwd, "templates", "yard_yaml", "_inline_yaml.erb") }
 
   before do
@@ -37,7 +37,7 @@ RSpec.describe "Inline ERB integration for yard-yaml" do
 
     o = obj.new(
       yaml_blocks: [tag.new("a: 1\n")],
-      yaml_files:  [tag.new("#{__FILE__}")],
+      yaml_files: [tag.new(__FILE__.to_s)],
     )
 
     # Render ERB with a local variable `object`

@@ -4,7 +4,8 @@ module Yard
   module Yaml
     # Plugin activation for yard-yaml (Phase 3: config + discovery; still no YARD registrations).
     module Plugin
-      @activated = false
+      STATE = {activated: false}
+      STATE_MUTEX = Mutex.new
 
       class << self
         # Whether the plugin has been activated for the current process.
@@ -12,7 +13,7 @@ module Yard
         #
         # @return [Boolean]
         def activated?
-          @activated
+          STATE[:activated]
         end
 
         # Activate the plugin.
@@ -44,14 +45,14 @@ module Yard
             # Non-strict errors are already warned by converter/discovery
           end
 
-          @activated = true
+          STATE_MUTEX.synchronize { STATE[:activated] = true }
           nil
         end
 
         # Test-helper: reset internal activation flag.
         # Not part of public API; used from test teardown to avoid state leakage.
         def __reset_state__
-          @activated = false
+          STATE_MUTEX.synchronize { STATE[:activated] = false }
           nil
         end
       end

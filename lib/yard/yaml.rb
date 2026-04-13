@@ -17,8 +17,11 @@ module Yard
     # Generic error for yard-yaml
     class Error < StandardError; end
 
-    @config = nil
-    @pages = nil
+    STATE = {
+      config: nil,
+      pages: nil,
+    }
+    STATE_MUTEX = Mutex.new
 
     class << self
       # Access the global configuration for yard-yaml.
@@ -28,19 +31,21 @@ module Yard
       #
       # @return [Yard::Yaml::Config]
       def config
-        @config ||= Config.new
+        STATE[:config] || STATE_MUTEX.synchronize { STATE[:config] ||= Config.new }
       end
 
       # Access collected pages (Phase 3). Nil until plugin activation performs discovery.
       # Each page is a Hash with keys: :path, :html, :title, :description, :meta
       # @return [Array<Hash>, nil]
-      attr_reader :pages
+      def pages
+        STATE[:pages]
+      end
 
       # Internal: set collected pages (used by Plugin during activation)
       def __set_pages__(list)
-        @pages = Array(list)
-        mirror_pages_to_registry(@pages)
-        @pages
+        pages = STATE_MUTEX.synchronize { STATE[:pages] = Array(list) }
+        mirror_pages_to_registry(pages)
+        pages
       end
 
       # Configure the plugin programmatically.
@@ -80,8 +85,10 @@ module Yard
 
       # Test-helper: reset memoized config to defaults (not public API)
       def __reset_state__
-        @config = nil
-        @pages = nil
+        STATE_MUTEX.synchronize do
+          STATE[:config] = nil
+          STATE[:pages] = nil
+        end
         if defined?(::Yard::Yaml::Plugin) && ::Yard::Yaml::Plugin.respond_to?(:__reset_state__)
           ::Yard::Yaml::Plugin.__reset_state__
         end

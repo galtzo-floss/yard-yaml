@@ -3,21 +3,14 @@
 RSpec.describe Yard::Yaml::Tags do
   before do
     # Define a stub YARD tag library for registration
-    stub = Module.new do
-      module Library
-        class << self
-          attr_accessor :calls
-          def define_tag(*args)
-            self.calls ||= []
-            self.calls << args
-          end
-        end
-      end
-    end
+    calls = []
+    library = Module.new
+    library.define_singleton_method(:calls) { calls }
+    library.define_singleton_method(:define_tag) { |*args| calls << args }
 
-    Object.send(:remove_const, :YARD) if defined?(YARD)
-    Object.const_set(:YARD, Module.new)
-    YARD.const_set(:Tags, stub)
+    stub_const("YARD", Module.new)
+    stub_const("YARD::Tags", Module.new)
+    stub_const("YARD::Tags::Library", library)
   end
 
   it "registers @yaml and @yaml_file tags when YARD is available" do

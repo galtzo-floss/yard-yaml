@@ -10,10 +10,10 @@ RSpec.describe Yard::Yaml::Cli do
         "--yard_yaml-allow_erb",
       ]
       ov = described_class.parse(argv)
-      expect(ov[:index]).to eq(true)
-      expect(ov[:front_matter]).to eq(true)
-      expect(ov[:strict]).to eq(true)
-      expect(ov[:allow_erb]).to eq(true)
+      expect(ov[:index]).to be(true)
+      expect(ov[:front_matter]).to be(true)
+      expect(ov[:strict]).to be(true)
+      expect(ov[:allow_erb]).to be(true)
     end
 
     it "parses equals-form booleans with mixed case" do
@@ -24,10 +24,10 @@ RSpec.describe Yard::Yaml::Cli do
         "--yard_yaml-allow_erb=off",
       ]
       ov = described_class.parse(argv)
-      expect(ov[:index]).to eq(true)
-      expect(ov[:front_matter]).to eq(false)
-      expect(ov[:strict]).to eq(true)
-      expect(ov[:allow_erb]).to eq(false)
+      expect(ov[:index]).to be(true)
+      expect(ov[:front_matter]).to be(false)
+      expect(ov[:strict]).to be(true)
+      expect(ov[:allow_erb]).to be(false)
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Sidebar YAML Docs partial" do
+RSpec.describe Yard::Yaml, "Sidebar YAML Docs partial" do
   let(:erb_path) { File.join(Dir.pwd, "templates", "yard_yaml", "_sidebar_yaml_docs.erb") }
 
   before do

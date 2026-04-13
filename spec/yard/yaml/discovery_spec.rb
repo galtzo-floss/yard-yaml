@@ -26,7 +26,7 @@ RSpec.describe Yard::Yaml::Discovery do
       _d = write("docs/sub/_skip.yaml", "x: 4\n")
       e = write("root.yml", "x: 5\n")
 
-      Dir.chdir(tmpdir) do
+      FileUtils.cd(tmpdir) do
         include_globs = ["docs/**/*.y{a,}ml", "*.y{a,}ml"]
         exclude_globs = ["**/_*.y{a,}ml"]
         files = described_class.find_files(include_globs, exclude_globs)
@@ -42,7 +42,7 @@ RSpec.describe Yard::Yaml::Discovery do
       write("docs/one.yml", "title: One\n---\nkey: v\n")
       write("docs/two.yaml", "title: Two\n---\nkey: v\n")
 
-      Dir.chdir(tmpdir) do
+      FileUtils.cd(tmpdir) do
         cfg = Yard::Yaml::Config.new(
           include: ["docs/**/*.y{a,}ml"],
           exclude: [],
@@ -68,7 +68,7 @@ RSpec.describe Yard::Yaml::Discovery do
     it "includes .cff files by default (CITATION.cff is YAML)" do
       write("docs/citation.cff", "title: Cite\n---\nkey: v\n")
 
-      Dir.chdir(tmpdir) do
+      FileUtils.cd(tmpdir) do
         cfg = Yard::Yaml::Config.new
         allow(Yard::Yaml::Converter).to(receive(:from_file)) do |path, _opts, config:|
           {
@@ -90,7 +90,7 @@ RSpec.describe Yard::Yaml::Discovery do
     it "sets Yard::Yaml.pages after activation" do
       _p1 = write("docs/act.yml", "x: 1\n")
 
-      Dir.chdir(tmpdir) do
+      FileUtils.cd(tmpdir) do
         allow(Yard::Yaml::Converter).to(receive(:from_file)).and_return({html: "<p>ok</p>", title: "act", description: nil, meta: {}})
         expect(Yard::Yaml.pages).to(be_nil)
         Yard::Yaml::Plugin.activate(["--yard_yaml-include", "docs/**/*.y{a,}ml", "--yard_yaml-exclude", "**/_*.y{a,}ml"])

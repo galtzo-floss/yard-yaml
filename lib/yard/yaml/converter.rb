@@ -12,10 +12,15 @@ module Yard
     #
     # Note: We intentionally keep the contract minimal and stable. Tests stub the backend.
     class Converter
+      BACKEND_STATE = {backend: nil}
+      BACKEND_MUTEX = Mutex.new
+
       class << self
         # Assignable backend for dependency injection in tests.
         # Expected to respond to `convert(yaml, options)` and return a Hash with :html, :title, :description, and :meta keys
-        attr_writer :backend
+        def backend=(backend)
+          BACKEND_MUTEX.synchronize { BACKEND_STATE[:backend] = backend }
+        end
 
         # Convert a YAML string into an HTML result.
         #
@@ -41,14 +46,17 @@ module Yard
 
         # Backend accessor with auto-discovery.
         def backend
-          return @backend if defined?(@backend) && @backend
+          configured_backend = BACKEND_MUTEX.synchronize { BACKEND_STATE[:backend] }
+          return configured_backend if configured_backend
+
           begin
             require "yaml/converter"
           rescue LoadError
             # ignore; backend may be set by tests
           end
-          @backend = if defined?(::Yaml) && ::Yaml.const_defined?(:Converter)
-            ::Yaml::Converter
+
+          BACKEND_MUTEX.synchronize do
+            BACKEND_STATE[:backend] ||= ::Yaml::Converter if defined?(::Yaml) && ::Yaml.const_defined?(:Converter)
           end
         end
 
@@ -64,7 +72,7 @@ module Yard
         def run_convert(yaml, options, config)
           opts = build_options(options, config)
           b = backend
-          unless b && b.respond_to?(:convert)
+          unless b&.respond_to?(:convert)
             handle_error(Yard::Yaml::Error.new("yaml-converter backend not available"), strict: config.strict, context: "backend")
             return empty_result
           end
