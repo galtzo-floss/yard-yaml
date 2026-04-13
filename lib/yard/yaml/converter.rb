@@ -39,7 +39,7 @@ module Yard
         # @param config [Yard::Yaml::Config]
         # @return [Hash]
         def from_file(path, options = {}, config: Yard::Yaml.config)
-          content = read_file(path)
+          content = read_file(path, config: config)
           return empty_result if content.nil?
           run_convert(content, options.merge(source_path: path.to_s), config)
         end
@@ -62,11 +62,41 @@ module Yard
 
         private
 
-        def read_file(path)
-          File.read(path.to_s)
+        def read_file(path, config: Yard::Yaml.config)
+          raw = File.binread(path.to_s)
+          if binary_content?(raw)
+            handle_error(Yard::Yaml::Error.new("binary file not supported"), strict: config.strict, context: path.to_s)
+            return nil
+          end
+
+          content = raw.dup.force_encoding(Encoding::UTF_8)
+          return content if content.valid_encoding?
+
+          if config.strict
+            handle_error(Yard::Yaml::Error.new("invalid UTF-8 bytes in file"), strict: true, context: path.to_s)
+            return nil
+          end
+
+          handle_error(
+            Yard::Yaml::Error.new("invalid UTF-8 bytes in file; replaced invalid sequences"),
+            strict: false,
+            context: path.to_s,
+          )
+          content.scrub
         rescue Errno::ENOENT => e
-          handle_error(e, strict: Yard::Yaml.config.strict, context: "missing file: #{path}")
+          handle_error(e, strict: config.strict, context: "missing file: #{path}")
           nil
+        end
+
+        def binary_content?(raw)
+          sample = raw.byteslice(0, 4096) || "".b
+          return true if sample.include?("\x00")
+          return false if sample.empty?
+
+          control_bytes = sample.bytes.count do |byte|
+            (0..8).cover?(byte) || byte == 11 || byte == 12 || (14..31).cover?(byte)
+          end
+          control_bytes.fdiv(sample.bytesize) > 0.1
         end
 
         def run_convert(yaml, options, config)

@@ -49,6 +49,77 @@ RSpec.describe Yard::Yaml::Converter do
     end
   end
 
+  it "preserves emoji and kanji when converting from file" do
+    file = Tempfile.new(["yyaml-utf8", ".yml"])
+    begin
+      file.binmode
+      file.write("title: \"🌸 こんにちは\"\nbody: \"emoji 😀\"\n")
+      file.flush
+
+      described_class.from_file(file.path)
+      expect(backend.last[:yaml]).to include("🌸 こんにちは")
+      expect(backend.last[:yaml]).to include("emoji 😀")
+    ensure
+      file.close
+      file.unlink
+    end
+  end
+
+  it "scrubs malformed utf-8 bytes in non-strict mode and warns", :check_output do
+    file = Tempfile.new(["yyaml-bad", ".yml"])
+    begin
+      file.binmode
+      file.write("title: bad\xFF\nbody: still here\n")
+      file.flush
+      Yard::Yaml.configure(strict: false)
+
+      output = capture(:stderr) { described_class.from_file(file.path) }
+
+      expect(output).to include("yard-yaml:")
+      expect(backend.last[:yaml]).to include("title: bad\ufffd")
+      expect(backend.last[:yaml]).to include("body: still here")
+    ensure
+      file.close
+      file.unlink
+    end
+  end
+
+  it "raises Yard::Yaml::Error for malformed utf-8 bytes in strict mode" do
+    file = Tempfile.new(["yyaml-bad-strict", ".yml"])
+    begin
+      file.binmode
+      file.write("title: bad\xFF\n")
+      file.flush
+      Yard::Yaml.configure(strict: true)
+
+      expect { described_class.from_file(file.path) }.to raise_error(Yard::Yaml::Error, /invalid UTF-8 bytes/)
+    ensure
+      file.close
+      file.unlink
+    end
+  end
+
+  it "returns empty result and warns for binary-ish files in non-strict mode", :check_output do
+    file = Tempfile.new(["yyaml-binary", ".yml"])
+    begin
+      file.binmode
+      file.write("\x00\x01\x02\x03binary".b)
+      file.flush
+      Yard::Yaml.configure(strict: false)
+
+      output = capture(:stderr) do
+        result = described_class.from_file(file.path)
+        expect(result).to eq(html: "", title: nil, description: nil, meta: {})
+      end
+
+      expect(output).to include("yard-yaml:")
+      expect(output).to include("binary file not supported")
+    ensure
+      file.close
+      file.unlink
+    end
+  end
+
   it "returns empty result and warns when backend missing (non-strict)", :check_output do
     described_class.backend = nil
     Yard::Yaml.configure(strict: false)
