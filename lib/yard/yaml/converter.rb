@@ -66,7 +66,7 @@ module Yard
           raw = File.binread(path.to_s)
           if binary_content?(raw)
             handle_error(Yard::Yaml::Error.new("binary file not supported"), strict: config.strict, context: path.to_s)
-            return nil
+            return
           end
 
           content = raw.dup.force_encoding(Encoding::UTF_8)
@@ -74,7 +74,7 @@ module Yard
 
           if config.strict
             handle_error(Yard::Yaml::Error.new("invalid UTF-8 bytes in file"), strict: true, context: path.to_s)
-            return nil
+            return
           end
 
           handle_error(
