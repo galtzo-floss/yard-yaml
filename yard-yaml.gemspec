@@ -1,17 +1,23 @@
 # coding: utf-8
 # frozen_string_literal: true
 
+# kettle-jem:freeze
+# To retain chunks of comments & code during yard-yaml templating:
+# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+# yard-yaml will then preserve content between those markers across template runs.
+# kettle-jem:unfreeze
+
 Gem::Specification.new do |spec|
   spec.name = "yard-yaml"
   # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
   # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
   # See: https://github.com/panorama-ed/memo_wise/pull/397
   spec.version = Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/yard/yaml/version.rb", mod) }::Yard::Yaml::Version::VERSION
-  spec.authors = ["Aboling0", "Peter H. Boling"]
+  spec.authors = ["Annibelle Boling", "Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
-  spec.summary = "🥨 A YARD plugin for YAML documents"
-  spec.description = "🥨 A YARD plugin for YAML documents"
+  spec.summary = "🍲 A YARD plugin for YAML documents"
+  spec.description = "🍲 A YARD plugin for YAML documents"
   spec.homepage = "https://github.com/galtzo-floss/yard-yaml"
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 3.2.0"
@@ -34,7 +40,7 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.metadata["homepage_uri"] = "https://#{spec.name.tr("_", "-")}.galtzo.com/"
+  spec.metadata["homepage_uri"] = "https://yard-yaml.galtzo.com/"
   spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
@@ -64,7 +70,6 @@ Gem::Specification.new do |spec|
     "FUNDING.md",
     "LICENSE.txt",
     "README.md",
-    "REEK",
     "RUBOCOP.md",
     "SECURITY.md",
   ]
@@ -102,11 +107,13 @@ Gem::Specification.new do |spec|
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
+spec.add_development_dependency("kettle-drift")
+
   # Dev, Test, & Release Tasks
   spec.add_development_dependency("kettle-dev", "~> 2.0")                           # ruby >= 2.3.0
 
   # Security
-  spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
+  spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
 
   # Tasks
   spec.add_development_dependency("rake", "~> 13.0")                                # ruby >= 2.2.0
@@ -115,12 +122,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
   # Testing
-  spec.add_development_dependency("appraisal2", "~> 3.0")                           # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.6")              # ruby >= 2.3
+  spec.add_development_dependency("appraisal2", "~> 3.0", ">= 3.0.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.0")              # ruby >= 2.3
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
-  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.2")          # ruby >= 2.2.0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # ruby >= 2.2.0
 
   # Git integration (optional)
   # The 'git' gem is optional; yard-yaml falls back to shelling out to `git` if it is not present.
@@ -133,4 +140,11 @@ Gem::Specification.new do |spec|
   # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
   # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
   spec.add_development_dependency("gitmoji-regex", "~> 1.0", ">= 1.0.3")            # ruby >= 2.3.0
+
+  # HTTP recording for deterministic specs
+  # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
+  # This is done in the "head" appraisal.
+  # See: https://github.com/vcr/vcr/issues/1057
+  # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
+  # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
 end

@@ -8,10 +8,17 @@
 /dataSources.local.xml
 *.iml
 
+# Zencoder local files
+/zencoder/chats
+/zencoder-chat-index.xml
+/zencoder-chats-dedicated.xml
+# Local project config
 # Added: Ignore plugin migration/state artifacts (machine-specific)
 /copilot.data.migration.*.xml
 /GitLink.xml
 
+# Added: Ignore plugin state artifacts (machine-specific)
+/copilot*.xml
 # Added: Ignore task & usage statistics (contain local timestamps / paths)
 /tasks.xml
 /usage.statistics.xml

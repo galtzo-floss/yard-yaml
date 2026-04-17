@@ -1,44 +1,15 @@
-| 📍 NOTE                                                                                                                                                           |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| RubyGems (the [GitHub org][rubygems-org], not the website) [suffered][draper-security] a [hostile takeover][ellen-takeover] in September 2025.                    |
-| Ultimately [4 maintainers][simi-removed] were [hard removed][martin-removed] and a reason has been given for only 1 of those, while 2 others resigned in protest. |
-| It is a [complicated story][draper-takeover] which is difficult to [parse quickly][draper-lies].                                                                  |
-| I'm adding notes like this to gems because I [don't condone theft][draper-theft] of repositories or gems from their rightful owners.                              |
-| If a similar theft happened with my repos/gems, I'd hope some would stand up for me.                                                                              |
-| Disenfranchised former-maintainers have started [gem.coop][gem-coop].                                                                                             |
-| Once available I will publish there exclusively; unless RubyCentral makes amends with the community.                                                              |
-| The ["Technology for Humans: Joel Draper"][reinteractive-podcast] podcast episode by [reinteractive][reinteractive] is the most cogent summary I'm aware of.      |
-| See [here][gem-naming], [here][gem-coop] and [here][martin-ann] for more info on what comes next.                                                                 |
-| What I'm doing: A (WIP) proposal for [bundler/gem scopes][gem-scopes], and a (WIP) proposal for a federated [gem server][gem-server].                             |
-
-[rubygems-org]: https://github.com/rubygems/
-[draper-security]: https://joel.drapper.me/p/ruby-central-security-measures/
-[draper-takeover]: https://joel.drapper.me/p/ruby-central-takeover/
-[ellen-takeover]: https://pup-e.com/blog/goodbye-rubygems/
-[simi-removed]: https://www.reddit.com/r/ruby/s/gOk42POCaV
-[martin-removed]: https://bsky.app/profile/martinemde.com/post/3m3occezxxs2q
-[draper-lies]: https://joel.drapper.me/p/ruby-central-fact-check/
-[draper-theft]: https://joel.drapper.me/p/ruby-central/
-[reinteractive]: https://reinteractive.com/ruby-on-rails
-[gem-coop]: https://gem.coop
-[gem-naming]: https://github.com/gem-coop/gem.coop/issues/12
-[martin-ann]: https://martinemde.com/2025/10/05/announcing-gem-coop.html
-[gem-scopes]: https://github.com/galtzo-floss/bundle-namespace
-[gem-server]: https://github.com/galtzo-floss/gem-server
-[reinteractive-podcast]: https://youtu.be/_H4qbtC5qzU?si=BvuBU90R2wAqD2E6
-
-[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![yard-yaml Logo by Aboling0, CC BY-SA 4.0][🖼️yard-yaml-i]][🖼️yard-yaml]
+[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![galtzo-floss Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-floss-i]][🖼️galtzo-floss]
 
 [🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
 [🖼️galtzo-discord]: https://discord.gg/3qme4XHNKN
 [🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
 [🖼️ruby-lang]: https://www.ruby-lang.org/
-[🖼️yard-yaml-i]: https://logos.galtzo.com/assets/images/galtzo-floss/yard-yaml/avatar-192px.svg
-[🖼️yard-yaml]: https://github.com/galtzo-floss/yard-yaml
+[🖼️galtzo-floss-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
+[🖼️galtzo-floss]: https://github.com/galtzo-floss
 
-# 🥨 Yard::Yaml
+# 🍲 Yard::Yaml
 
-[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
+[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
 `if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][🖼️galtzo-discord], as I may have missed the [discord notification][🖼️galtzo-discord].
 
@@ -47,6 +18,13 @@
 `if ci_badges.map(&:color).all? { it == "green"}` 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.
 
 [![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate at ko-fi.com][🖇kofi-img]][🖇kofi]
+
+<details>
+    <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
+
+I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo).
+
+</details>
 
 ## 🌻 Synopsis
 
@@ -63,13 +41,14 @@ This will activate the plugin during the `yard doc` generation process, converti
 
 | Tokens to Remember      | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace]                                                                                                                                                                                                                                                                          |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Works with JRuby        | [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                                                                                                                                                                                     |
-| Works with Truffle Ruby | [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎9-t-wf] [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                                                                                                        |
-| Works with MRI Ruby 3   | [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                                                                                                                  |
+| Works with JRuby        | [![JRuby current Compat][💎jruby-c-i]][🚎10-j-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]|
+| Works with Truffle Ruby | [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎truby-24.2-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎truby-25.0-wf] [![Truffle Ruby current Compat][💎truby-c-i]][🚎9-t-wf]|
+| Works with MRI Ruby 4   | [![Ruby 4.0 Compat][💎ruby-4.0i]][🚎11-c-wf] [![Ruby current Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]|
+| Works with MRI Ruby 3   | [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎ruby-3.2-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎ruby-3.3-wf] [![Ruby 3.4 Compat][💎ruby-3.4i]][🚎ruby-3.4-wf]|
 | Support & Community     | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                       |
 | Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                         |
 | Documentation           | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki]                                                                                          |
-| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![Compatible with Apache Software Projects: Verified by SkyWalking Eyes][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
+| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![Apache license compatibility: Category A][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
 | Style                   | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji] [![Compatibility appraised by: appraisal2][💎appraisal2-img]][💎appraisal2]                                                                                                                  |
 | Maintainer 🎖️          | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact Maintainer][🚂maint-contact-img]][🚂maint-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto]                                                      |
 | `...` 💖                | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub]  [🛖][💖🛖hut] [🧪][💖🧪lab]                                                                   |
@@ -87,12 +66,12 @@ Compatible with MRI Ruby 3.2.0+, and concordant releases of JRuby, and TruffleRu
 <details markdown="1">
   <summary>Find this repo on federated forges (Coming soon!)</summary>
 
-| Federated [DVCS][💎d-in-dvcs] Repository          | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
-|---------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
+| Federated [DVCS][💎d-in-dvcs] Repository        | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
+|-------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
 | 🧪 [galtzo-floss/yard-yaml on GitLab][📜src-gl]   | The Truth                                                             | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜gl-wiki]           | 🐭 Tiny Matrix           | ➖                            |
 | 🧊 [galtzo-floss/yard-yaml on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate])                             | [💚][🤝cb-issues]         | [💚][🤝cb-pulls]         | ➖                         | ⭕️ No Matrix             | ➖                            |
 | 🐙 [galtzo-floss/yard-yaml on GitHub][📜src-gh]   | Another Mirror                                                        | [💚][🤝gh-issues]         | [💚][🤝gh-pulls]         | [💚][📜gh-wiki]           | 💯 Full Matrix           | [💚][gh-discussions]         |
-| 🎮️ [Discord Server][✉️discord-invite]            | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
+| 🎮️ [Discord Server][✉️discord-invite]          | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
 
 </details>
 
@@ -140,11 +119,11 @@ gem install yard-yaml
 <details markdown="1">
   <summary>For Medium or High Security Installations</summary>
 
-This gem is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
+This gem is cryptographically signed and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
 [stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
 by following the instructions below.
 
-Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
+Add my public key (if you haven’t already; key expires 2045-04-29) as a trusted certificate:
 
 ```console
 gem cert --add <(curl -Ls https://raw.github.com/galtzo-floss/certs/main/pboling.pem)
@@ -246,167 +225,6 @@ The `yard-yaml` plugin introduces two new tags for use in docstrings:
     ```
     Then paste the HTML (optionally wrapped in `<div class="yyaml-inline">…</div>`).
 
-## Quickstart — YARD YAML Plugin
-
-Add the plugin and run YARD to integrate YAML into your documentation workflow.
-
-### 1. Install dependencies
-
-```bash
-bundle install
-```
-
-### 2. Configure `.yardopts`
-
-Minimal example (adjust globs/output for your project):
-
-```text
---plugin yaml
---markup markdown
---markup-provider kramdown
---output docs
---yard_yaml-include docs/**/*.y{a,}ml
---yard_yaml-exclude **/_*.y{a,}ml
---yard_yaml-out_dir yaml
---yard_yaml-index
-```
-
-NOTE: This gem uses `--plugin fence -e yard/fence/hoist.rb` for its own documentation. `yaml-fence` hoists fenced blocks inside code object docstrings, so that they are transformed to UNICODE fences before YARD sees them, to avoid the `InvalidLink` warnings, but does not convert YAML fences.
-
-### 3. Generate API docs & collect YAML (discovery only)
-
-Running `yard` loads the plugin but does not auto-emit standalone YAML pages. Discovery + conversion occur only when you explicitly activate and emit.
-
-```bash
-bundle exec yard
-```
-
-### 4. Emit standalone YAML pages (manual step)
-
-Invoke activation + emission in a separate Ruby process (pass the same flags you used in `.yardopts` so discovery matches):
-
-```bash
-ruby -r yard/yaml -e 'Yard::Yaml::Plugin.activate(%w[--yard_yaml-include docs/**/*.y{a,}ml --yard_yaml-exclude **/_*.y{a,}ml --yard_yaml-out_dir yaml --yard_yaml-index]); Yard::Yaml::Emitter.emit!(pages: Yard::Yaml.pages, output_dir: "docs", config: Yard::Yaml.config)'
-```
-
-Result:
-
-- Pages written to `docs/yaml/<slug>.html`
-- Index (if enabled) at `docs/yaml/index.html`
-- Sidebar entries (via theme hooks) link to these pages
-
-### 5. Inline YAML in code object docstrings
-
-Preferred: use tags.
-
-```ruby
-# @yaml
-# ---
-# title: Inline Example
-# description: Demonstrates inline conversion.
-# ---
-# a: 1
-# b: 2
-```
-
-```ruby
-# @yaml_file docs/config/app.yml
-```
-
-Theme hooks insert converted HTML right after the main docstring. Strict mode governs failure behavior.
-
-### 6. YAML in Markdown (GFM) fenced blocks
-
-Standalone Markdown pages (e.g. README sections) treat:
-
-~~~markdown
-```yaml
-key: value
-```
-~~~
-
-as a code block. This plugin does NOT yet auto-convert fenced YAML in arbitrary Markdown pages.
-
-Workarounds:
-
-- Link to emitted page: `[Full Config](./yaml/config.html)`
-- Pre-convert & paste HTML:
-  ```bash
-  ruby -r yard/yaml -e 'print Yard::Yaml::Converter.from_string(File.read(ARGV[0]))[:html]' docs/config/app.yml > tmp.html
-  ```
-  Paste the resulting HTML (Kramdown allows raw HTML). Optionally wrap:
-  ```html
-  <div class="yyaml-inline">(converted YAML html here)</div>
-  ```
-
-### Front Matter Support
-
-Example `docs/config/app.yml`:
-
-```yaml
----
-# Front matter fields consumed by yaml-converter
-title: Application Configuration
-nav_order: 10
-description: Core settings
-slug: app-config
----
-app:
-  name: demo
-  enabled: true
-```
-
-Parsed fields:
-- `title`, `description` for page heading & sidebar
-- `nav_order` for ordering
-- `slug` overrides derived slug
-
-### Strict Mode & Safety
-
-- `--yard_yaml-strict=true`: raise `Yard::Yaml::Error` on missing file, conversion, or write errors.
-- Default (non-strict): warn and skip.
-- ERB disabled by default (`allow_erb=false`); enable only if you trust sources: `--yard_yaml-allow_erb=true`.
-
-### Converter Options
-
-Customize yaml-converter behavior (example):
-
-```text
---yard_yaml-converter_options pretty:true,wrap:80
-```
-
-Boolean/number coercion is handled automatically.
-
-### Why not `yaml-markdown`?
-
-Unnecessary here. YARD already processes Markdown via `--markup markdown --markup-provider kramdown`. This plugin focuses on YAML discovery, conversion, tagging, and emission, leveraging the `yaml-converter` dependency.
-
-### Limitations & Roadmap
-
-Current limitations:
-
-- No automatic emission during `yard` run (manual step required)
-- No automatic conversion of fenced YAML in standalone Markdown pages
-- Minimal default HTML for emitted pages (simple inline styles)
-
-Planned improvements (subject to change):
-
-- Automatic emission hook in the generation pipeline
-- Optional fenced YAML auto-conversion in Markdown
-- Enhanced theming & TOC modes beyond `auto`
-- Search integration across YAML content
-
-### Troubleshooting Quick Reference
-
-| Symptom                    | Fix                                                      |
-|----------------------------|----------------------------------------------------------|
-| Sidebar links 404          | Run emission step (Step 4)                               |
-| Missing expected YAML page | Verify include/exclude globs & rerun emission            |
-| Inline tag shows empty     | Ensure YAML content is valid; check strict mode warnings |
-| Fenced YAML not converted  | Use tags or pre-convert & paste HTML                     |
-| ERB ignored                | Enable `--yard_yaml-allow_erb=true` (security trade-off) |
-| Build fails in strict mode | Rerun without strict to inspect warnings                 |
-
 ## 🦷 FLOSS Funding
 
 While galtzo-floss tools are free software and will always be, the project would benefit immensely from some funding.
@@ -471,7 +289,7 @@ See [SECURITY.md][🔐security].
 ## 🤝 Contributing
 
 If you need some ideas of where to help, you could work on adding more code coverage,
-or if it is already 💯 (see [below](#code-coverage)) check [reek](REEK), [issues][🤝gh-issues], or [PRs][🤝gh-pulls],
+or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls],
 or use the gem and think about how it could be better.
 
 We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
@@ -535,7 +353,7 @@ the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 For example:
 
 ```ruby
-spec.add_dependency("yard-yaml", "~> 1.0")
+spec.add_dependency("yard-yaml", "~> 0.0")
 ```
 
 <details markdown="1">
@@ -556,22 +374,11 @@ See [CHANGELOG.md][📌changelog] for a list of releases.
 ## 📄 License
 
 The gem is available as open source under the terms of
-the [MIT License][📄license] [![License: MIT][📄license-img]][📄license-ref].
-See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright-notice-explainer].
+the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
 
 ### © Copyright
 
-<ul>
-    <li>
-        Copyright (c) 2025 Aboling0 & Peter H. Boling, of
-        <a href="https://discord.gg/3qme4XHNKN">
-            Galtzo.com
-            <picture>
-              <img src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px-blank.svg" alt="Galtzo.com Logo (Wordless) by Aboling0, CC BY-SA 4.0" width="24">
-            </picture>
-        </a>, and yard-yaml contributors.
-    </li>
-</ul>
+See [LICENSE.md][📄license] for the official copyright notice.
 
 ## 🤑 A request for help
 
@@ -614,7 +421,7 @@ Thanks for RTFM. ☺️
 [🖇polar-img]: https://img.shields.io/badge/polar-donate-a51611.svg?style=flat
 [🖇polar]: https://polar.sh/pboling
 [🖇kofi-img]: https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat
-[🖇kofi]: https://ko-fi.com/O5O86SNP4
+[🖇kofi]: https://ko-fi.com/pboling
 [🖇patreon-img]: https://img.shields.io/badge/patreon-donate-a51611.svg?style=flat
 [🖇patreon]: https://patreon.com/galtzo
 [🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat
@@ -642,7 +449,7 @@ Thanks for RTFM. ☺️
 [🚂maint-contact]: http://www.railsbling.com/contact
 [🚂maint-contact-img]: https://img.shields.io/badge/Contact-Maintainer-0093D0.svg?style=flat&logo=rubyonrails&logoColor=red
 [💖🖇linkedin]: http://www.linkedin.com/in/peterboling
-[💖🖇linkedin-img]: https://img.shields.io/badge/PeterBoling-LinkedIn-0B66C2?style=flat&logo=newjapanprowrestling
+[💖🖇linkedin-img]: https://img.shields.io/badge/LinkedIn-Profile-0B66C2?style=flat&logo=newjapanprowrestling
 [💖✌️wellfound]: https://wellfound.com/u/peter-boling
 [💖✌️wellfound-img]: https://img.shields.io/badge/peter--boling-orange?style=flat&logo=wellfound
 [💖💲crunchbase]: https://www.crunchbase.com/person/peter-boling
@@ -698,22 +505,17 @@ Thanks for RTFM. ☺️
 [🏀coveralls-img]: https://coveralls.io/repos/github/galtzo-floss/yard-yaml/badge.svg?branch=main
 [🖐codeQL]: https://github.com/galtzo-floss/yard-yaml/security/code-scanning
 [🖐codeQL-img]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/codeql-analysis.yml/badge.svg
-[🚎1-an-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ancient.yml
-[🚎1-an-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ancient.yml/badge.svg
+[🚎ruby-3.2-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ruby-3.2.yml
+[🚎ruby-3.3-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ruby-3.3.yml
+[🚎ruby-3.4-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ruby-3.4.yml
+[🚎truby-24.2-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/truffleruby-24.2.yml
+[🚎truby-25.0-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/truffleruby-25.0.yml
 [🚎2-cov-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/coverage.yml
 [🚎2-cov-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/coverage.yml/badge.svg
 [🚎3-hd-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/heads.yml
 [🚎3-hd-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/heads.yml/badge.svg
-[🚎4-lg-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/legacy.yml
-[🚎4-lg-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/legacy.yml/badge.svg
 [🚎5-st-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/style.yml
 [🚎5-st-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/style.yml/badge.svg
-[🚎6-s-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/supported.yml
-[🚎6-s-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/supported.yml/badge.svg
-[🚎7-us-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/unsupported.yml
-[🚎7-us-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/unsupported.yml/badge.svg
-[🚎8-ho-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/hoary.yml
-[🚎8-ho-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/hoary.yml/badge.svg
 [🚎9-t-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/truffle.yml
 [🚎9-t-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/truffle.yml/badge.svg
 [🚎10-j-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/jruby.yml
@@ -730,17 +532,13 @@ Thanks for RTFM. ☺️
 [🚎15-🪪-wfi]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/license-eye.yml/badge.svg
 [💎ruby-3.2i]: https://img.shields.io/badge/Ruby-3.2-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-3.3i]: https://img.shields.io/badge/Ruby-3.3-CC342D?style=for-the-badge&logo=ruby&logoColor=white
+[💎ruby-3.4i]: https://img.shields.io/badge/Ruby-3.4-CC342D?style=for-the-badge&logo=ruby&logoColor=white
+[💎ruby-4.0i]: https://img.shields.io/badge/Ruby-4.0-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-c-i]: https://img.shields.io/badge/Ruby-current-CC342D?style=for-the-badge&logo=ruby&logoColor=green
 [💎ruby-headi]: https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&logo=ruby&logoColor=blue
-[💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.0i]: https://img.shields.io/badge/Truffle_Ruby-23.0_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-24.2i]: https://img.shields.io/badge/Truffle_Ruby-24.2-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-25.0i]: https://img.shields.io/badge/Truffle_Ruby-25.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-c-i]: https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&logo=ruby&logoColor=green
-[💎truby-headi]: https://img.shields.io/badge/Truffle_Ruby-HEAD-34BCB1?style=for-the-badge&logo=ruby&logoColor=blue
-[💎jruby-9.1i]: https://img.shields.io/badge/JRuby-9.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
-[💎jruby-9.2i]: https://img.shields.io/badge/JRuby-9.2_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
-[💎jruby-9.3i]: https://img.shields.io/badge/JRuby-9.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
-[💎jruby-9.4i]: https://img.shields.io/badge/JRuby-9.4-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-c-i]: https://img.shields.io/badge/JRuby-current-FBE742?style=for-the-badge&logo=ruby&logoColor=green
 [💎jruby-headi]: https://img.shields.io/badge/JRuby-HEAD-FBE742?style=for-the-badge&logo=ruby&logoColor=blue
 [🤝gh-issues]: https://github.com/galtzo-floss/yard-yaml/issues
@@ -769,15 +567,15 @@ Thanks for RTFM. ☺️
 [📌gitmoji]: https://gitmoji.dev
 [📌gitmoji-img]: https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.462-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-5.053-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year
-[📄license]: LICENSE.txt
-[📄license-ref]: https://opensource.org/licenses/MIT
+[📄license]: LICENSE.md
+[📄license-ref]: MIT.md
 [📄license-img]: https://img.shields.io/badge/License-MIT-259D6C.svg
-[📄license-compat]: https://dev.to/galtzo/how-to-check-license-compatibility-41h0
-[📄license-compat-img]: https://img.shields.io/badge/Apache_Compatible:_Category_A-%E2%9C%93-259D6C.svg?style=flat&logo=Apache
+[📄license-compat]: https://www.apache.org/legal/resolved.html#category-a
+[📄license-compat-img]: https://img.shields.io/badge/Apache_Compatible:_Category_A-✓-259D6C.svg?style=flat&logo=Apache
 [📄ilo-declaration]: https://www.ilo.org/declaration/lang--en/index.htm
 [📄ilo-declaration-img]: https://img.shields.io/badge/ILO_Fundamental_Principles-✓-259D6C.svg?style=flat
 [🚎yard-current]: http://rubydoc.info/gems/yard-yaml
@@ -789,6 +587,3 @@ Thanks for RTFM. ☺️
 [💎appraisal2]: https://github.com/appraisal-rb/appraisal2
 [💎appraisal2-img]: https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
-
-
-
