@@ -2,9 +2,6 @@
   "lib/yard/yaml/converter.rb:3738811352": [
     [96, 34, 11, "Performance/StringBytesize: Use `String#bytesize` instead of calculating the size of the bytes array.", 4156894321]
   ],
-  "spec/config/debug.rb:1604258937": [
-    [3, 1, 41, "RSpec/Output: Do not write to stdout in specs.", 3485259047]
-  ],
   "spec/yard/yaml/config_wiring_spec.rb:700576300": [
     [3, 16, 26, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 223936692]
   ],
@@ -26,5 +23,8 @@
     [3, 28, 27, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 863439518],
     [15, 5, 10, "RSpec/DescribedClass: Use `described_class` instead of `Yard::Yaml`.", 597703346],
     [16, 5, 10, "RSpec/DescribedClass: Use `described_class` instead of `Yard::Yaml`.", 597703346]
+  ],
+  "yard-yaml.gemspec:1905075795": [
+    [110, 3, 47, "Gemspec/DependencyVersion: Dependency version specification is required.", 607089141]
   ]
 }

@@ -393,6 +393,10 @@ GEM
       rubocop-ast (>= 1.44.0, < 2.0)
     ruby-progressbar (1.13.0)
     ruby_engine (2.0.3)
+    ruby_tree_sitter (2.1.0)
+      oppen (~> 1.0)
+      sorbet-runtime
+      zeitwerk
     ruby_tree_sitter (2.1.0-x86_64-darwin)
       oppen (~> 1.0)
       sorbet-runtime
