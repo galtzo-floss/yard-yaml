@@ -15,8 +15,8 @@ source "https://gem.coop"
 # Include dependencies from yard-yaml.gemspec
 gemspec
 
-# Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
-eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
+# Templating (env-switched: SMORG_RB_DEV and KETTLE_RB_DEV for local paths)
+eval_gemfile "gemfiles/modular/templating.gemfile"
 
 git_source(:codeberg) { |repo_name| "https://codeberg.org/#{repo_name}" }
 git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }

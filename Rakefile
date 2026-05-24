@@ -83,7 +83,6 @@ end
 ### TEMPLATING TASKS
 begin
   require "kettle/jem"
-  Kettle::Jem.install_tasks
 rescue LoadError
   desc("(stub) kettle:jem:selftest is unavailable")
   task("kettle:jem:selftest") do
