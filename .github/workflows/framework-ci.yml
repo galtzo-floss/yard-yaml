@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: ${{ endsWith(matrix.ruby, 'head') }}
     env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
       fail-fast: false
       matrix:
@@ -40,9 +40,9 @@ jobs:
           - default
         include:
           - framework_version: "6.11"
-            gemfile: "gemfiles/modular/rdoc/v6_11.gemfile"
+            appraisal: "rdoc-6-11"
           - framework_version: "7.0+"
-            gemfile: "gemfiles/modular/rdoc/v7_0_plus.gemfile"
+            appraisal: "rdoc-7-0-plus"
 
     steps:
       - name: Checkout
@@ -54,7 +54,23 @@ jobs:
           ruby-version: "${{ matrix.ruby }}"
           rubygems: "${{ matrix.rubygems }}"
           bundler: "${{ matrix.bundler }}"
-          bundler-cache: true
+          bundler-cache: false
+
+      - name: Install Root Appraisal
+        run: bundle
+
+      - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.framework_version }}"
+        id: bundleAppraisalAttempt1
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        continue-on-error: true
+
+      - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.framework_version }}"
+        id: bundleAppraisalAttempt2
+        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+
+      - name: Appraisal for ${{ matrix.framework_version }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} bundle
 
       - name: Tests for ${{ matrix.ruby }}@${{ matrix.framework_version }}
-        run: bundle exec kettle-test
+        run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec kettle-test

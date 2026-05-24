@@ -157,6 +157,9 @@ workflows:
         slug: "7_0_plus"
         requirement: ">= 7.0"
     gemfile_pattern: "gemfiles/modular/rdoc/v{version}.gemfile"
+    appraisal_gemfiles:
+      - "modular/documentation.gemfile"
+      - "modular/x_std_libs.gemfile"
 
 # README top logos.
 # Comma-separated list of optional logo entries for the generated README header.
