@@ -20,12 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- `documentation_local.gemfile` support for sibling-workspace documentation development under `KETTLE_RB_DEV`
-- Added generated CI coverage for `rdoc` `~> 6.11` and `>= 7.0`.
-
 ### Changed
-
-- Refreshed generated project tooling, CI, and documentation support from the current `kettle-jem` template.
 
 ### Deprecated
 
@@ -33,9 +28,27 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- `Yard::Yaml::Converter.from_file` now preserves valid UTF-8 text, scrubs malformed UTF-8 safely in non-strict mode, and rejects binary-ish inputs without raw encoding crashes
-
 ### Security
+
+## [0.1.1] - 2026-05-24
+
+- TAG: [v0.1.1][0.1.1t]
+- COVERAGE: 92.61% -- 451/487 lines in 12 files
+- BRANCH COVERAGE: 76.88% -- 133/173 branches in 12 files
+- 77.46% documented
+
+### Added
+
+- `documentation_local.gemfile` support for sibling-workspace documentation development under `KETTLE_RB_DEV`
+- Added generated CI coverage for `rdoc` `~> 6.11` and `>= 7.0`.
+
+### Changed
+
+- Refreshed generated project tooling, CI, and documentation support from the current `kettle-jem` template.
+
+### Fixed
+
+- `Yard::Yaml::Converter.from_file` now preserves valid UTF-8 text, scrubs malformed UTF-8 safely in non-strict mode, and rejects binary-ish inputs without raw encoding crashes
 
 ## [0.1.0] - 2025-11-10
 
@@ -50,6 +63,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...v0.1.1
+[0.1.1t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.1
 [0.1.0]: https://github.com/galtzo-floss/yard-yaml/compare/ffbe883471d11462dc28675867d852372ea3a481...v0.1.0
 [0.1.0t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.0

@@ -6,13 +6,13 @@
 <title>
   Module: Yard::Yaml::Plugin
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Yard::Yaml::Plugin";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/yard/yaml/plugin.rb</dd>
+    <dd>lib/yard/yaml/plugin.rb
+</dd>
   </dl>
   
 </div>
@@ -94,6 +97,27 @@
   
 
 </div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="STATE-constant" class="">STATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='label'>activated:</span> <span class='kw'>false</span><span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="STATE_MUTEX-constant" class="">STATE_MUTEX =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Mutex</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -178,6 +202,7 @@
 
       
     </ul>
+    
   
 
 
@@ -212,16 +237,16 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
       <pre class="lines">
 
 
-53
 54
 55
-56</pre>
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___reset_state__'>__reset_state__</span>
-  <span class='ivar'>@activated</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::Plugin::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:activated</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='rbrace'>}</span>
   <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -282,7 +307,6 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
       <pre class="lines">
 
 
-27
 28
 29
 30
@@ -304,10 +328,11 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
 46
 47
 48
-49</pre>
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_activate'>activate</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># Parse and apply CLI overrides if provided
@@ -329,7 +354,7 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
     <span class='comment'># Non-strict errors are already warned by converter/discovery
 </span>  <span class='kw'>end</span>
 
-  <span class='ivar'>@activated</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::Plugin::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:activated</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='rbrace'>}</span>
   <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -376,15 +401,15 @@ Activation is explicit; requiring this file does not activate anything.</p>
       <pre class="lines">
 
 
-14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_activated?'>activated?</span>
-  <span class='ivar'>@activated</span>
+  <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:activated</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -396,9 +421,9 @@ Activation is explicit; requiring this file does not activate anything.</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Nov 10 03:06:20 2025 by
+  Generated on Sun May 24 04:02:14 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.43 (ruby-4.0.5).
 </div>
 
     </div>

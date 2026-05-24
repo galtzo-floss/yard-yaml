@@ -6,13 +6,13 @@
 <title>
   Class: Yard::Yaml::Converter
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Yard::Yaml::Converter";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,7 +96,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/yard/yaml/converter.rb</dd>
+    <dd>lib/yard/yaml/converter.rb
+</dd>
   </dl>
   
 </div>
@@ -120,13 +123,42 @@
   
 
 </div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="BACKEND_STATE-constant" class="">BACKEND_STATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='label'>backend:</span> <span class='kw'>nil</span><span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="BACKEND_MUTEX-constant" class="">BACKEND_MUTEX =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Mutex</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
+      
+    </dl>
+  
 
 
 
-  <h2>Class Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
-  <ul class="summary">
-    
-      <li class="public ">
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#backend-class_method" title="backend (class method)">.<strong>backend</strong>  &#x21d2; Object </a>
@@ -136,9 +168,6 @@
   </span>
   
   
-  
-    
-    
   
   
   
@@ -151,19 +180,29 @@
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-  </ul>
+      <a href="#backend=-class_method" title="backend= (class method)">.<strong>backend=</strong>(backend)  &#x21d2; Object </a>
+    
 
-
-
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
 
   
-    <h2>
-      Class Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
+    <span class="summary_desc"><div class='inline'><p>Assignable backend for dependency injection in tests.</p>
+</div></span>
+  
+</li>
 
-    <ul class="summary">
       
         <li class="public ">
   <span class="summary_signature">
@@ -212,14 +251,15 @@
 
       
     </ul>
+    
   
 
 
-  <div id="class_attr_details" class="attr_details">
-    <h2>Class Attribute Details</h2>
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
     
-      
-      <span id="backend=-class_method"></span>
       <div class="method_details first">
   <h3 class="signature first" id="backend-class_method">
   
@@ -245,30 +285,36 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
 48
 49
 50
 51
 52
-53</pre>
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_backend'>backend</span>
-  <span class='kw'>return</span> <span class='ivar'>@backend</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@backend</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@backend</span>
+  <span class='id identifier rubyid_configured_backend'>configured_backend</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#BACKEND_MUTEX-constant" title="Yard::Yaml::Converter::BACKEND_MUTEX (constant)">BACKEND_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#BACKEND_STATE-constant" title="Yard::Yaml::Converter::BACKEND_STATE (constant)">BACKEND_STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:backend</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_configured_backend'>configured_backend</span> <span class='kw'>if</span> <span class='id identifier rubyid_configured_backend'>configured_backend</span>
+
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yaml/converter</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>rescue</span> <span class='const'>LoadError</span>
     <span class='comment'># ignore; backend may be set by tests
 </span>  <span class='kw'>end</span>
-  <span class='ivar'>@backend</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Yaml</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>::</span><span class='const'>Yaml</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='symbol'>:Converter</span><span class='rparen'>)</span>
-    <span class='op'>::</span><span class='const'>Yaml</span><span class='op'>::</span><span class='const'>Converter</span>
+
+  <span class='const'><span class='object_link'><a href="#BACKEND_MUTEX-constant" title="Yard::Yaml::Converter::BACKEND_MUTEX (constant)">BACKEND_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='const'><span class='object_link'><a href="#BACKEND_STATE-constant" title="Yard::Yaml::Converter::BACKEND_STATE (constant)">BACKEND_STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:backend</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='op'>::</span><span class='const'>Yaml</span><span class='op'>::</span><span class='const'>Converter</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Yaml</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>::</span><span class='const'>Yaml</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='symbol'>:Converter</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -276,15 +322,49 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="backend=-class_method">
+  
+    .<strong>backend=</strong>(backend)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Assignable backend for dependency injection in tests.<br />
+Expected to respond to <code>convert(yaml, options)</code> and return a Hash with :html, :title, :description, and :meta keys</p>
+
+
   </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
-  <div id="class_method_details" class="method_details_list">
-    <h2>Class Method Details</h2>
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 21</span>
 
+<span class='kw'>def</span> <span class='id identifier rubyid_backend='>backend=</span><span class='lparen'>(</span><span class='id identifier rubyid_backend'>backend</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="#BACKEND_MUTEX-constant" title="Yard::Yaml::Converter::BACKEND_MUTEX (constant)">BACKEND_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#BACKEND_STATE-constant" title="Yard::Yaml::Converter::BACKEND_STATE (constant)">BACKEND_STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:backend</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_backend'>backend</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-      <div class="method_details first">
-  <h3 class="signature first" id="from_file-class_method">
+      <div class="method_details ">
+  <h3 class="signature " id="from_file-class_method">
   
     .<strong>from_file</strong>(path, options = {}, config: Yard::Yaml.config)  &#x21d2; <tt>Hash</tt> 
   
@@ -362,17 +442,17 @@
       <pre class="lines">
 
 
-36
-37
-38
-39
-40</pre>
+41
+42
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_from_file'>from_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>config:</span> <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_config'><span class='object_link'><a href="../Yaml.html#config-class_method" title="Yard::Yaml.config (method)">config</a></span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='id identifier rubyid_read_file'>read_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='id identifier rubyid_read_file'>read_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='label'>config:</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_empty_result'>empty_result</span> <span class='kw'>if</span> <span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   <span class='id identifier rubyid_run_convert'>run_convert</span><span class='lparen'>(</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>source_path:</span> <span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -472,12 +552,12 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/converter.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_from_string'>from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>config:</span> <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_config'><span class='object_link'><a href="../Yaml.html#config-class_method" title="Yard::Yaml.config (method)">config</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_run_convert'>run_convert</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
@@ -492,9 +572,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Nov 10 03:06:20 2025 by
+  Generated on Sun May 24 04:02:14 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.43 (ruby-4.0.5).
 </div>
 
     </div>

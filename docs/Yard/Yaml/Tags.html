@@ -6,13 +6,13 @@
 <title>
   Module: Yard::Yaml::Tags
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Yard::Yaml::Tags";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/yard/yaml/tags.rb</dd>
+    <dd>lib/yard/yaml/tags.rb
+</dd>
   </dl>
   
 </div>
@@ -122,6 +125,7 @@
 
       
     </ul>
+    
   
 
 
@@ -182,11 +186,7 @@
 47
 48
 49
-50
-51
-52
-53
-54</pre>
+50</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/yard/yaml/tags.rb', line 13</span>
@@ -205,14 +205,10 @@
       <span class='kw'>end</span>
     <span class='kw'>else</span>
       <span class='comment'># Create a minimal shim that records define_tag calls
-</span>      <span class='id identifier rubyid_lib'>lib</span> <span class='op'>=</span> <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-      <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_lib'>lib</span>
-        <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:calls</span>
-        <span class='kw'>def</span> <span class='id identifier rubyid_define_tag'>define_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-          <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_calls'>calls</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-          <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_calls'>calls</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_args'>args</span>
-        <span class='kw'>end</span>
-      <span class='kw'>end</span>
+</span>      <span class='id identifier rubyid_calls'>calls</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_lib'>lib</span> <span class='op'>=</span> <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+      <span class='id identifier rubyid_lib'>lib</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='symbol'>:calls</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_calls'>calls</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_lib'>lib</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='symbol'>:define_tag</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_calls'>calls</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_args'>args</span> <span class='rbrace'>}</span>
       <span class='kw'>begin</span>
         <span class='op'>::</span><span class='const'>YARD</span><span class='op'>::</span><span class='const'>Tags</span><span class='period'>.</span><span class='id identifier rubyid_const_set'>const_set</span><span class='lparen'>(</span><span class='symbol'>:Library</span><span class='comma'>,</span> <span class='id identifier rubyid_lib'>lib</span><span class='rparen'>)</span>
       <span class='kw'>rescue</span> <span class='const'>StandardError</span>
@@ -243,9 +239,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Nov 10 03:06:20 2025 by
+  Generated on Sun May 24 04:02:14 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.43 (ruby-4.0.5).
 </div>
 
     </div>

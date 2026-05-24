@@ -6,13 +6,13 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "CHANGELOG";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -68,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -82,6 +84,39 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="security">Security</h3>
 
+<h2 id="011---2026-05-24">
+<a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...v0.1.1">0.1.1</a> - 2026-05-24</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.1">v0.1.1</a>
+</li>
+  <li>COVERAGE: 92.61% – 451/487 lines in 12 files</li>
+  <li>BRANCH COVERAGE: 76.88% – 133/173 branches in 12 files</li>
+  <li>77.46% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>
+<code>documentation_local.gemfile</code> support for sibling-workspace documentation development under <code>KETTLE_RB_DEV</code>
+</li>
+  <li>Added generated CI coverage for <code>rdoc</code> <code>~&gt; 6.11</code> and <code>&gt;= 7.0</code>.</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>Refreshed generated project tooling, CI, and documentation support from the current <code>kettle-jem</code> template.</li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>
+<code>Yard::Yaml::Converter.from_file</code> now preserves valid UTF-8 text, scrubs malformed UTF-8 safely in non-strict mode, and rejects binary-ish inputs without raw encoding crashes</li>
+</ul>
+
 <h2 id="010---2025-11-10">
 <a href="https://github.com/galtzo-floss/yard-yaml/compare/ffbe883471d11462dc28675867d852372ea3a481...v0.1.0">0.1.0</a> - 2025-11-10</h2>
 
@@ -93,7 +128,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>84.38% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>Initial release</li>
@@ -104,9 +139,9 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Mon Nov 10 03:06:20 2025 by
+  Generated on Sun May 24 04:02:13 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.43 (ruby-4.0.5).
 </div>
 
     </div>
