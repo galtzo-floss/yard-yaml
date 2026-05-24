@@ -23,8 +23,5 @@
     [3, 28, 27, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 863439518],
     [15, 5, 10, "RSpec/DescribedClass: Use `described_class` instead of `Yard::Yaml`.", 597703346],
     [16, 5, 10, "RSpec/DescribedClass: Use `described_class` instead of `Yard::Yaml`.", 597703346]
-  ],
-  "yard-yaml.gemspec:1905075795": [
-    [110, 3, 47, "Gemspec/DependencyVersion: Dependency version specification is required.", 607089141]
   ]
 }

@@ -212,11 +212,11 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 14. Run `bundle exec rake release` which will create a git tag for the version,
     push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
 
-[📜src-gl]: https://gitlab.com/galtzo-floss/yard-yaml/
+[📜src-gl]: https://gitlab.com/galtzo-floss/yard-yaml
 [📜src-cb]: https://codeberg.org/galtzo-floss/yard-yaml
 [📜src-gh]: https://github.com/galtzo-floss/yard-yaml
 [🧪build]: https://github.com/galtzo-floss/yard-yaml/actions
-[🤝conduct]: https://gitlab.com/galtzo-floss/yard-yaml/-/blob/main/CODE_OF_CONDUCT.md
+[🤝conduct]: https://github.com/galtzo-floss/yard-yaml/blob/main/CODE_OF_CONDUCT.md
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/galtzo-floss/yard-yaml/graphs/contributors
 [🚎contributors-gl]: https://gitlab.com/galtzo-floss/yard-yaml/-/graphs/main

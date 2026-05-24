@@ -9,15 +9,12 @@
 
 Gem::Specification.new do |spec|
   spec.name = "yard-yaml"
-  # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
-  # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
-  # See: https://github.com/panorama-ed/memo_wise/pull/397
   spec.version = Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/yard/yaml/version.rb", mod) }::Yard::Yaml::Version::VERSION
   spec.authors = ["Annibelle Boling", "Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
-  spec.summary = "🍲 A YARD plugin for YAML documents"
-  spec.description = "🍲 A YARD plugin for YAML documents"
+  spec.summary = "🔮 A YARD plugin for YAML documents"
+  spec.description = "🔮 A YARD plugin for YAML documents"
   spec.homepage = "https://github.com/galtzo-floss/yard-yaml"
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 3.2.0"
@@ -40,7 +37,7 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.metadata["homepage_uri"] = "https://yard-yaml.galtzo.com/"
+  spec.metadata["homepage_uri"] = "https://structuredmerge.org"
   spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
@@ -51,13 +48,22 @@ Gem::Specification.new do |spec|
   spec.metadata["discord_uri"] = "https://discord.gg/3qme4XHNKN"
   spec.metadata["rubygems_mfa_required"] = "true"
 
+  enumerate_package_files = lambda do |root|
+    Dir.glob(File.join(root, "**", "*"), File::FNM_DOTMATCH).select do |path|
+      File.file?(path) && ![".", ".."].include?(File.basename(path))
+    end
+  end
+
   # Specify which files are part of the released package.
-  spec.files = Dir[
+  spec.files = [
     # Code / tasks / data (NOTE: exe/ is specified via spec.bindir and spec.executables below)
-    "lib/**/*.rb",
-    "lib/**/*.rake",
+    *enumerate_package_files.call("lib"),
+    # Executables and executable support scripts
+    *enumerate_package_files.call("exe"),
+    # Public certs for gem signing
+    *enumerate_package_files.call("certs"),
     # Signatures
-    "sig/**/*.rbs",
+    *enumerate_package_files.call("sig"),
   ]
 
   # Automatically included with gem package, no need to list again in files.
@@ -68,7 +74,7 @@ Gem::Specification.new do |spec|
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
     "FUNDING.md",
-    "LICENSE.txt",
+    "LICENSE.md",
     "README.md",
     "RUBOCOP.md",
     "SECURITY.md",
@@ -84,15 +90,14 @@ Gem::Specification.new do |spec|
     "--inline-source",
     "--quiet",
   ]
-  spec.require_paths = ["lib"]
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
   spec.executables = []
-
-  spec.add_dependency("yaml-converter", "~> 0.1")              # ruby >= 3.2
+  spec.require_paths = ["lib"]
 
   # Utilities
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")     # ruby >= 2.2.0
+  spec.add_dependency("yaml-converter", "~> 0.1")              # ruby >= 3.2
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
@@ -106,8 +111,6 @@ Gem::Specification.new do |spec|
   #
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
-
-  spec.add_development_dependency("kettle-drift")
 
   # Dev, Test, & Release Tasks
   spec.add_development_dependency("kettle-dev", "~> 2.0")                           # ruby >= 2.3.0
@@ -147,4 +150,5 @@ Gem::Specification.new do |spec|
   # See: https://github.com/vcr/vcr/issues/1057
   # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
   # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
+  spec.add_development_dependency("kettle-drift", "~> 0.1")
 end

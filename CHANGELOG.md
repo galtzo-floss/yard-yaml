@@ -24,6 +24,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Refreshed generated project tooling, CI, and documentation support from the current `kettle-jem` template.
+
 ### Deprecated
 
 ### Removed

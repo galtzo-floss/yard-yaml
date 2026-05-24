@@ -8,7 +8,6 @@ spec/**/*
 spec*/**/*
 test/**/*
 tmp/**/*
-pkg/*.gem
 *.gem
 # Also ignore yardoc cache
 .yardoc/

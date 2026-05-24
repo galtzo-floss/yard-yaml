@@ -1,0 +1,9 @@
+module Yard
+  module Yaml
+    module Version
+      VERSION: String
+    end
+    VERSION: String
+  end
+end
+
