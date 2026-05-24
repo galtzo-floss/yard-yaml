@@ -2,7 +2,9 @@
 
 source "https://gem.coop"
 
-gemspec path: "../"
+gem "irb", "~> 1.17"
+
+gemspec :path => "../"
 
 eval_gemfile("modular/coverage.gemfile")
 
