@@ -8,6 +8,9 @@
 
 source "https://gem.coop"
 
+git_source(:codeberg) { |repo_name| "https://codeberg.org/#{repo_name}" }
+git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
+
 #### IMPORTANT #######################################################
 # Gemfile is for local development ONLY; Gemfile is NOT loaded in CI #
 ####################################################### IMPORTANT ####
@@ -17,9 +20,6 @@ gemspec
 
 # Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 eval_gemfile "gemfiles/modular/templating.gemfile"
-
-git_source(:codeberg) { |repo_name| "https://codeberg.org/#{repo_name}" }
-git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
