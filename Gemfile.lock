@@ -16,8 +16,8 @@ PATH
 PATH
   remote: /home/pboling/src/kettle-rb/galtzo-floss/yard-fence
   specs:
-    yard-fence (0.9.0)
-      rdoc (~> 6.11)
+    yard-fence (0.9.1)
+      rdoc (>= 6.11, < 8)
       version_gem (~> 1.1, >= 1.1.9)
       yard (~> 0.9, >= 0.9.37)
 
