@@ -16,7 +16,7 @@ source "https://gem.coop"
 gemspec
 
 # Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
-eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
+eval_gemfile "gemfiles/modular/templating.gemfile"
 
 git_source(:codeberg) { |repo_name| "https://codeberg.org/#{repo_name}" }
 git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
