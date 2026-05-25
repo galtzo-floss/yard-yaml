@@ -559,7 +559,7 @@ Thanks for RTFM. ☺️
 | Field | Value |
 |---|---|
 | Package | yard-yaml |
-| Description | 🔮 A YARD plugin for YAML documents |
+| Description | 🍲 A YARD plugin for YAML documents |
 | Homepage | https://github.com/galtzo-floss/yard-yaml |
 | Source | https://github.com/galtzo-floss/yard-yaml/tree/v0.1.1 |
 | License | `MIT` |
