@@ -84,7 +84,7 @@
 # Set this to a single emoji that represents your gem. Examples: 🪙 🔑 🛠️ 🔮
 # This key is REQUIRED. kettle-jem will abort if it is absent.
 # ENV override: KJ_PROJECT_EMOJI
-project_emoji: 🔮
+project_emoji: 🍲
 
 # Engines this project supports.
 # List the Ruby engines that your gem targets. kettle-jem uses this to decide
@@ -170,7 +170,7 @@ workflows:
 #   project => related-org,ruby,project
 #   org_and_project => related-org,ruby,org,project
 readme:
-  top_logos: related-org,ruby,org
+  top_logos: related-org,ruby,project
   # Sections to preserve from the destination README during template merging.
   # These section headings (case-insensitive) will keep the destination body
   # instead of being overwritten by the template. Default when absent:
@@ -259,7 +259,7 @@ machine_users:
 # Divergence is currently measured as the percent of produced files that would
 # change or be added during templating (100 - unchanged-file score).
 # ENV override: KJ_MIN_DIVERGENCE_THRESHOLD
-min_divergence_threshold: 
+min_divergence_threshold:
 # Hostname used for generated YARD documentation links.
 # Defaults to <gem-name>.<author-email-domain>.
 # ENV override: KJ_YARD_HOST

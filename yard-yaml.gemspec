@@ -13,8 +13,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Annibelle Boling", "Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
-  spec.summary = "🔮 A YARD plugin for YAML documents"
-  spec.description = "🔮 A YARD plugin for YAML documents"
+  spec.summary = "🍲 A YARD plugin for YAML documents"
+  spec.description = "🍲 A YARD plugin for YAML documents"
   spec.homepage = "https://github.com/galtzo-floss/yard-yaml"
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 3.2.0"

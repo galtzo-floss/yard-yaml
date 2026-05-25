@@ -3,29 +3,29 @@
     {
       "file": ".github/workflows/current.yml",
       "lines": [
-        89,
-        103
-      ]
-    },
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
         91,
         105
       ]
     },
     {
+      "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        93,
+        107
+      ]
+    },
+    {
       "file": ".github/workflows/heads.yml",
       "lines": [
-        90,
-        104
+        92,
+        106
       ]
     },
     {
       "file": ".github/workflows/truffle.yml",
       "lines": [
-        73,
-        87
+        75,
+        89
       ]
     }
   ],
@@ -49,33 +49,69 @@
       ]
     }
   ],
-  "if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}\nrun: bundle": [
+  "appraisal: \"head\"\nexec_cmd: \"rake test\"": [
+    {
+      "file": ".github/workflows/heads.yml",
+      "lines": [
+        43,
+        51,
+        59
+      ]
+    }
+  ],
+  "exec_cmd: \"rake test\"\ngemfile: \"Appraisal.root\"": [
     {
       "file": ".github/workflows/current.yml",
       "lines": [
-        82,
-        87
+        43,
+        51,
+        59
       ]
     },
     {
       "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        45,
+        53,
+        61
+      ]
+    },
+    {
+      "file": ".github/workflows/heads.yml",
+      "lines": [
+        44,
+        52,
+        60
+      ]
+    }
+  ],
+  "if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}\nrun: bundle": [
+    {
+      "file": ".github/workflows/current.yml",
       "lines": [
         84,
         89
       ]
     },
     {
+      "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        86,
+        91
+      ]
+    },
+    {
       "file": ".github/workflows/heads.yml",
       "lines": [
-        83,
-        88
+        85,
+        90
       ]
     },
     {
       "file": ".github/workflows/truffle.yml",
       "lines": [
-        66,
-        71
+        68,
+        73
       ]
     }
   ]
