@@ -25,13 +25,14 @@ module Yard
         # @return [Array<String>] list of written file paths
         def emit!(pages:, output_dir:, config: Yard::Yaml.config)
           pages = Array(pages)
+          pages_with_slugs = assign_slugs(pages)
           written = []
           base = File.join(output_dir.to_s, config.out_dir.to_s)
           FileUtils.mkdir_p(base)
 
           # Write per-page files
-          pages.each do |page|
-            slug = page_slug(page)
+          pages_with_slugs.each do |page|
+            slug = page.fetch(:__yard_yaml_slug)
             path = File.join(base, "#{slug}.html")
             html = render_page_html(page)
             atomic_write(path, html, strict: config.strict)
@@ -41,7 +42,7 @@ module Yard
           # Index (optional)
           if config.index
             index_path = File.join(base, "index.html")
-            html = render_index_html(pages)
+            html = render_index_html(pages_with_slugs)
             atomic_write(index_path, html, strict: config.strict)
             written << index_path
           end
@@ -58,20 +59,36 @@ module Yard
 
         private
 
+        def assign_slugs(pages)
+          seen = Hash.new(0)
+          pages.map do |page|
+            slug = page_slug(page)
+            count = seen[slug]
+            seen[slug] += 1
+            page.merge(__yard_yaml_slug: count.zero? ? slug : "#{slug}-#{count + 1}")
+          end
+        end
+
         def page_slug(page)
           meta = page[:meta] || {}
           slug = meta["slug"] || meta[:slug]
           return sanitize_slug(slug) if slug && !slug.to_s.empty?
 
-          title = page[:title].to_s
-          return sanitize_slug(title) unless title.empty?
-
           if page[:path]
-            base = File.basename(page[:path].to_s, File.extname(page[:path].to_s))
-            return sanitize_slug(base)
+            path_slug = path_slug(page[:path])
+            return path_slug unless path_slug.empty?
           end
 
-          "page"
+          title = sanitize_slug(page[:title])
+          title.empty? ? "page" : title
+        end
+
+        def path_slug(path)
+          relative = path.to_s.delete_prefix("#{Dir.pwd}/")
+          dirname = File.dirname(relative)
+          basename = File.basename(relative, File.extname(relative))
+          parts = dirname == "." ? [basename] : dirname.split(File::SEPARATOR) + [basename]
+          sanitize_slug(parts.join("-"))
         end
 
         def sanitize_slug(s)
@@ -108,8 +125,8 @@ module Yard
 
         def render_index_html(pages)
           rows = pages.map do |p|
-            title = p[:title] || page_slug(p)
-            slug = page_slug(p)
+            slug = p[:__yard_yaml_slug] || page_slug(p)
+            title = p[:title] || slug
             desc = p[:description]
             %(<li><a href="#{escape_html(slug)}.html">#{escape_html(title)}</a>#{" — #{escape_html(desc)}" if desc}</li>)
           end.join("\n")

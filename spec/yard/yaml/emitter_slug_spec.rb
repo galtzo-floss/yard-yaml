@@ -7,14 +7,19 @@ RSpec.describe Yard::Yaml::Emitter do
       expect(described_class.slug_for(page)).to eq("custom-slug-123")
     end
 
-    it "falls back to title when slug missing" do
+    it "falls back to path when slug missing" do
       page = {meta: {}, title: "Hello World!", path: "/x/a.yml"}
-      expect(described_class.slug_for(page)).to eq("hello-world")
+      expect(described_class.slug_for(page)).to eq("x-a")
     end
 
-    it "falls back to filename when no slug or title" do
+    it "uses the full relative path to reduce collisions" do
       page = {meta: {}, title: nil, path: "/x/Deep Dir/FiLe_Name.yaml"}
-      expect(described_class.slug_for(page)).to eq("file-name")
+      expect(described_class.slug_for(page)).to eq("x-deep-dir-file-name")
+    end
+
+    it "falls back to title when no slug or path is present" do
+      page = {meta: {}, title: "Hello World!", path: nil}
+      expect(described_class.slug_for(page)).to eq("hello-world")
     end
 
     it "sanitizes to alphanumerics and dashes" do

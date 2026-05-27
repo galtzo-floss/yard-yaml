@@ -17,7 +17,7 @@ RSpec.describe Yard::Yaml, "Sidebar YAML Docs partial" do
 
     tpl = ERB.new(File.read(erb_path))
     html = tpl.result(binding)
-    expect(html).to(include("/yaml/alpha.html"))
+    expect(html).to(include("/yaml/x-a.html"))
     expect(html).to(include("/yaml/bravo.html"))
   end
 end
