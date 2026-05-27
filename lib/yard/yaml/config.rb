@@ -35,7 +35,7 @@ module Yard
       DEFAULT_TOC = "auto"
 
       # Options forwarded to yaml-converter.
-      DEFAULT_CONVERTER_OPTIONS = {}.freeze
+      DEFAULT_CONVERTER_OPTIONS = {truncate: false}.freeze
 
       # Whether to respect YAML front matter for title/nav order.
       DEFAULT_FRONT_MATTER = true

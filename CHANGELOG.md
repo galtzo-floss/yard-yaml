@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- YAML documentation pages no longer truncate long source lines by default,
+  preserving full values such as repository URLs in rendered CFF pages.
+
 ### Security
 
 ## [0.1.2] - 2026-05-27

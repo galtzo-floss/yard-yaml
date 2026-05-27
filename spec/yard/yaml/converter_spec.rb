@@ -28,7 +28,19 @@ RSpec.describe Yard::Yaml::Converter do
     expect(result[:description]).to(eq("Desc"))
     expect(result[:meta]).to(eq({source: nil}))
     # ensure options included from config
-    expect(backend.last[:options]).to(include(:allow_erb, :front_matter))
+    expect(backend.last[:options]).to(include(:allow_erb, :front_matter, truncate: false))
+  end
+
+  it "does not truncate YAML lines by default for documentation pages" do
+    described_class.backend = nil
+    url = "https://github.com/structuredmerge/structuredmerge-ruby"
+    result = described_class.from_string(<<~YAML)
+      title: kettle-jem
+      repository-code: '#{url}'
+    YAML
+
+    expect(result[:html]).to include(url)
+    expect(result[:html]).not_to include("structuredmerge..")
   end
 
   it "converts from file and passes source_path and merged options" do
