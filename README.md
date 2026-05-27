@@ -29,12 +29,10 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 ## 🌻 Synopsis
 
 To enable the `yard-yaml` plugin add it to your Gemfile,
-and then add the plugin plus the YAML/CFF files you want documented to your
-`.yardopts` file:
+and then add the plugin to your `.yardopts` file:
 
 ```text
 --plugin yaml
-CITATION.cff
 ```
 
 When you run `yard doc`, `yard-yaml` converts those YAML documents into HTML
@@ -135,16 +133,14 @@ The `yard-yaml` plugin supports the following configuration options:
 - **allow_erb**: Allow ERB processing in YAML files (default: `false`).
 
 Note: Citation File Format (`.cff`) files are valid YAML. The default
-`yard-yaml` discovery globs include root `.cff` files, but YARD still needs
-non-Ruby documentation source files listed in `.yardopts` so they are part of
-the documentation build. Listing `CITATION.cff` there is the recommended setup.
+`yard-yaml` discovery globs include root `.cff` files. Do not list YAML/CFF
+files as plain YARD inputs unless you intentionally want YARD's raw file-page
+rendering in addition to the converted `yard-yaml` page.
 
 ### Example `.yardopts` Configuration
 
 ```text
 --plugin yaml
-CITATION.cff
-examples/config.yml
 --yard_yaml-include "examples/*.yml"
 --yard_yaml-exclude "examples/drafts/*.yml"
 --yard_yaml-out_dir "custom_output"
@@ -180,11 +176,9 @@ The `yard-yaml` plugin introduces two new tags for use in docstrings:
 
 #### Include .yml/.yaml/.cff files as pages
 
-- Add each YAML/CFF file that should be documented to `.yardopts`. This makes
-  the file part of the YARD documentation build.
 - `yard-yaml` discovery defaults already include root `.yml`/`.yaml`/`.cff`
   files and `docs/**/*.yml`, `docs/**/*.yaml`, and `docs/**/*.cff`; use
-  `--yard_yaml-include` only for additional converted-page globs.
+  `--yard_yaml-include` for additional converted-page globs.
 - Generate docs:
   ```bash
   bundle exec yard
