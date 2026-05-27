@@ -35,6 +35,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Converted YAML page filenames now default to source paths instead of YAML
   titles, keeping display titles separate from stable output paths and avoiding
   silent overwrites when titles collide.
+- Expanded plugin, logger, registry, and tag-renderer specs so the test suite
+  again satisfies the configured line and branch coverage gates.
 - `--plugin yaml` now activates discovery and emits converted YAML pages after
   YARD finishes generating HTML.
 - `Yard::Yaml::Converter` now adapts to `yaml-converter`'s real in-memory

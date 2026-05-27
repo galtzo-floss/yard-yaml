@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe Yard::Yaml::Plugin do
+  def with_tmp_chdir
+    tmp_root = File.expand_path("../../tmp", __dir__)
+    FileUtils.mkdir_p(tmp_root)
+    Dir.mktmpdir("yard-yaml-plugin", tmp_root) do |dir|
+      Dir.chdir(dir) { yield(dir) }
+    end
+  end
+
   it "is not activated by default" do
     expect(described_class.activated?).to(be(false))
   end
@@ -16,16 +24,43 @@ RSpec.describe Yard::Yaml::Plugin do
     expect(described_class.yard_output_dir(["-o", "api"])).to eq("api")
   end
 
+  it "resolves YARD output from .yardopts and falls back to doc" do
+    with_tmp_chdir do
+      expect(described_class.yard_output_dir([])).to eq("doc")
+
+      File.write(".yardopts", "--markup markdown --output docs\n")
+      expect(described_class.yard_output_dir([])).to eq("docs")
+    end
+  end
+
+  it "ignores unreadable .yardopts content when resolving output" do
+    with_tmp_chdir do
+      File.write(".yardopts", %("--output "unterminated\n))
+      expect(described_class.yard_output_dir([])).to eq("doc")
+    end
+  end
+
+  it "installs the at-exit emitter only once" do
+    installed = []
+    allow(described_class).to receive(:at_exit) { |&block| installed << block }
+
+    described_class.install_at_exit(["--output", "docs"])
+    described_class.install_at_exit(["--output", "ignored"])
+
+    expect(installed.size).to eq(1)
+  end
+
+  it "returns no emitted files when no pages were collected" do
+    expect(described_class.emit!(output_dir: "docs")).to eq([])
+  end
+
   it "emits collected pages to the YARD output directory" do
-    tmpdir = Dir.mktmpdir("yyaml-plugin-emit")
-    begin
+    with_tmp_chdir do |tmpdir|
       Yard::Yaml.__set_pages__([{path: "CITATION.cff", html: "<p>ok</p>", title: "Citation", description: nil, meta: {}}])
       written = described_class.emit!(output_dir: tmpdir)
 
       expect(written).to include(File.join(tmpdir, "yaml", "citation.html"))
       expect(File.read(File.join(tmpdir, "yaml", "citation.html"))).to include("<p>ok</p>")
-    ensure
-      FileUtils.rm_rf(tmpdir)
     end
   end
 end
