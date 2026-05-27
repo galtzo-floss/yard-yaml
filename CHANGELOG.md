@@ -22,13 +22,26 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Documented that `yard-yaml` discovers YAML/CFF files through its own globs
-  and that listing those files as plain YARD inputs is only needed when users
-  intentionally want YARD's raw file-page rendering too.
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.2] - 2026-05-27
+
+- TAG: [v0.1.2][0.1.2t]
+- COVERAGE: 94.88% -- 519/547 lines in 12 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 12 files
+- 78.38% documented
+
+### Changed
+
+- Documented that `yard-yaml` discovers YAML/CFF files through its own globs
+  and that listing those files as plain YARD inputs is only needed when users
+  intentionally want YARD's raw file-page rendering too.
 
 ### Fixed
 
@@ -41,8 +54,6 @@ Please file a bug if you notice a violation of semantic versioning.
   YARD finishes generating HTML.
 - `Yard::Yaml::Converter` now adapts to `yaml-converter`'s real in-memory
   Markdown API instead of calling an obsolete positional `convert` signature.
-
-### Security
 
 ## [0.1.1] - 2026-05-24
 
@@ -77,7 +88,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...v0.1.2
+[0.1.2t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.2
 [0.1.1]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...v0.1.1
 [0.1.1t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.1
 [0.1.0]: https://github.com/galtzo-floss/yard-yaml/compare/ffbe883471d11462dc28675867d852372ea3a481...v0.1.0

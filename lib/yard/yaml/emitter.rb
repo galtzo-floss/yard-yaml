@@ -87,7 +87,7 @@ module Yard
           relative = path.to_s.delete_prefix("#{Dir.pwd}/")
           dirname = File.dirname(relative)
           basename = File.basename(relative, File.extname(relative))
-          parts = dirname == "." ? [basename] : dirname.split(File::SEPARATOR) + [basename]
+          parts = (dirname == ".") ? [basename] : dirname.split(File::SEPARATOR) + [basename]
           sanitize_slug(parts.join("-"))
         end
 

@@ -6,7 +6,7 @@
 <title>
   Module: Yard::Yaml::Plugin
   
-    &mdash; Documentation by YARD 0.9.43
+    &mdash; Documentation by YARD 0.9.44
   
 </title>
 
@@ -108,7 +108,7 @@
         <dt id="STATE-constant" class="">STATE =
           
         </dt>
-        <dd><pre class="code"><span class='lbrace'>{</span><span class='label'>activated:</span> <span class='kw'>false</span><span class='rbrace'>}</span></pre></dd>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='label'>activated:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>at_exit_installed:</span> <span class='kw'>false</span><span class='rbrace'>}</span></pre></dd>
       
         <dt id="STATE_MUTEX-constant" class="">STATE_MUTEX =
           
@@ -201,6 +201,75 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#emit!-class_method" title="emit! (class method)">.<strong>emit!</strong>(output_dir:)  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Emit converted pages collected during activation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#install_at_exit-class_method" title="install_at_exit (class method)">.<strong>install_at_exit</strong>(argv = nil)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Install an at-exit emitter for YARD’s plugin loader.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#yard_output_dir-class_method" title="yard_output_dir (class method)">.<strong>yard_output_dir</strong>(argv)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Resolve YARD’s HTML output directory from argv or .yardopts.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
     
   
@@ -237,16 +306,22 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
       <pre class="lines">
 
 
-54
-55
-56
-57</pre>
+97
+98
+99
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___reset_state__'>__reset_state__</span>
-  <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::Plugin::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:activated</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='rbrace'>}</span>
+  <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::Plugin::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:activated</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:at_exit_installed</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
   <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -416,14 +491,251 @@ Activation is explicit; requiring this file does not activate anything.</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="emit!-class_method">
+  
+    .<strong>emit!</strong>(output_dir:)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Emit converted pages collected during activation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>output_dir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>YARD HTML output directory</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_emit!'>emit!</span><span class='lparen'>(</span><span class='label'>output_dir:</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_pages'>pages</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pages'><span class='object_link'><a href="../Yaml.html#pages-class_method" title="Yard::Yaml.pages (method)">pages</a></span></span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_pages'>pages</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_pages'>pages</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Emitter.html" title="Yard::Yaml::Emitter (class)">Emitter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_emit!'><span class='object_link'><a href="Emitter.html#emit!-class_method" title="Yard::Yaml::Emitter.emit! (method)">emit!</a></span></span><span class='lparen'>(</span><span class='label'>pages:</span> <span class='id identifier rubyid_pages'>pages</span><span class='comma'>,</span> <span class='label'>output_dir:</span> <span class='id identifier rubyid_output_dir'>output_dir</span><span class='comma'>,</span> <span class='label'>config:</span> <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_config'><span class='object_link'><a href="../Yaml.html#config-class_method" title="Yard::Yaml.config (method)">config</a></span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="install_at_exit-class_method">
+  
+    .<strong>install_at_exit</strong>(argv = nil)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Install an at-exit emitter for YARD’s plugin loader. YARD loads<br />
+plugins before it has generated the HTML tree, so converted YAML<br />
+pages must be written after YARD finishes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>the YARD argv used to discover output</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_install_at_exit'>install_at_exit</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_should_install'>should_install</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::Plugin::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:at_exit_installed</span><span class='rbracket'>]</span>
+      <span class='kw'>false</span>
+    <span class='kw'>else</span>
+      <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::Plugin::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:at_exit_installed</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_should_install'>should_install</span>
+
+  <span class='id identifier rubyid_at_exit'>at_exit</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_emit!'>emit!</span><span class='lparen'>(</span><span class='label'>output_dir:</span> <span class='id identifier rubyid_yard_output_dir'>yard_output_dir</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>||</span> <span class='const'>ARGV</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="yard_output_dir-class_method">
+  
+    .<strong>yard_output_dir</strong>(argv)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Resolve YARD’s HTML output directory from argv or .yardopts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml/plugin.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_yard_output_dir'>yard_output_dir</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_output_dir_from_tokens'>output_dir_from_tokens</span><span class='lparen'>(</span><span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='id identifier rubyid_output_dir_from_tokens'>output_dir_from_tokens</span><span class='lparen'>(</span><span class='id identifier rubyid_yardopts_tokens'>yardopts_tokens</span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>doc</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Sun May 24 04:56:10 2026 by
+  Generated on Wed May 27 02:53:34 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.43 (ruby-4.0.5).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

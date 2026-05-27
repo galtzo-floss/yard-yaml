@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Documentation by YARD 0.9.43
+    &mdash; Documentation by YARD 0.9.44
   
 </title>
 
@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.2...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -83,6 +83,41 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="fixed">Fixed</h3>
 
 <h3 id="security">Security</h3>
+
+<h2 id="012---2026-05-27">
+<a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...v0.1.2">0.1.2</a> - 2026-05-27</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.2">v0.1.2</a>
+</li>
+  <li>COVERAGE: 94.88% – 519/547 lines in 12 files</li>
+  <li>BRANCH COVERAGE: 83.25% – 164/197 branches in 12 files</li>
+  <li>78.38% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>Documented that <code>yard-yaml</code> discovers YAML/CFF files through its own globs<br>
+and that listing those files as plain YARD inputs is only needed when users<br>
+intentionally want YARD’s raw file-page rendering too.</li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>Converted YAML page filenames now default to source paths instead of YAML<br>
+titles, keeping display titles separate from stable output paths and avoiding<br>
+silent overwrites when titles collide.</li>
+  <li>Expanded plugin, logger, registry, and tag-renderer specs so the test suite<br>
+again satisfies the configured line and branch coverage gates.</li>
+  <li>
+<code>--plugin yaml</code> now activates discovery and emits converted YAML pages after<br>
+YARD finishes generating HTML.</li>
+  <li>
+<code>Yard::Yaml::Converter</code> now adapts to <code>yaml-converter</code>’s real in-memory<br>
+Markdown API instead of calling an obsolete positional <code>convert</code> signature.</li>
+</ul>
 
 <h2 id="011---2026-05-24">
 <a href="https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...v0.1.1">0.1.1</a> - 2026-05-24</h2>
@@ -104,13 +139,13 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>Added generated CI coverage for <code>rdoc</code> <code>~&gt; 6.11</code> and <code>&gt;= 7.0</code>.</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>Refreshed generated project tooling, CI, and documentation support from the current <code>kettle-jem</code> template.</li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>
@@ -139,9 +174,9 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun May 24 04:56:10 2026 by
+  Generated on Wed May 27 02:53:34 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.43 (ruby-4.0.5).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>
