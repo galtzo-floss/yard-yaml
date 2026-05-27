@@ -28,6 +28,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- `--plugin yaml` now activates discovery and emits converted YAML pages after
+  YARD finishes generating HTML.
+- `Yard::Yaml::Converter` now adapts to `yaml-converter`'s real in-memory
+  Markdown API instead of calling an obsolete positional `convert` signature.
+
 ### Security
 
 ## [0.1.1] - 2026-05-24

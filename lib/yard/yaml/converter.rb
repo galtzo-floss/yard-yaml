@@ -17,7 +17,9 @@ module Yard
 
       class << self
         # Assignable backend for dependency injection in tests.
-        # Expected to respond to `convert(yaml, options)` and return a Hash with :html, :title, :description, and :meta keys
+        # Preferred backends respond to `to_markdown(yaml, options:)`. Legacy
+        # test backends may respond to `convert(yaml, options)` and return a
+        # Hash with :html, :title, :description, and :meta keys.
         def backend=(backend)
           BACKEND_MUTEX.synchronize { BACKEND_STATE[:backend] = backend }
         end
@@ -102,17 +104,54 @@ module Yard
         def run_convert(yaml, options, config)
           opts = build_options(options, config)
           b = backend
-          unless b&.respond_to?(:convert)
+          unless converter_backend?(b)
             handle_error(Yard::Yaml::Error.new("yaml-converter backend not available"), strict: config.strict, context: "backend")
             return empty_result
           end
 
           begin
-            normalize_result(b.convert(yaml, opts))
+            normalize_result(convert_with_backend(b, yaml, opts))
           rescue StandardError => e
             handle_error(e, strict: config.strict, context: opts[:source_path] || "string")
             empty_result
           end
+        end
+
+        def converter_backend?(backend)
+          backend&.respond_to?(:to_markdown) || backend&.respond_to?(:convert)
+        end
+
+        def convert_with_backend(backend, yaml, options)
+          return convert_markdown_backend(backend, yaml, options) if backend.respond_to?(:to_markdown)
+
+          backend.convert(yaml, options)
+        end
+
+        def convert_markdown_backend(backend, yaml, options)
+          markdown = backend.to_markdown(yaml, options: options)
+          metadata = metadata_from_yaml(yaml)
+          {
+            html: markdown_to_html(markdown),
+            title: metadata["title"],
+            description: metadata["abstract"],
+            meta: metadata,
+          }
+        end
+
+        def markdown_to_html(markdown)
+          require "kramdown"
+          require "kramdown-parser-gfm"
+
+          Kramdown::Document.new(markdown.to_s, input: "GFM").to_html
+        end
+
+        def metadata_from_yaml(yaml)
+          require "yaml"
+
+          parsed = YAML.safe_load(yaml.to_s, permitted_classes: [], permitted_symbols: [], aliases: false)
+          parsed.is_a?(Hash) ? parsed : {}
+        rescue Psych::Exception
+          {}
         end
 
         def build_options(options, config)

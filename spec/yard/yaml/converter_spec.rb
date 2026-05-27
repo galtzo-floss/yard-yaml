@@ -49,6 +49,22 @@ RSpec.describe Yard::Yaml::Converter do
     end
   end
 
+  it "adapts the yaml-converter backend API" do
+    described_class.backend = nil
+    result = described_class.from_string(<<~YAML)
+      cff-version: 1.2.0
+      title: Example Citation
+      abstract: Citation metadata
+      message: Cite this package.
+    YAML
+
+    expect(result[:html]).to include("<code")
+    expect(result[:html]).to include("Example Citation")
+    expect(result[:title]).to eq("Example Citation")
+    expect(result[:description]).to eq("Citation metadata")
+    expect(result[:meta]).to include("cff-version" => "1.2.0")
+  end
+
   it "preserves emoji and kanji when converting from file" do
     file = Tempfile.new(["yyaml-utf8", ".yml"])
     begin
@@ -122,6 +138,7 @@ RSpec.describe Yard::Yaml::Converter do
 
   it "returns empty result and warns when backend missing (non-strict)", :check_output do
     described_class.backend = nil
+    allow(described_class).to receive(:backend).and_return(nil)
     Yard::Yaml.configure(strict: false)
     output = capture(:stderr) {
       res = described_class.from_string("bad")
@@ -132,6 +149,7 @@ RSpec.describe Yard::Yaml::Converter do
 
   it "raises Yard::Yaml::Error when strict and backend missing" do
     described_class.backend = nil
+    allow(described_class).to receive(:backend).and_return(nil)
     Yard::Yaml.configure(strict: true)
     expect { described_class.from_string("data") }.to(raise_error(Yard::Yaml::Error))
   end
