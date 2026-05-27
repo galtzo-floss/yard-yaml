@@ -9,7 +9,7 @@ RSpec.describe Yard::Yaml::Config do
       expect(cfg.out_dir).to(eq("yaml"))
       expect(cfg.index).to(be(true))
       expect(cfg.toc).to(eq("auto"))
-      expect(cfg.converter_options).to(eq({}))
+      expect(cfg.converter_options).to(eq({truncate: false}))
       expect(cfg.front_matter).to(be(true))
       expect(cfg.strict).to(be(false))
       expect(cfg.allow_erb).to(be(false))
