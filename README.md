@@ -29,13 +29,17 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 ## 🌻 Synopsis
 
 To enable the `yard-yaml` plugin add it to your Gemfile,
-and then add the following line to your `.yardopts` file:
+and then add the plugin plus any YAML/CFF files that should be part of the
+YARD file list to your `.yardopts` file:
 
 ```text
 --plugin yaml
+CITATION.cff
 ```
 
-This will activate the plugin during the `yard doc` generation process, converting YAML (including CFF) files to HTML.
+This activates the plugin during the `yard doc` generation process and lets
+YARD recreate its own `file.CITATION.html` page after cleaning the output
+directory. The plugin also emits converted YAML pages under `docs/yaml/`.
 
 ## 💡 Info you can shake a stick at
 
@@ -130,14 +134,19 @@ The `yard-yaml` plugin supports the following configuration options:
 - **strict**: Raise errors on conversion failures (default: `false`).
 - **allow_erb**: Allow ERB processing in YAML files (default: `false`).
 
-Note: Citation File Format (`.cff`) files are valid YAML and are discovered by default without needing explicit globs.
+Note: Citation File Format (`.cff`) files are valid YAML and are discovered by
+default without needing explicit `--yard_yaml-include` globs. Discovery is
+separate from YARD's file list: if you also want YARD's normal
+`file.<name>.html` page for a YAML/CFF file, list that file in `.yardopts`.
 
 ### Example `.yardopts` Configuration
 
 ```text
 --plugin yaml
---yard_yaml-include "examples//*.yml"
---yard_yaml-exclude "/drafts/*.yml"
+CITATION.cff
+examples/config.yml
+--yard_yaml-include "examples/*.yml"
+--yard_yaml-exclude "examples/drafts/*.yml"
 --yard_yaml-out_dir "custom_output"
 --yard_yaml-strict
 ```
@@ -171,15 +180,19 @@ The `yard-yaml` plugin introduces two new tags for use in docstrings:
 
 #### Include .yml/.yaml files as pages
 
-- Generate docs (plugin loads; discovery config comes from flags you pass):
+- Add each YAML/CFF file that should get a normal YARD `file.*.html` page to
+  `.yardopts`. `yard-yaml` discovery defaults already include root
+  `.yml`/`.yaml`/`.cff` files and `docs/**/*.yml`, `docs/**/*.yaml`, and
+  `docs/**/*.cff`; use `--yard_yaml-include` only for additional converted-page
+  globs.
+- Generate docs:
   ```bash
   bundle exec yard
   ```
-- Then emit converted pages into your YARD output dir (replace globs/output to match your project):
-  ```bash
-  ruby -r yard/yaml -e 'Yard::Yaml::Plugin.activate(%w[--yard_yaml-include docs/**/*.y{a,}ml --yard_yaml-exclude **/_*.y{a,}ml]); Yard::Yaml::Emitter.emit!(pages: Yard::Yaml.pages, output_dir: "docs", config: Yard::Yaml.config)'
-  ```
-  Result: `docs/yaml/<slug>.html` and `docs/yaml/index.html` (when index enabled). Front matter supports `title`, `description`, `nav_order`, optional `slug`.
+  Result: YARD writes normal file pages such as `docs/file.CITATION.html`, and
+  `yard-yaml` writes converted pages such as `docs/yaml/<slug>.html` plus
+  `docs/yaml/index.html` when index generation is enabled. Front matter
+  supports `title`, `description`, `nav_order`, and optional `slug`.
 
 #### Inline YAML in Markdown (GFM) fences
 
