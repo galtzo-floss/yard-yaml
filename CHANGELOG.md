@@ -28,10 +28,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+### Security
+
+## [0.1.3] - 2026-05-27
+
+- TAG: [v0.1.3][0.1.3t]
+- COVERAGE: 94.88% -- 519/547 lines in 12 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 12 files
+- 78.38% documented
+
+### Fixed
+
 - YAML documentation pages no longer truncate long source lines by default,
   preserving full values such as repository URLs in rendered CFF pages.
-
-### Security
 
 ## [0.1.2] - 2026-05-27
 
@@ -91,7 +100,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.2...v0.1.3
+[0.1.3t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.3
 [0.1.2]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...v0.1.2
 [0.1.2t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.2
 [0.1.1]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.0...v0.1.1
