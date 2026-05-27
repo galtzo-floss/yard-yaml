@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Yard::Yaml::Plugin do
-  def with_tmp_chdir
-    tmp_root = File.expand_path("../../tmp", __dir__)
-    FileUtils.mkdir_p(tmp_root)
-    Dir.mktmpdir("yard-yaml-plugin", tmp_root) do |dir|
-      Dir.chdir(dir) { yield(dir) }
-    end
-  end
-
   it "is not activated by default" do
     expect(described_class.activated?).to(be(false))
   end
@@ -25,19 +17,19 @@ RSpec.describe Yard::Yaml::Plugin do
   end
 
   it "resolves YARD output from .yardopts and falls back to doc" do
-    with_tmp_chdir do
-      expect(described_class.yard_output_dir([])).to eq("doc")
+    allow(File).to receive(:file?).with(".yardopts").and_return(false)
+    expect(described_class.yard_output_dir([])).to eq("doc")
 
-      File.write(".yardopts", "--markup markdown --output docs\n")
-      expect(described_class.yard_output_dir([])).to eq("docs")
-    end
+    allow(File).to receive(:file?).with(".yardopts").and_return(true)
+    allow(File).to receive(:read).with(".yardopts").and_return("--markup markdown --output docs\n")
+    expect(described_class.yard_output_dir([])).to eq("docs")
   end
 
   it "ignores unreadable .yardopts content when resolving output" do
-    with_tmp_chdir do
-      File.write(".yardopts", %("--output "unterminated\n))
-      expect(described_class.yard_output_dir([])).to eq("doc")
-    end
+    allow(File).to receive(:file?).with(".yardopts").and_return(true)
+    allow(File).to receive(:read).with(".yardopts").and_return(%("--output "unterminated\n))
+
+    expect(described_class.yard_output_dir([])).to eq("doc")
   end
 
   it "installs the at-exit emitter only once" do
@@ -55,7 +47,9 @@ RSpec.describe Yard::Yaml::Plugin do
   end
 
   it "emits collected pages to the YARD output directory" do
-    with_tmp_chdir do |tmpdir|
+    tmp_root = File.expand_path("../../tmp", __dir__)
+    FileUtils.mkdir_p(tmp_root)
+    Dir.mktmpdir("yard-yaml-plugin", tmp_root) do |tmpdir|
       Yard::Yaml.__set_pages__([{path: "CITATION.cff", html: "<p>ok</p>", title: "Citation", description: nil, meta: {}}])
       written = described_class.emit!(output_dir: tmpdir)
 

@@ -68,7 +68,7 @@ RSpec.describe Yard::Yaml::TagRenderer do
       end.new
       tagged = Class.new do
         define_method(:initialize) { |tags| @tags = tags }
-        define_method(:tags) { |name| name == :yaml ? @tags : [] }
+        define_method(:tags) { |name| (name == :yaml) ? @tags : [] }
       end
       allow(Yard::Yaml::TemplateHelpers).to receive(:render_yaml_block).and_return("<pre>ok</pre>")
 

@@ -7,8 +7,14 @@ RSpec.describe Yard::Yaml do
 
   it "logs errors through YARD logger when available" do
     stub_const("YARD", Module.new) unless defined?(YARD)
-    stub_const("YARD::Logger", Class.new)
-    logger = instance_double("YARD::Logger", error: nil)
+    stub_const(
+      "YARD::Logger",
+      Class.new do
+        def error(_message)
+        end
+      end,
+    )
+    logger = instance_double(YARD::Logger, error: nil)
     allow(YARD::Logger).to receive(:instance).and_return(logger)
 
     described_class.error("boom")
@@ -18,8 +24,14 @@ RSpec.describe Yard::Yaml do
 
   it "falls back to kernel warnings when YARD error logging fails", :check_output do
     stub_const("YARD", Module.new) unless defined?(YARD)
-    stub_const("YARD::Logger", Class.new)
-    logger = instance_double("YARD::Logger")
+    stub_const(
+      "YARD::Logger",
+      Class.new do
+        def error(_message)
+        end
+      end,
+    )
+    logger = instance_double(YARD::Logger)
     allow(logger).to receive(:error).and_raise(StandardError, "logger unavailable")
     allow(YARD::Logger).to receive(:instance).and_return(logger)
 
@@ -30,8 +42,14 @@ RSpec.describe Yard::Yaml do
 
   it "falls back to kernel warnings when YARD warning logging fails", :check_output do
     stub_const("YARD", Module.new) unless defined?(YARD)
-    stub_const("YARD::Logger", Class.new)
-    logger = instance_double("YARD::Logger")
+    stub_const(
+      "YARD::Logger",
+      Class.new do
+        def warn(_message)
+        end
+      end,
+    )
+    logger = instance_double(YARD::Logger)
     allow(logger).to receive(:warn).and_raise(StandardError, "logger unavailable")
     allow(YARD::Logger).to receive(:instance).and_return(logger)
 
