@@ -22,6 +22,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Documented that `yard-yaml` discovers YAML/CFF files through its own globs
+  and that listing those files as plain YARD inputs is only needed when users
+  intentionally want YARD's raw file-page rendering too.
+
 ### Deprecated
 
 ### Removed
