@@ -8,3 +8,4 @@ module Yard
     VERSION = Version::VERSION # Traditional Constant Location
   end
 end
+

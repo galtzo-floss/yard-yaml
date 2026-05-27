@@ -1,117 +1,236 @@
 {
-  "# Continue to the next step on failure\ncontinue-on-error: true": [
+  "#       strategy: merge\n#       file_type: ruby": [
     {
-      "file": ".github/workflows/current.yml",
+      "file": ".kettle-jem.yml",
       "lines": [
-        91,
-        105
-      ]
-    },
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        93,
-        107
-      ]
-    },
-    {
-      "file": ".github/workflows/heads.yml",
-      "lines": [
-        92,
-        106
-      ]
-    },
-    {
-      "file": ".github/workflows/truffle.yml",
-      "lines": [
-        75,
-        89
+        463,
+        634
       ]
     }
   ],
-  "appraisal: \"current\"\nexec_cmd: \"rake test\"": [
+  "#     commit-msg:\n#       strategy: merge": [
     {
-      "file": ".github/workflows/current.yml",
+      "file": ".kettle-jem.yml",
       "lines": [
-        42,
-        50,
+        462,
+        633
+      ]
+    }
+  ],
+  "#     pboling.pem:\n#       strategy: raw_copy": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        458,
+        629
+      ]
+    }
+  ],
+  "#   - \"note:*\"\n#   - \"setup*\"": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        215,
+        256
+      ]
+    }
+  ],
+  "#   - basic usage\n#   - usage": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        207,
+        248
+      ]
+    }
+  ],
+  "#   - usage\n#   - summary": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        208,
+        249
+      ]
+    }
+  ],
+  "#   .git-hooks:\n#     commit-msg:": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        461,
+        632
+      ]
+    }
+  ],
+  "#   README.md:\n#     strategy: accept_template": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        451,
+        622
+      ]
+    }
+  ],
+  "#   SECURITY.md:\n#     strategy: keep_destination": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        454,
+        625
+      ]
+    }
+  ],
+  "#   certs:\n#     pboling.pem:": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        457,
+        628
+      ]
+    }
+  ],
+  "#   howto: basic usage\n#   options: configuration": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        222,
+        263
+      ]
+    }
+  ],
+  "#   summary → synopsis, usage → basic usage,\n#   configuration options → configuration, setup → basic usage": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        201,
+        242
+      ]
+    }
+  ],
+  "# Built-in aliases (destination → template):\n#   summary → synopsis, usage → basic usage,": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        200,
+        241
+      ]
+    }
+  ],
+  "# Custom section aliases (destination heading → canonical template heading).\n# Merged with built-in aliases above.": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        218,
+        259
+      ]
+    }
+  ],
+  "# Glob patterns for additional sections to preserve (e.g. Note:* headings).\n# Default when absent: [\"note:*\"]": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        211,
+        252
+      ]
+    }
+  ],
+  "# Sections to preserve from the destination README during template merging.\n# These section headings (case-insensitive) will keep the destination body": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        193,
+        234
+      ]
+    }
+  ],
+  "# These section headings (case-insensitive) will keep the destination body\n# instead of being overwritten by the template. Default when absent:": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        194,
+        235
+      ]
+    }
+  ],
+  "# files:\n#   README.md:": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        450,
+        621
+      ]
+    }
+  ],
+  "# instead of being overwritten by the template. Default when absent:\n#   - synopsis": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        195,
+        236
+      ]
+    }
+  ],
+  "# preserve_patterns:\n#   - \"note:*\"": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        214,
+        255
+      ]
+    }
+  ],
+  "# preserve_sections:\n#   - synopsis": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        204,
+        245
+      ]
+    }
+  ],
+  "# section_aliases:\n#   howto: basic usage": [
+    {
+      "file": ".kettle-jem.yml",
+      "lines": [
+        221,
+        262
+      ]
+    }
+  ],
+  "appraisal: \"dep-heads\"\nexec_cmd: \"kettle-test\"": [
+    {
+      "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        44,
+        51,
         58
       ]
     }
   ],
-  "appraisal: \"dep-heads\"\nexec_cmd: \"rake test\"": [
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        44,
-        52,
-        60
-      ]
-    }
-  ],
-  "appraisal: \"head\"\nexec_cmd: \"rake test\"": [
+  "appraisal: \"head\"\nexec_cmd: \"kettle-test\"": [
     {
       "file": ".github/workflows/heads.yml",
       "lines": [
         43,
-        51,
-        59
+        50,
+        57
       ]
     }
   ],
-  "exec_cmd: \"rake test\"\ngemfile: \"Appraisal.root\"": [
-    {
-      "file": ".github/workflows/current.yml",
-      "lines": [
-        43,
-        51,
-        59
-      ]
-    },
+  "exec_cmd: \"kettle-test\"\nrubygems: default": [
     {
       "file": ".github/workflows/dep-heads.yml",
       "lines": [
-        45,
-        53,
-        61
+        52,
+        59
       ]
     },
     {
       "file": ".github/workflows/heads.yml",
       "lines": [
         44,
-        52,
-        60
-      ]
-    }
-  ],
-  "if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}\nrun: bundle": [
-    {
-      "file": ".github/workflows/current.yml",
-      "lines": [
-        84,
-        89
-      ]
-    },
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        86,
-        91
-      ]
-    },
-    {
-      "file": ".github/workflows/heads.yml",
-      "lines": [
-        85,
-        90
-      ]
-    },
-    {
-      "file": ".github/workflows/truffle.yml",
-      "lines": [
-        68,
-        73
+        51,
+        58
       ]
     }
   ]
