@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    yard-yaml (0.1.1)
+    yard-yaml (0.1.2)
       version_gem (~> 1.1, >= 1.1.9)
       yaml-converter (~> 0.1)
 
