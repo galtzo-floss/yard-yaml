@@ -95,7 +95,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Utilities
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")              # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.10")              # ruby >= 2.2.0
   spec.add_dependency("yaml-converter", "~> 0.2")              # ruby >= 3.2
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased

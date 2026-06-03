@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- upgrade yaml-converter to v0.2.0
+- upgrade version_gem to v1.1.10
+
 ### Deprecated
 
 ### Removed
