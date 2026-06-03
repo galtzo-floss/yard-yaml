@@ -563,7 +563,7 @@ Thanks for RTFM. ☺️
 | Package | yard-yaml |
 | Description | 🦗 A YARD plugin for YAML documents |
 | Homepage | https://github.com/galtzo-floss/yard-yaml |
-| Source | https://github.com/galtzo-floss/yard-yaml/tree/v0.1.3 |
+| Source | https://github.com/galtzo-floss/yard-yaml/tree/v0.2.0 |
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/galtzo-floss, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/yard-yaml, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->
