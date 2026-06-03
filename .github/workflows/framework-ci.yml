@@ -27,6 +27,7 @@ jobs:
     continue-on-error: ${{ endsWith(matrix.ruby, 'head') }}
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
+      KJ_FRAMEWORK_MATRIX_GEM: ${{ matrix.KJ_FRAMEWORK_MATRIX_GEM || '' }}
     strategy:
       fail-fast: false
       matrix:
@@ -41,6 +42,8 @@ jobs:
         framework:
           - framework_version: "6.11"
             appraisal: "rdoc-6-11"
+            KJ_FRAMEWORK_MATRIX_GEM: "rdoc"
+            KJ_FRAMEWORK_MATRIX_GEM: "rdoc"
           - framework_version: "7.0+"
             appraisal: "rdoc-7-0-plus"
 

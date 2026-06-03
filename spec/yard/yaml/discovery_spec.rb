@@ -45,7 +45,7 @@ RSpec.describe Yard::Yaml::Discovery do
       FileUtils.cd(tmpdir) do
         cfg = Yard::Yaml::Config.new(
           include: ["docs/**/*.y{a,}ml"],
-          exclude: [],
+          exclude: []
         )
 
         allow(Yard::Yaml::Converter).to(receive(:from_file)) do |path, _opts, config:|
@@ -53,7 +53,7 @@ RSpec.describe Yard::Yaml::Discovery do
             html: "<p>#{File.basename(path)}</p>",
             title: File.basename(path, ".yml").sub(/\.yaml\z/, ""),
             description: nil,
-            meta: {"source" => path, "strict" => config.strict},
+            meta: {"source" => path, "strict" => config.strict}
           }
         end
 
@@ -75,7 +75,7 @@ RSpec.describe Yard::Yaml::Discovery do
             html: "<p>#{File.basename(path)}</p>",
             title: File.basename(path, File.extname(path)),
             description: nil,
-            meta: {"source" => path, "strict" => config.strict},
+            meta: {"source" => path, "strict" => config.strict}
           }
         end
 

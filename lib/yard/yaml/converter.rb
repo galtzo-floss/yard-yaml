@@ -82,7 +82,7 @@ module Yard
           handle_error(
             Yard::Yaml::Error.new("invalid UTF-8 bytes in file; replaced invalid sequences"),
             strict: false,
-            context: path.to_s,
+            context: path.to_s
           )
           content.scrub
         rescue Errno::ENOENT => e
@@ -95,7 +95,7 @@ module Yard
           return true if sample.include?("\x00")
           return false if sample.empty?
 
-          control_bytes = sample.bytes.count do |byte|
+          control_bytes = sample.each_byte.count do |byte|
             (0..8).cover?(byte) || byte == 11 || byte == 12 || (14..31).cover?(byte)
           end
           control_bytes.fdiv(sample.bytesize) > 0.1
@@ -111,7 +111,7 @@ module Yard
 
           begin
             normalize_result(convert_with_backend(b, yaml, opts))
-          rescue StandardError => e
+          rescue => e
             handle_error(e, strict: config.strict, context: opts[:source_path] || "string")
             empty_result
           end
@@ -134,7 +134,7 @@ module Yard
             html: markdown_to_html(markdown),
             title: metadata["title"],
             description: metadata["abstract"],
-            meta: metadata,
+            meta: metadata
           }
         end
 
@@ -157,7 +157,7 @@ module Yard
         def build_options(options, config)
           safe = {
             allow_erb: !!config.allow_erb,
-            front_matter: !!config.front_matter,
+            front_matter: !!config.front_matter
           }
           # Merge caller-supplied options and the config's converter_options map (caller wins)
           safe.merge(config.converter_options || {}).merge(options || {})
@@ -169,7 +169,7 @@ module Yard
             html: raw[:html] || raw["html"] || "",
             title: raw[:title] || raw["title"],
             description: raw[:description] || raw["description"],
-            meta: raw[:meta] || raw["meta"] || {},
+            meta: raw[:meta] || raw["meta"] || {}
           }
         end
 

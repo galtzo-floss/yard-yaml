@@ -37,7 +37,7 @@ RSpec.describe Yard::Yaml::TagRenderer, "Inline ERB integration for yard-yaml" d
 
     o = obj.new(
       yaml_blocks: [tag.new("a: 1\n")],
-      yaml_files: [tag.new(__FILE__.to_s)],
+      yaml_files: [tag.new(__FILE__)]
     )
 
     # Render ERB with a local variable `object`

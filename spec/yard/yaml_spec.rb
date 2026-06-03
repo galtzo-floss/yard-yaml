@@ -12,7 +12,7 @@ RSpec.describe Yard::Yaml do
       Class.new do
         def error(_message)
         end
-      end,
+      end
     )
     logger = instance_double(YARD::Logger, error: nil)
     allow(YARD::Logger).to receive(:instance).and_return(logger)
@@ -29,7 +29,7 @@ RSpec.describe Yard::Yaml do
       Class.new do
         def error(_message)
         end
-      end,
+      end
     )
     logger = instance_double(YARD::Logger)
     allow(logger).to receive(:error).and_raise(StandardError, "logger unavailable")
@@ -47,7 +47,7 @@ RSpec.describe Yard::Yaml do
       Class.new do
         def warn(_message)
         end
-      end,
+      end
     )
     logger = instance_double(YARD::Logger)
     allow(logger).to receive(:warn).and_raise(StandardError, "logger unavailable")

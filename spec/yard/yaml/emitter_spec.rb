@@ -5,7 +5,7 @@ RSpec.describe Yard::Yaml::Emitter do
   let(:pages) do
     [
       {path: "/docs/a.yml", html: "<p>A</p>", title: "Alpha", description: "First", meta: {}},
-      {path: "/docs/b.yaml", html: "<p>B</p>", title: "Beta", description: nil, meta: {"slug" => "custom-b"}},
+      {path: "/docs/b.yaml", html: "<p>B</p>", title: "Beta", description: nil, meta: {"slug" => "custom-b"}}
     ]
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Yard::Yaml::Emitter do
     cfg = Yard::Yaml::Config.new(index: true)
     pgs = [
       {path: "/config.yml", html: "<p>First</p>", title: "Shared", description: nil, meta: {}},
-      {path: "/config.yaml", html: "<p>Second</p>", title: "Shared", description: nil, meta: {}},
+      {path: "/config.yaml", html: "<p>Second</p>", title: "Shared", description: nil, meta: {}}
     ]
 
     written = described_class.emit!(pages: pgs, output_dir: tmpdir, config: cfg)

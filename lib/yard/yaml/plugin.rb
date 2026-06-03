@@ -30,7 +30,7 @@ module Yard
           begin
             overrides = Cli.parse(argv || [])
             Yard::Yaml.configure(overrides) unless overrides.empty?
-          rescue StandardError
+          rescue
             # Parsing failures should not prevent activation in Phase 3
           end
 
@@ -41,7 +41,7 @@ module Yard
           rescue Yard::Yaml::Error
             # strict mode surfaced an error; re-raise to fail activation/build
             raise
-          rescue StandardError
+          rescue
             # Non-strict errors are already warned by converter/discovery
           end
 
@@ -118,7 +118,7 @@ module Yard
 
           require "shellwords"
           Shellwords.split(File.read(".yardopts"))
-        rescue StandardError
+        rescue
           []
         end
       end

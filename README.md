@@ -1,17 +1,10 @@
-[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-floss-i]][🖼️galtzo-floss] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![yard-yaml Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-floss-yard-yaml-i]][🖼️galtzo-floss-yard-yaml]
-
-[🖼️galtzo-floss-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
-[🖼️galtzo-floss]: https://discord.gg/3qme4XHNKN
-[🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
-[🖼️ruby-lang]: https://www.ruby-lang.org/
-[🖼️galtzo-floss-yard-yaml-i]: https://logos.galtzo.com/assets/images/galtzo-floss/yard-yaml/avatar-192px.svg
-[🖼️galtzo-floss-yard-yaml]: https://github.com/galtzo-floss/yard-yaml
+<a href="https://github.com/galtzo-floss/yard-yaml"><img alt="yard-yaml Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/yard-yaml/avatar-128px.svg" width="14%" align="right"/></a>
 
 # 🦗 Yard::Yaml
 
-[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
+[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
-`if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][🖼️galtzo-floss], as I may have missed the [discord notification][🖼️galtzo-floss].
+`if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][✉️discord-invite], as I may have missed the [discord notification][✉️discord-invite].
 
 ---
 
@@ -26,7 +19,7 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 </details>
 
-## 🌻 Synopsis
+## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
 To enable the `yard-yaml` plugin add it to your Gemfile,
 and then add the plugin to your `.yardopts` file:
@@ -66,8 +59,6 @@ not practical for the current toolchain.
 | 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎 and the color 💚 green 💚 |
 |------------------------------------------------|--------------------------------------------------------|
 | 👟 Check it out! | ✨ [github.com/appraisal-rb/appraisal2][💎appraisal2] ✨ |
-
-
 
 ### Federated DVCS
 
@@ -378,6 +369,8 @@ To say "thanks!" ☝️ Join the Discord or 👇️ send money.
 
 ### Please give the project a star ⭐ ♥.
 
+Many parts of this project are actively managed by a [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) smart template utilizing [StructuredMerge.org](https://structuredmerge.org) merge contracts.
+
 Thanks for RTFM. ☺️
 
 [⛳liberapay-img]: https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay&color=a51611&style=flat
@@ -480,8 +473,6 @@ Thanks for RTFM. ☺️
 [🏀codecovi]: https://codecov.io/gh/galtzo-floss/yard-yaml/graph/badge.svg
 [🏀coveralls]: https://coveralls.io/github/galtzo-floss/yard-yaml?branch=main
 [🏀coveralls-img]: https://coveralls.io/repos/github/galtzo-floss/yard-yaml/badge.svg?branch=main
-[🖐codeQL]: https://github.com/galtzo-floss/yard-yaml/security/code-scanning
-[🖐codeQL-img]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/codeql-analysis.yml/badge.svg
 [🚎ruby-3.2-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ruby-3.2.yml
 [🚎ruby-3.3-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ruby-3.3.yml
 [🚎ruby-3.4-wf]: https://github.com/galtzo-floss/yard-yaml/actions/workflows/ruby-3.4.yml
@@ -572,7 +563,7 @@ Thanks for RTFM. ☺️
 | Package | yard-yaml |
 | Description | 🦗 A YARD plugin for YAML documents |
 | Homepage | https://github.com/galtzo-floss/yard-yaml |
-| Source | https://github.com/galtzo-floss/yard-yaml/tree/v0.1.2 |
+| Source | https://github.com/galtzo-floss/yard-yaml/tree/v0.1.3 |
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/galtzo-floss, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/yard-yaml, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->

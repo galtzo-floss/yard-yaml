@@ -25,10 +25,10 @@ RSpec.describe Yard::Yaml::Config do
         converter_options: {pretty: true},
         front_matter: false,
         strict: true,
-        allow_erb: true,
+        allow_erb: true
       )
       expect(cfg.include).to(eq(["x.yml"]))
-      expect(cfg.exclude).to(eq([]))
+      expect(cfg.exclude).to(be_empty)
       expect(cfg.out_dir).to(eq("x"))
       expect(cfg.index).to(be(false))
       expect(cfg.toc).to(eq("none"))

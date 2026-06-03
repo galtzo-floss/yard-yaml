@@ -6,7 +6,7 @@
 # yard-yaml will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-# yard-yaml Rakefile v7.0.0 - 2026-05-27
+# yard-yaml Rakefile v7.0.0 - 2026-06-03
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # See LICENSE.md for license information.
@@ -62,6 +62,67 @@ task :default do
   puts "Default task complete."
 end
 
+# :nocov:
+### MONOREPO FAMILY TASKS
+if Dir.exist?(File.join(__dir__, "gems")) && Dir.exist?(File.join(__dir__, "workspace-scripts"))
+  def family_script_path(script_name)
+    File.join(__dir__, "workspace-scripts", script_name)
+  end
+
+  def run_family_script(script_name, *args)
+    script = family_script_path(script_name)
+    raise "Missing family script: #{script}" unless File.file?(script)
+
+    command = [script, *args].compact
+    sh(*command)
+  end
+
+  def family_gem_dirs
+    Dir.glob(File.join(__dir__, "gems", "*", "*.gemspec"))
+      .map { |path| File.dirname(path) }
+      .uniq
+      .sort_by { |path| File.basename(path) }
+  end
+
+  namespace :family do
+    desc "List released Ruby subgems"
+    task :list do
+      family_gem_dirs.each { |path| puts File.basename(path) }
+    end
+
+    desc "Run release readiness checks for the Ruby gem family"
+    task :readiness do
+      run_family_script("10_release_readiness_check.rb")
+    end
+
+    desc "Run tests for the Ruby gem family"
+    task :test do
+      run_family_script("5_test_ruby_gems.sh")
+    end
+
+    desc "Run lint for the Ruby gem family"
+    task :lint do
+      run_family_script("4_lint_ruby_gems.sh")
+    end
+
+    desc "Generate YARD docs for the Ruby gem family"
+    task :docs do
+      run_family_script("6_docs_ruby_gems.sh")
+    end
+
+    desc "Run the Ruby gem family release planner"
+    task :release do
+      run_family_script("11_release_ruby_gems.rb")
+    end
+
+    desc "Execute the Ruby gem family release"
+    task :release_execute do
+      run_family_script("11_release_ruby_gems.rb", "--execute")
+    end
+  end
+end
+# :nocov:
+
 # External gems that define tasks - add here!
 begin
   require "kettle/dev"
@@ -96,13 +157,22 @@ end
 # through `kettle-jem install`; use `kettle-jem template --only PATH` only for
 # scoped file updates. The executable prepares the environment and then
 # delegates here when rake orchestration is needed.
+kettle_jem_selftest_unavailable_note = nil
 begin
   require "kettle/jem"
-  Kettle::Jem.install_tasks
+  if Kettle::Jem.respond_to?(:install_tasks)
+    Kettle::Jem.install_tasks
+  else
+    kettle_jem_selftest_unavailable_note = "NOTE: kettle-jem #{Kettle::Jem::Version::VERSION} does not provide rake tasks in this environment"
+  end
 rescue LoadError
+  kettle_jem_selftest_unavailable_note = "NOTE: kettle-jem isn't installed, or is disabled for #{RUBY_VERSION} in the current environment"
+end
+
+if kettle_jem_selftest_unavailable_note
   desc("(stub) kettle:jem:selftest is unavailable")
   task("kettle:jem:selftest") do
-    warn("NOTE: kettle-jem isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+    warn(kettle_jem_selftest_unavailable_note)
   end
 end
 

@@ -7,7 +7,7 @@ RSpec.describe Yard::Yaml::Cli do
         "--yard_yaml-index",
         "--yard_yaml-front_matter",
         "--yard_yaml-strict",
-        "--yard_yaml-allow_erb",
+        "--yard_yaml-allow_erb"
       ]
       ov = described_class.parse(argv)
       expect(ov[:index]).to be(true)
@@ -21,7 +21,7 @@ RSpec.describe Yard::Yaml::Cli do
         "--yard_yaml-index=TRUE",
         "--yard_yaml-front_matter=No",
         "--yard_yaml-strict=On",
-        "--yard_yaml-allow_erb=off",
+        "--yard_yaml-allow_erb=off"
       ]
       ov = described_class.parse(argv)
       expect(ov[:index]).to be(true)

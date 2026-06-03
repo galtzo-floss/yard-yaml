@@ -158,9 +158,9 @@ module Yard
           dir = File.dirname(path)
           FileUtils.mkdir_p(dir)
           tmp = File.join(dir, ".#{$$}.#{Time.now.to_i}.tmp")
-          File.open(tmp, "wb") { |f| f.write(content.to_s) }
+          File.binwrite(tmp, content.to_s)
           FileUtils.mv(tmp, path)
-        rescue StandardError => e
+        rescue => e
           message = "write failed for #{path}: #{e.message}"
           if strict
             raise Yard::Yaml::Error, message
@@ -172,7 +172,7 @@ module Yard
         ensure
           begin
             FileUtils.rm_f(tmp) if tmp && File.exist?(tmp)
-          rescue StandardError
+          rescue
             # ignore
           end
         end

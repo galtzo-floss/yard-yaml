@@ -19,7 +19,7 @@ module Yard
           if defined?(::Library) && ::Library.is_a?(Module)
             begin
               ::YARD::Tags.const_set(:Library, ::Library)
-            rescue StandardError
+            rescue
               return
             end
           else
@@ -30,7 +30,7 @@ module Yard
             lib.define_singleton_method(:define_tag) { |*args| calls << args }
             begin
               ::YARD::Tags.const_set(:Library, lib)
-            rescue StandardError
+            rescue
               # if we failed to set, just return silently
               return
             end
@@ -39,12 +39,12 @@ module Yard
 
         begin
           ::YARD::Tags::Library.define_tag("YAML", :yaml, :with_title_and_text)
-        rescue StandardError
+        rescue
           # ignore if already defined or unavailable
         end
         begin
           ::YARD::Tags::Library.define_tag("YAML File", :yaml_file, :with_text)
-        rescue StandardError
+        rescue
           # ignore if already defined or unavailable
         end
       end
@@ -57,6 +57,6 @@ begin
   if defined?(YARD) && YARD.const_defined?(:Tags) && YARD::Tags.const_defined?(:Library)
     Yard::Yaml::Tags.register!
   end
-rescue StandardError
+rescue
   # ignore in non-YARD or partially loaded contexts
 end

@@ -24,7 +24,7 @@ module Yard
 
     STATE = {
       config: nil,
-      pages: nil,
+      pages: nil
     }
     STATE_MUTEX = Mutex.new
 
@@ -81,7 +81,7 @@ module Yard
           begin
             ::YARD::Logger.instance.error("yard-yaml: #{message}")
             return
-          rescue StandardError
+          rescue
             # fall back
           end
         end
@@ -110,7 +110,7 @@ module Yard
           begin
             ::YARD::Logger.instance.warn("yard-yaml: #{message}")
             return
-          rescue StandardError
+          rescue
             # fall back
           end
         end
@@ -122,7 +122,7 @@ module Yard
         # Registry.store is a Hash-like; avoid raising if unavailable
         begin
           ::YARD::Registry.store[:yard_yaml_config] = cfg
-        rescue StandardError
+        rescue
           # ignore if registry store not ready
         end
       end
@@ -131,7 +131,7 @@ module Yard
         return unless defined?(::YARD) && ::YARD.const_defined?(:Registry)
         begin
           ::YARD::Registry.store[:yard_yaml_pages] = pages
-        rescue StandardError
+        rescue
           # ignore if registry store not ready
         end
       end

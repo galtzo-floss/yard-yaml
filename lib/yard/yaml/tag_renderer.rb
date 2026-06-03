@@ -46,7 +46,7 @@ module Yard
 
       def fetch_tags(object, name)
         object.tags(name) || []
-      rescue StandardError
+      rescue
         []
       end
       module_function :fetch_tags

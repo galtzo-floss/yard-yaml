@@ -43,7 +43,7 @@ RSpec.describe Yard::Yaml::Plugin do
   end
 
   it "returns no emitted files when no pages were collected" do
-    expect(described_class.emit!(output_dir: "docs")).to eq([])
+    expect(described_class.emit!(output_dir: "docs")).to be_empty
   end
 
   it "emits collected pages to the YARD output directory" do

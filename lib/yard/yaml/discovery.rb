@@ -55,12 +55,12 @@ module Yard
               html: converted[:html],
               title: converted[:title],
               description: converted[:description],
-              meta: converted[:meta] || {},
+              meta: converted[:meta] || {}
             }
           rescue Yard::Yaml::Error
             # In strict mode Converter will raise; re-raise to fail the build
             raise
-          rescue StandardError => e
+          rescue => e
             # Non-strict converter errors are already warned; skip file
             warn_fallback("skipping #{path}: #{e.class}: #{e.message}")
           end
@@ -100,7 +100,7 @@ module Yard
           else
             Float::INFINITY
           end
-        rescue StandardError
+        rescue
           Float::INFINITY
         end
 

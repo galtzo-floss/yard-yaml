@@ -10,10 +10,10 @@ RSpec.describe Yard::Yaml, "Sidebar YAML Docs partial" do
   it "lists pages with links using emitter slugs" do
     pages = [
       {path: "/x/a.yml", html: "<p>a</p>", title: "Alpha", description: nil, meta: {}},
-      {path: "/x/b.yaml", html: "<p>b</p>", title: nil, description: nil, meta: {"slug" => "bravo"}},
+      {path: "/x/b.yaml", html: "<p>b</p>", title: nil, description: nil, meta: {"slug" => "bravo"}}
     ]
-    Yard::Yaml.__set_pages__(pages)
-    Yard::Yaml.configure(out_dir: "yaml")
+    described_class.__set_pages__(pages)
+    described_class.configure(out_dir: "yaml")
 
     tpl = ERB.new(File.read(erb_path))
     html = tpl.result(binding)

@@ -24,7 +24,7 @@ RSpec.describe "Yard::Yaml config wiring" do
         "--yard_yaml-include",
         "*.yaml",
         "--yard_yaml-exclude",
-        "**/_*.yml",
+        "**/_*.yml"
       ]
       overrides = described_class.parse(argv)
       expect(overrides[:include]).to(eq(["docs/**/*.yml", "*.yaml"]))
@@ -36,7 +36,7 @@ RSpec.describe "Yard::Yaml config wiring" do
         "--no-yard_yaml-index",
         "--yard_yaml-front_matter=false",
         "--yard_yaml-strict=true",
-        "--yard_yaml-allow_erb",
+        "--yard_yaml-allow_erb"
       ]
       overrides = described_class.parse(argv)
       expect(overrides[:index]).to(be(false))
@@ -52,7 +52,7 @@ RSpec.describe "Yard::Yaml config wiring" do
         "pretty" => true,
         "wrap" => 80,
         "ratio" => 1.5,
-        "name" => "alpha",
+        "name" => "alpha"
       }))
     end
 
@@ -66,7 +66,7 @@ RSpec.describe "Yard::Yaml config wiring" do
       argv = [
         "--yard_yaml-include",
         "--yard_yaml-out_dir",
-        "--yard_yaml-converter_options",
+        "--yard_yaml-converter_options"
       ]
       output = capture(:stderr) { described_class.parse(argv) }
       expect(output).to(include("missing value for --yard_yaml-include"))
@@ -102,7 +102,7 @@ RSpec.describe "Yard::Yaml config wiring" do
         "examples/**/*.yml",
         "--yard_yaml-index=false",
         "--yard_yaml-out_dir",
-        "yaml_docs",
+        "yaml_docs"
       ]
       expect { described_class.activate(argv) }.not_to(raise_error)
       cfg = Yard::Yaml.config

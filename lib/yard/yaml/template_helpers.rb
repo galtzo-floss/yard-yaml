@@ -34,7 +34,7 @@ module Yard
       rescue Yard::Yaml::Error
         # strict mode errors bubble from converter; re-raise
         raise
-      rescue StandardError => e
+      rescue => e
         # Non-strict paths should already be handled by converter; this is a last-resort guard.
         if defined?(::Yard) && ::Yard.const_defined?(:Yaml)
           ::Yard::Yaml.warn("#{e.class}: #{e.message} while rendering #{path}")

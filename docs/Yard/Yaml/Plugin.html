@@ -414,7 +414,7 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
 </span>  <span class='kw'>begin</span>
     <span class='id identifier rubyid_overrides'>overrides</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Cli.html" title="Yard::Yaml::Cli (module)">Cli</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="Cli.html#parse-class_method" title="Yard::Yaml::Cli.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'><span class='object_link'><a href="../Yaml.html#configure-class_method" title="Yard::Yaml.configure (method)">configure</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_overrides'>overrides</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_overrides'>overrides</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='kw'>rescue</span> <span class='const'>StandardError</span>
+  <span class='kw'>rescue</span>
     <span class='comment'># Parsing failures should not prevent activation in Phase 3
 </span>  <span class='kw'>end</span>
 
@@ -425,7 +425,7 @@ Not part of public API; used from test teardown to avoid state leakage.</p>
   <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../../Yard.html" title="Yard (module)">Yard</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Yaml.html" title="Yard::Yaml (module)">Yaml</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error.html" title="Yard::Yaml::Error (class)">Error</a></span></span>
     <span class='comment'># strict mode surfaced an error; re-raise to fail activation/build
 </span>    <span class='id identifier rubyid_raise'>raise</span>
-  <span class='kw'>rescue</span> <span class='const'>StandardError</span>
+  <span class='kw'>rescue</span>
     <span class='comment'># Non-strict errors are already warned by converter/discovery
 </span>  <span class='kw'>end</span>
 
@@ -733,7 +733,7 @@ pages must be written after YARD finishes.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 27 02:53:34 2026 by
+  Generated on Wed Jun  3 02:00:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

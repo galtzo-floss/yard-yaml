@@ -11,7 +11,7 @@ RSpec.describe Yard::Yaml::Converter do
           html: "<p>ok</p>",
           title: options[:title] || "Title",
           description: "Desc",
-          meta: {source: options[:source_path]},
+          meta: {source: options[:source_path]}
         }
       end
     end

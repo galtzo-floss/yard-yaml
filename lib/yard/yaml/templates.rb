@@ -21,7 +21,7 @@ module Yard
         base = File.expand_path("../../../templates", __dir__)
         begin
           ::YARD::Templates::Engine.register_template_path(base)
-        rescue StandardError
+        rescue
           # ignore if engine not available or already registered
         end
       end
@@ -32,6 +32,6 @@ end
 # Try to register immediately if YARD is present; otherwise remain inert.
 begin
   Yard::Yaml::Templates.register!
-rescue StandardError
+rescue
   # ignore in non-YARD contexts
 end

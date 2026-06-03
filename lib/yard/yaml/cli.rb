@@ -149,16 +149,20 @@ module Yard
           low = s.strip.downcase
           return true if %w[true yes y on 1].include?(low)
           return false if %w[false no n off 0].include?(low)
-          begin
-            return Integer(s)
-          rescue
-            nil
-          end if s.match?(/\A[+-]?\d+\z/)
-          begin
-            return Float(s)
-          rescue
-            nil
-          end if s.match?(/\A[+-]?(?:\d+\.)?\d+\z/)
+          if s.match?(/\A[+-]?\d+\z/)
+            begin
+              return Integer(s)
+            rescue
+              nil
+            end
+          end
+          if s.match?(/\A[+-]?(?:\d+\.)?\d+\z/)
+            begin
+              return Float(s)
+            rescue
+              nil
+            end
+          end
           s
         end
 
