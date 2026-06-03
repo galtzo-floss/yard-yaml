@@ -22,9 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- upgrade yaml-converter to v0.2.0
-- upgrade version_gem to v1.1.10
-
 ### Deprecated
 
 ### Removed
@@ -32,6 +29,18 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [0.2.0] - 2026-06-03
+
+- TAG: [v0.2.0][0.2.0t]
+- COVERAGE: 94.88% -- 519/547 lines in 12 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 12 files
+- 78.38% documented
+
+### Changed
+
+- upgrade yaml-converter to v0.2.0
+- upgrade version_gem to v1.1.10
 
 ## [0.1.3] - 2026-05-27
 
@@ -103,7 +112,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.3...v0.2.0
+[0.2.0t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.0
 [0.1.3]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.2...v0.1.3
 [0.1.3t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.1.3
 [0.1.2]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.1...v0.1.2
