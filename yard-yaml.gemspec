@@ -96,7 +96,7 @@ Gem::Specification.new do |spec|
 
   # Utilities
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")              # ruby >= 2.2.0
-  spec.add_dependency("yaml-converter", "~> 0.1")              # ruby >= 3.2
+  spec.add_dependency("yaml-converter", "~> 0.2")              # ruby >= 3.2
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
