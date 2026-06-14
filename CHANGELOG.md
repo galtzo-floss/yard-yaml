@@ -28,9 +28,18 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Restored `docs/CNAME` so the generated documentation site keeps its custom domain.
-
 ### Security
+
+## [0.2.1] - 2026-06-14
+
+- TAG: [v0.2.1][0.2.1t]
+- COVERAGE: 94.88% -- 519/547 lines in 12 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 12 files
+- 78.38% documented
+
+### Fixed
+
+- Restored `docs/CNAME` so the generated documentation site keeps its custom domain.
 
 ## [0.2.0] - 2026-06-03
 
@@ -114,7 +123,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.0...v0.2.1
+[0.2.1t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.1
 [0.2.0]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.3...v0.2.0
 [0.2.0t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.0
 [0.1.3]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.2...v0.1.3
