@@ -1,7 +1,5 @@
 module Yard
   module Yaml
-    VERSION: String
-
     # Global configuration and pages accessors
     def self.config: () -> Yard::Yaml::Config
     def self.configure: (?Hash[untyped, untyped] overrides) { (Yard::Yaml::Config) -> void } -> Yard::Yaml::Config
