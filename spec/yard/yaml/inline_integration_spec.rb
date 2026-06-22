@@ -41,9 +41,10 @@ RSpec.describe Yard::Yaml::TagRenderer, "Inline ERB integration for yard-yaml" d
     )
 
     # Render ERB with a local variable `object`
-    object = o
+    template_binding = binding
+    template_binding.local_variable_set(:object, o)
     tpl = ERB.new(File.read(erb_path))
-    html = tpl.result(binding)
+    html = tpl.result(template_binding)
     expect(html).to include("yyaml-inline").or include("yyaml-file")
     expect(html).to include("<pre>a: 1</pre>")
   end
@@ -62,9 +63,10 @@ RSpec.describe Yard::Yaml::TagRenderer, "Inline ERB integration for yard-yaml" d
     end
 
     Yard::Yaml.configure(strict: false)
-    object = obj.new([tag.new("/no/such.yml")])
+    template_binding = binding
+    template_binding.local_variable_set(:object, obj.new([tag.new("/no/such.yml")]))
     tpl = ERB.new(File.read(erb_path))
-    output = capture(:stderr) { @html = tpl.result(binding) }
+    output = capture(:stderr) { @html = tpl.result(template_binding) }
     expect(@html).to be_a(String)
     expect(output).to include("yard-yaml:")
   end
