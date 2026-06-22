@@ -20,11 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Added support for JRuby 10.1 and TruffleRuby 34.0.
-
 ### Changed
-
-- Retemplated project metadata and CI/development automation with `kettle-jem` v7.0.0.
 
 ### Deprecated
 
@@ -32,9 +28,26 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Corrected RubyGems homepage metadata to point at the gem documentation site.
-
 ### Security
+
+## [0.2.2] - 2026-06-22
+
+- TAG: [v0.2.2][0.2.2t]
+- COVERAGE: 94.36% -- 519/550 lines in 13 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 13 files
+- 78.38% documented
+
+### Added
+
+- Added support for JRuby 10.1 and TruffleRuby 34.0.
+
+### Changed
+
+- Retemplated project metadata and CI/development automation with `kettle-jem` v7.0.0.
+
+### Fixed
+
+- Corrected RubyGems homepage metadata to point at the gem documentation site.
 
 ## [0.2.1] - 2026-06-14
 
@@ -129,7 +142,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.1...v0.2.2
+[0.2.2t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.2
 [0.2.1]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.0...v0.2.1
 [0.2.1t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.1
 [0.2.0]: https://github.com/galtzo-floss/yard-yaml/compare/v0.1.3...v0.2.0

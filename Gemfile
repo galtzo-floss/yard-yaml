@@ -19,7 +19,36 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 gemspec
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.0", ">= 1.0.4", require: false # ruby >= 2.2
+gem "nomono", "~> 1.0", ">= 1.0.6", require: false # ruby >= 2.2
+
+# Direct sibling dependencies (env-switched via GALTZO_FLOSS_DEV)
+direct_sibling_gems = %w[
+  yaml-converter
+]
+direct_sibling_dev = ENV.fetch("GALTZO_FLOSS_DEV", "")
+direct_sibling_local =
+  !direct_sibling_dev.empty? && !%w[false 0 no off].include?(direct_sibling_dev.downcase)
+direct_sibling_templating = ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
+
+if direct_sibling_gems.any? &&
+    (direct_sibling_local ||
+      ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?)
+  begin
+    require "nomono/bundler"
+    if direct_sibling_templating && !direct_sibling_local
+      ENV["GALTZO_FLOSS_DEV"] = File.expand_path("..", __dir__)
+    end
+
+    eval_nomono_gems(
+      gems: direct_sibling_gems,
+      prefix: "GALTZO_FLOSS",
+      path_env: "GALTZO_FLOSS_DEV",
+      root: ["src", "my", "galtzo-floss"]
+    )
+  rescue LoadError
+    warn "Install nomono to enable GALTZO_FLOSS_DEV local sibling-gem dependencies."
+  end
+end
 
 # Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?

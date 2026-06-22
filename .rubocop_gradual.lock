@@ -11,7 +11,7 @@
     [71, 7, 20, "ThreadSafety/DirChdir: Avoid using `FileUtils.cd` due to its process-wide effect.", 1369401450],
     [93, 7, 20, "ThreadSafety/DirChdir: Avoid using `FileUtils.cd` due to its process-wide effect.", 1369401450]
   ],
-  "spec/yard/yaml/inline_integration_spec.rb:197032364": [
+  "spec/yard/yaml/inline_integration_spec.rb:2244084492": [
     [3, 1, 78, "RSpec/SpecFilePathFormat: Spec path should end with `yard/yaml/tag_renderer*Inline_ERB_integration_for_yardyaml*_spec.rb`.", 2066234022],
     [3, 41, 38, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 1031125190]
   ],
