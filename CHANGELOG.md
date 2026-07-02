@@ -28,9 +28,18 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Package configured license files in gem release file lists.
-
 ### Security
+
+## [0.2.3] - 2026-07-02
+
+- TAG: [v0.2.3][0.2.3t]
+- COVERAGE: 94.36% -- 519/550 lines in 13 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 13 files
+- 78.38% documented
+
+### Fixed
+
+- Package configured license files in gem release file lists.
 
 ## [0.2.2] - 2026-06-22
 
@@ -144,7 +153,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.2...v0.2.3
+[0.2.3t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.3
 [0.2.2]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.1...v0.2.2
 [0.2.2t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.2
 [0.2.1]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.0...v0.2.1

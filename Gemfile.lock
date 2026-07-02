@@ -12,29 +12,6 @@ PATH
       version_gem (~> 1.1, >= 1.1.13)
       yaml-converter (~> 0.2)
 
-PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yaml-converter
-  specs:
-    yaml-converter (0.2.3)
-      hexapdf (>= 1.8, < 2)
-      kramdown (>= 2.4, < 3)
-      kramdown-parser-gfm (~> 1.1)
-      version_gem (~> 1.1, >= 1.1.13)
-
-PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yard-fence
-  specs:
-    yard-fence (0.9.6)
-      rdoc (>= 6.11, < 8)
-      version_gem (~> 1.1, >= 1.1.13)
-      yard (~> 0.9, >= 0.9.37)
-
-PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yard-timekeeper
-  specs:
-    yard-timekeeper (0.2.3)
-      version_gem (~> 1.1, >= 1.1.13)
-
 GEM
   remote: https://gem.coop/
   specs:
@@ -363,7 +340,16 @@ GEM
     unicode-emoji (4.2.0)
     version_gem (1.1.13)
     webrick (1.9.2)
+    yaml-converter (0.2.2)
+      hexapdf (>= 1.8, < 2)
+      kramdown (>= 2.4, < 3)
+      kramdown-parser-gfm (~> 1.1)
+      version_gem (~> 1.1, >= 1.1.13)
     yard (0.9.44)
+    yard-fence (0.9.5)
+      rdoc (>= 6.11, < 8)
+      version_gem (~> 1.1, >= 1.1.13)
+      yard (~> 0.9, >= 0.9.37)
     yard-junk (0.1.0)
       benchmark
       ostruct
@@ -371,6 +357,8 @@ GEM
       yard
     yard-relative_markdown_links (0.6.0)
       nokogiri (>= 1.14.3, < 2)
+    yard-timekeeper (0.2.2)
+      version_gem (~> 1.1, >= 1.1.13)
     zeitwerk (2.8.2)
     zlib (3.2.3)
 
@@ -416,12 +404,11 @@ DEPENDENCIES
   stringio (>= 3.0)
   turbo_tests2 (~> 3.1, >= 3.1.6)
   webrick (~> 1.9)
-  yaml-converter!
   yard (~> 0.9, >= 0.9.44)
-  yard-fence!
+  yard-fence (~> 0.9, >= 0.9.5)
   yard-junk (~> 0.1, >= 0.1.0)
   yard-relative_markdown_links (~> 0.6)
-  yard-timekeeper!
+  yard-timekeeper (~> 0.2, >= 0.2.2)
   yard-yaml!
 
 BUNDLED WITH
