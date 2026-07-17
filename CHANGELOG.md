@@ -129,7 +129,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- `documentation_local.gemfile` support for sibling-workspace documentation development under `KETTLE_RB_DEV`
+- `documentation_local.gemfile` support for sibling-workspace documentation development under `KETTLE_DEV_DEV`
 - Added generated CI coverage for `rdoc` `~> 6.11` and `>= 7.0`.
 
 ### Changed
