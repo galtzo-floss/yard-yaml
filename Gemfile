@@ -19,8 +19,7 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 gemspec
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-nomono_requirements = ["~> 1.0", ">= 1.0.7"]
-gem "nomono", *nomono_requirements, require: false # ruby >= 2.2
+gem "nomono", "~> 1.1", ">= 1.1.0", require: false # ruby >= 3.2.0
 
 # Direct sibling dependencies (env-switched via GALTZO_FLOSS_DEV)
 direct_sibling_gems = %w[
@@ -36,25 +35,9 @@ if direct_sibling_gems.any? &&
       ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?)
   direct_sibling_dev_was_set = ENV.key?("GALTZO_FLOSS_DEV")
   direct_sibling_dev_original = ENV.fetch("GALTZO_FLOSS_DEV", nil)
+  require "nomono/bundler"
   begin
-    nomono_activation_requirements = nomono_requirements
-    nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
-    if File.file?(nomono_lockfile)
-      nomono_locked_spec = Bundler::LockfileParser
-        .new(Bundler.read_file(nomono_lockfile))
-        .specs
-        .find { |spec| spec.name == "nomono" }
-      nomono_locked = nomono_locked_spec &&
-        Gem::Requirement.new(nomono_requirements).satisfied_by?(nomono_locked_spec.version)
-      if nomono_locked
-        nomono_activation_requirements = ["= #{nomono_locked_spec.version}"]
-      end
-    end
-    Kernel.send(:gem, "nomono", *nomono_activation_requirements)
-    require "nomono/bundler"
-    if direct_sibling_templating && !direct_sibling_local
-      ENV["GALTZO_FLOSS_DEV"] = File.expand_path("..", __dir__)
-    end
+    ENV["GALTZO_FLOSS_DEV"] = File.expand_path("..", __dir__) if direct_sibling_templating && !direct_sibling_local
 
     eval_nomono_gems(
       gems: direct_sibling_gems,
@@ -62,8 +45,6 @@ if direct_sibling_gems.any? &&
       path_env: "GALTZO_FLOSS_DEV",
       root: ["src", "my", "galtzo-floss"]
     )
-  rescue LoadError
-    warn "Install nomono to enable GALTZO_FLOSS_DEV local sibling-gem dependencies."
   ensure
     if direct_sibling_templating && !direct_sibling_local
       if direct_sibling_dev_was_set

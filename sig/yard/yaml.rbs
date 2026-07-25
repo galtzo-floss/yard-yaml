@@ -72,5 +72,10 @@ module Yard
 
     class Error < ::StandardError
     end
+
+    module Version
+      VERSION: String
+    end
+    VERSION: String
   end
 end

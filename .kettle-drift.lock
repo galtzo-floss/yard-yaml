@@ -1,31 +1,4 @@
 {
-  "#       strategy: merge\n#       file_type: ruby": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        477,
-        648
-      ]
-    }
-  ],
-  "#     commit-msg:\n#       strategy: merge": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        476,
-        647
-      ]
-    }
-  ],
-  "#     pboling.pem:\n#       strategy: raw_copy": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        472,
-        643
-      ]
-    }
-  ],
   "#   - \"note:*\"\n#   - \"setup*\"": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
@@ -50,42 +23,6 @@
       "lines": [
         212,
         253
-      ]
-    }
-  ],
-  "#   .git-hooks:\n#     commit-msg:": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        475,
-        646
-      ]
-    }
-  ],
-  "#   README.md:\n#     strategy: accept_template": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        465,
-        636
-      ]
-    }
-  ],
-  "#   SECURITY.md:\n#     strategy: keep_destination": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        468,
-        639
-      ]
-    }
-  ],
-  "#   certs:\n#     pboling.pem:": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        471,
-        642
       ]
     }
   ],
@@ -152,15 +89,6 @@
       ]
     }
   ],
-  "# files:\n#   README.md:": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        464,
-        635
-      ]
-    }
-  ],
   "# instead of being overwritten by the template. Default when absent:\n#   - synopsis": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
@@ -201,9 +129,9 @@
     {
       "file": ".github/workflows/dep-heads.yml",
       "lines": [
-        44,
-        51,
-        58
+        43,
+        97,
+        151
       ]
     }
   ],
@@ -212,25 +140,28 @@
       "file": ".github/workflows/heads.yml",
       "lines": [
         43,
-        50,
-        57
+        104,
+        162
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test\"\n# Run directly from the generated appraisal Gemfile so setup-ruby": [
+    {
+      "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        44,
+        98,
+        152
       ]
     }
   ],
   "exec_cmd: \"kettle-test\"\nrubygems: default": [
     {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        52,
-        59
-      ]
-    },
-    {
       "file": ".github/workflows/heads.yml",
       "lines": [
         44,
-        51,
-        58
+        105,
+        163
       ]
     }
   ]
