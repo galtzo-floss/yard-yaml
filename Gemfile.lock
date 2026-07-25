@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    yard-yaml (0.2.3)
+    yard-yaml (0.2.4)
       version_gem (~> 1.1, >= 1.1.14)
       yaml-converter (~> 0.2)
 
 PATH
   remote: /var/home/pboling/src/my/galtzo-floss/yaml-converter
   specs:
-    yaml-converter (0.2.3)
+    yaml-converter (0.2.4)
       hexapdf (>= 1.8, < 2)
       kramdown (>= 2.4, < 3)
       kramdown-parser-gfm (~> 1.1)
@@ -17,7 +17,7 @@ PATH
 PATH
   remote: /var/home/pboling/src/my/galtzo-floss/yard-fence
   specs:
-    yard-fence (0.9.6)
+    yard-fence (0.9.7)
       rdoc (>= 6.11, < 8)
       version_gem (~> 1.1, >= 1.1.14)
       yard (~> 0.9, >= 0.9.37)
@@ -25,7 +25,7 @@ PATH
 PATH
   remote: /var/home/pboling/src/my/galtzo-floss/yard-timekeeper
   specs:
-    yard-timekeeper (0.2.4)
+    yard-timekeeper (0.2.5)
       version_gem (~> 1.1, >= 1.1.14)
 
 GEM
@@ -94,8 +94,8 @@ GEM
       bundler (>= 1.14)
       version_gem (~> 1.1, >= 1.1.4)
     geom2d (0.4.1)
-    gitmoji-regex (2.0.4)
-      version_gem (~> 1.1, >= 1.1.13)
+    gitmoji-regex (2.0.5)
+      version_gem (~> 1.1, >= 1.1.14)
     hexapdf (1.9.1)
       cmdparse (~> 3.0, >= 3.0.3)
       geom2d (~> 0.4, >= 0.4.1)
@@ -396,7 +396,7 @@ DEPENDENCIES
   debug (>= 1.1)
   erb (~> 6.0, >= 6.0.6)
   gem_bench (~> 2.0, >= 2.0.5)
-  gitmoji-regex (~> 2.0, >= 2.0.4)
+  gitmoji-regex (~> 2.0, >= 2.0.5)
   irb (~> 1.17)
   kettle-dev (~> 2.3, >= 2.3.7)
   kettle-soup-cover (~> 3.0, >= 3.0.5)
