@@ -42,8 +42,6 @@ module Yard
         parts.join("\n")
       end
 
-      # --- internal helpers ---
-
       def fetch_tags(object, name)
         object.tags(name) || []
       rescue
