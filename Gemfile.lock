@@ -5,29 +5,6 @@ PATH
       version_gem (~> 1.1, >= 1.1.14)
       yaml-converter (~> 0.2)
 
-PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yaml-converter
-  specs:
-    yaml-converter (0.2.4)
-      hexapdf (>= 1.8, < 2)
-      kramdown (>= 2.4, < 3)
-      kramdown-parser-gfm (~> 1.1)
-      version_gem (~> 1.1, >= 1.1.14)
-
-PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yard-fence
-  specs:
-    yard-fence (0.9.7)
-      rdoc (>= 6.11, < 8)
-      version_gem (~> 1.1, >= 1.1.14)
-      yard (~> 0.9, >= 0.9.37)
-
-PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yard-timekeeper
-  specs:
-    yard-timekeeper (0.2.5)
-      version_gem (~> 1.1, >= 1.1.14)
-
 GEM
   remote: https://gem.coop/
   specs:
@@ -345,8 +322,7 @@ GEM
       standard-custom (~> 1.0, >= 1.0.2)
       standard-performance (~> 1.9, >= 1.9.0)
       version_gem (~> 1.1, >= 1.1.13)
-    stone_checksums (1.0.6)
-      version_gem (~> 1.1, >= 1.1.13)
+    stone_checksums (1.0.7)
     stringio (3.2.0)
     strings-ansi (0.2.0)
     strscan (3.1.8)
@@ -373,7 +349,16 @@ GEM
     unicode-display_width (2.6.0)
     version_gem (1.1.14)
     webrick (1.9.2)
+    yaml-converter (0.2.3)
+      hexapdf (>= 1.8, < 2)
+      kramdown (>= 2.4, < 3)
+      kramdown-parser-gfm (~> 1.1)
+      version_gem (~> 1.1, >= 1.1.13)
     yard (0.9.45)
+    yard-fence (0.9.6)
+      rdoc (>= 6.11, < 8)
+      version_gem (~> 1.1, >= 1.1.13)
+      yard (~> 0.9, >= 0.9.37)
     yard-junk (0.1.0)
       benchmark
       ostruct
@@ -381,6 +366,8 @@ GEM
       yard
     yard-relative_markdown_links (0.6.0)
       nokogiri (>= 1.14.3, < 2)
+    yard-timekeeper (0.2.4)
+      version_gem (~> 1.1, >= 1.1.13)
     zeitwerk (2.8.2)
     zlib (3.2.3)
 
@@ -422,16 +409,15 @@ DEPENDENCIES
   rubocop-ruby3_2 (~> 3.0, >= 3.0.6)
   ruby-progressbar (~> 1.13)
   standard (~> 1.56, >= 1.56.0)
-  stone_checksums (~> 1.0, >= 1.0.6)
+  stone_checksums (~> 1.0, >= 1.0.7)
   stringio (>= 3.0)
   turbo_tests2 (~> 3.2, >= 3.2.1)
   webrick (~> 1.9)
-  yaml-converter!
   yard (~> 0.9, >= 0.9.45)
-  yard-fence!
+  yard-fence (~> 0.9, >= 0.9.6)
   yard-junk (~> 0.1, >= 0.1.0)
   yard-relative_markdown_links (~> 0.6)
-  yard-timekeeper!
+  yard-timekeeper (~> 0.2, >= 0.2.4)
   yard-yaml!
 
 CHECKSUMS
@@ -548,7 +534,7 @@ CHECKSUMS
   standard-performance (1.9.0) sha256=49483d31be448292951d80e5e67cdcb576c2502103c7b40aec6f1b6e9c88e3f2
   standard-rspec (0.5.0) sha256=64d396524a65af47f5331b423d8cdd313e0267401647bb7892489ca89dad2973
   standard-rubocop-lts (2.0.10) sha256=89708a505b7d8b24d2ac399a7520fcb9e764abc2ecb4289b631b5fe0e3b76617
-  stone_checksums (1.0.6) sha256=c775f830513d6c6ab26e31d1a5fbecd4c4e39002663d4d9f8fa96e97990b5298
+  stone_checksums (1.0.7) sha256=faf7a175da7c4f32777c5292a0128b06eec183b3cc3a0b382529b21800300626
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
   strings-ansi (0.2.0) sha256=90262d760ea4a94cc2ae8d58205277a343409c288cbe7c29416b1826bd511c88
   strscan (3.1.8) sha256=aae2db611a225559f21ffbb71765c9a4e60fd262534a9ea84f4f11c7f32f679e
@@ -564,12 +550,12 @@ CHECKSUMS
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
   version_gem (1.1.14) sha256=6b7306c7e9416d06067561981ab3444e2cecb844f26cc325ae3c27b44cf85613
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
-  yaml-converter (0.2.4)
+  yaml-converter (0.2.3) sha256=d35e69e547610d9e347672cc277fcb7d71dff3c53a942e66f82b1c64022ada72
   yard (0.9.45) sha256=52e211493f7cb8a3ebf7e104a25a1e73937a3103092545d34cb88fafebb3dc51
-  yard-fence (0.9.7)
+  yard-fence (0.9.6) sha256=3d1dbf4e3df462ac78b8bd2e01cf740a2de20168387c929aca31a0bcee490659
   yard-junk (0.1.0) sha256=e85fe2ec1afa47313decd333447b53458cb1ed49b510b70015fdc3041a94bcdd
   yard-relative_markdown_links (0.6.0) sha256=3e5ffa85cbad9bac70bee5421774b190fb25d3bdf489323a5b3534f647d1a70e
-  yard-timekeeper (0.2.5)
+  yard-timekeeper (0.2.4) sha256=62f8d001d737c6e2ac688e7b37386f958dceb0f6aff9c909575e1bec8d20775a
   yard-yaml (0.2.4)
   zeitwerk (2.8.2) sha256=7212a61311083c604184b1ea2574b9aa05cd14f855a0841c06985cabe9181d12
   zlib (3.2.3) sha256=5bd316698b32f31a64ab910a8b6c282442ca1626a81bbd6a1674e8522e319c20
