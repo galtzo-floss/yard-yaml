@@ -5,6 +5,29 @@ PATH
       version_gem (~> 1.1, >= 1.1.14)
       yaml-converter (~> 0.2)
 
+PATH
+  remote: /var/home/pboling/src/my/galtzo-floss/yaml-converter
+  specs:
+    yaml-converter (0.2.4)
+      hexapdf (>= 1.8, < 2)
+      kramdown (>= 2.4, < 3)
+      kramdown-parser-gfm (~> 1.1)
+      version_gem (~> 1.1, >= 1.1.14)
+
+PATH
+  remote: /var/home/pboling/src/my/galtzo-floss/yard-fence
+  specs:
+    yard-fence (0.9.7)
+      rdoc (>= 6.11, < 8)
+      version_gem (~> 1.1, >= 1.1.14)
+      yard (~> 0.9, >= 0.9.37)
+
+PATH
+  remote: /var/home/pboling/src/my/galtzo-floss/yard-timekeeper
+  specs:
+    yard-timekeeper (0.2.5)
+      version_gem (~> 1.1, >= 1.1.14)
+
 GEM
   remote: https://gem.coop/
   specs:
@@ -97,7 +120,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.21.1)
-    kettle-dev (2.5.4)
+    kettle-dev (2.5.5)
       emoji_regex (>= 15.0)
       kettle-gha-pins (~> 0.3, >= 0.3.3)
       kettle-ndjson (~> 0.1, >= 0.1.1)
@@ -376,16 +399,7 @@ GEM
     unicode-display_width (2.6.0)
     version_gem (1.1.14)
     webrick (1.9.2)
-    yaml-converter (0.2.3)
-      hexapdf (>= 1.8, < 2)
-      kramdown (>= 2.4, < 3)
-      kramdown-parser-gfm (~> 1.1)
-      version_gem (~> 1.1, >= 1.1.13)
     yard (0.9.45)
-    yard-fence (0.9.6)
-      rdoc (>= 6.11, < 8)
-      version_gem (~> 1.1, >= 1.1.13)
-      yard (~> 0.9, >= 0.9.37)
     yard-junk (0.1.0)
       benchmark
       ostruct
@@ -396,8 +410,6 @@ GEM
       zeitwerk (~> 2.6)
     yard-relative_markdown_links (0.6.0)
       nokogiri (>= 1.14.3, < 2)
-    yard-timekeeper (0.2.4)
-      version_gem (~> 1.1, >= 1.1.13)
     zeitwerk (2.8.2)
     zlib (3.2.3)
 
@@ -423,13 +435,13 @@ DEPENDENCIES
   gitmoji-regex (~> 2.0, >= 2.0.7)
   irb (~> 1.17)
   kettle-dev (~> 2.3, >= 2.3.7)
-  kettle-family (~> 1.2, >= 1.2.0)
+  kettle-family (~> 1.2, >= 1.2.1)
   kettle-soup-cover (~> 3.0, >= 3.0.6)
   kettle-test (~> 2.0, >= 2.0.16)
   kramdown (~> 2.5, >= 2.5.2)
   kramdown-parser-gfm (~> 1.1)
   mutex_m (~> 0.2)
-  nomono (~> 1.1, >= 1.1.0)
+  nomono (~> 1.1, >= 1.1.1)
   rake (~> 13.0)
   rbs (>= 3.0)
   rdoc (~> 6.11)
@@ -448,12 +460,13 @@ DEPENDENCIES
   stringio (>= 3.0)
   turbo_tests2 (~> 3.2, >= 3.2.3)
   webrick (~> 1.9)
+  yaml-converter!
   yard (~> 0.9, >= 0.9.45)
-  yard-fence (~> 0.9, >= 0.9.6)
+  yard-fence!
   yard-junk (~> 0.1, >= 0.1.0)
   yard-lint (~> 1.10, >= 1.10.2)
   yard-relative_markdown_links (~> 0.6)
-  yard-timekeeper (~> 0.2, >= 0.2.4)
+  yard-timekeeper!
   yard-yaml!
 
 CHECKSUMS
@@ -497,7 +510,7 @@ CHECKSUMS
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   json (2.21.1) sha256=13a43df75d95641443f5702dff350f237164a9d811ff0f2c2800d4d980220583
-  kettle-dev (2.5.4) sha256=7196552abb27cb4fd327fe11d3e0519a1f3d3f737eaa34882ce606f577e9d580
+  kettle-dev (2.5.5) sha256=3f97d92bb1b485ea931b1372d0cda8d8f4cd9e39ff9bcd90f1723eecb67e3c1a
   kettle-family (1.2.1) sha256=bbee04639694b6eaf7f8141f9edcb529b3c7bfc565dc3672b4593eda2612747f
   kettle-gha-pins (0.3.3) sha256=da9337376dd957dca65164f669045a71252f0b5c0234aaa1cde384c5f5c8ad87
   kettle-ndjson (0.1.2) sha256=1c2c4e8246a718f4f78b2f4141184acf5c239087319e5abc8d6d289635587650
@@ -596,13 +609,13 @@ CHECKSUMS
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
   version_gem (1.1.14) sha256=6b7306c7e9416d06067561981ab3444e2cecb844f26cc325ae3c27b44cf85613
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
-  yaml-converter (0.2.3) sha256=d35e69e547610d9e347672cc277fcb7d71dff3c53a942e66f82b1c64022ada72
+  yaml-converter (0.2.4)
   yard (0.9.45) sha256=52e211493f7cb8a3ebf7e104a25a1e73937a3103092545d34cb88fafebb3dc51
-  yard-fence (0.9.6) sha256=3d1dbf4e3df462ac78b8bd2e01cf740a2de20168387c929aca31a0bcee490659
+  yard-fence (0.9.7)
   yard-junk (0.1.0) sha256=e85fe2ec1afa47313decd333447b53458cb1ed49b510b70015fdc3041a94bcdd
   yard-lint (1.10.2) sha256=3e595709d088a8cc827e706a4146b447eb6a907ee375d06c11077369d00717f6
   yard-relative_markdown_links (0.6.0) sha256=3e5ffa85cbad9bac70bee5421774b190fb25d3bdf489323a5b3534f647d1a70e
-  yard-timekeeper (0.2.4) sha256=62f8d001d737c6e2ac688e7b37386f958dceb0f6aff9c909575e1bec8d20775a
+  yard-timekeeper (0.2.5)
   yard-yaml (0.2.4)
   zeitwerk (2.8.2) sha256=7212a61311083c604184b1ea2574b9aa05cd14f855a0841c06985cabe9181d12
   zlib (3.2.3) sha256=5bd316698b32f31a64ab910a8b6c282442ca1626a81bbd6a1674e8522e319c20
