@@ -15,6 +15,7 @@ rescue LoadError => error
 end
 
 require "kettle/test/rspec"
+# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
 
 # Library Configs
 require_relative "config/debug"
