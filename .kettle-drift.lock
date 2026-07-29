@@ -3,12 +3,93 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        219,
-        260
+        231,
+        272
       ]
     }
   ],
   "#   - basic usage\n#   - usage": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        223,
+        264
+      ]
+    }
+  ],
+  "#   - usage\n#   - summary": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        224,
+        265
+      ]
+    }
+  ],
+  "#   howto: basic usage\n#   options: configuration": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        238,
+        279
+      ]
+    }
+  ],
+  "#   summary → synopsis, usage → basic usage,\n#   configuration options → configuration, setup → basic usage": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        217,
+        258
+      ]
+    }
+  ],
+  "# Built-in aliases (destination → template):\n#   summary → synopsis, usage → basic usage,": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        216,
+        257
+      ]
+    }
+  ],
+  "# Custom section aliases (destination heading → canonical template heading).\n# Merged with built-in aliases above.": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        234,
+        275
+      ]
+    }
+  ],
+  "# Glob patterns for additional sections to preserve (e.g. Note:* headings).\n# Default when absent: [\"note:*\"]": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        227,
+        268
+      ]
+    }
+  ],
+  "# Sections to preserve from the destination README during template merging.\n# These section headings (case-insensitive) will keep the destination body": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        209,
+        250
+      ]
+    }
+  ],
+  "# These section headings (case-insensitive) will keep the destination body\n# instead of being overwritten by the template. Default when absent:": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        210,
+        251
+      ]
+    }
+  ],
+  "# instead of being overwritten by the template. Default when absent:\n#   - synopsis": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
@@ -17,93 +98,12 @@
       ]
     }
   ],
-  "#   - usage\n#   - summary": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        212,
-        253
-      ]
-    }
-  ],
-  "#   howto: basic usage\n#   options: configuration": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        226,
-        267
-      ]
-    }
-  ],
-  "#   summary → synopsis, usage → basic usage,\n#   configuration options → configuration, setup → basic usage": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        205,
-        246
-      ]
-    }
-  ],
-  "# Built-in aliases (destination → template):\n#   summary → synopsis, usage → basic usage,": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        204,
-        245
-      ]
-    }
-  ],
-  "# Custom section aliases (destination heading → canonical template heading).\n# Merged with built-in aliases above.": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        222,
-        263
-      ]
-    }
-  ],
-  "# Glob patterns for additional sections to preserve (e.g. Note:* headings).\n# Default when absent: [\"note:*\"]": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        215,
-        256
-      ]
-    }
-  ],
-  "# Sections to preserve from the destination README during template merging.\n# These section headings (case-insensitive) will keep the destination body": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        197,
-        238
-      ]
-    }
-  ],
-  "# These section headings (case-insensitive) will keep the destination body\n# instead of being overwritten by the template. Default when absent:": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        198,
-        239
-      ]
-    }
-  ],
-  "# instead of being overwritten by the template. Default when absent:\n#   - synopsis": [
-    {
-      "file": ".structuredmerge/kettle-jem.yml",
-      "lines": [
-        199,
-        240
-      ]
-    }
-  ],
   "# preserve_patterns:\n#   - \"note:*\"": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        218,
-        259
+        230,
+        271
       ]
     }
   ],
@@ -111,8 +111,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        208,
-        249
+        220,
+        261
       ]
     }
   ],
@@ -120,8 +120,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        225,
-        266
+        237,
+        278
       ]
     }
   ],
