@@ -106,15 +106,11 @@ appraise "templating" do
 end
 
 appraise "rdoc-6-11" do
-  ENV["KJ_FRAMEWORK_MATRIX_GEM"] = "rdoc"
   eval_gemfile "modular/rdoc/v6_11.gemfile"
-  eval_gemfile "modular/documentation.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
 end
 
 appraise "rdoc-7-0-plus" do
-  ENV["KJ_FRAMEWORK_MATRIX_GEM"] = "rdoc"
   eval_gemfile "modular/rdoc/v7_0_plus.gemfile"
-  eval_gemfile "modular/documentation.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
 end
