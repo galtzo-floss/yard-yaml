@@ -28,9 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- RDoc framework appraisals no longer install current-Ruby documentation tools,
-  keeping their dependency set scoped to the RDoc compatibility axis.
-
 ### Security
 
 ## [0.2.4] - 2026-07-31
@@ -124,6 +121,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260730-001 - Gemspec package file enumeration now runs
   relative to the gemspec directory, so packaged template assets are included
   even when the gemspec is loaded from another working directory.
+
+- RDoc framework appraisals no longer install current-Ruby documentation tools,
+  keeping their dependency set scoped to the RDoc compatibility axis.
 
 ## [0.2.3] - 2026-07-02
 
