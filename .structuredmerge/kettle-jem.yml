@@ -192,7 +192,6 @@ workflows:
         requirement: ">= 7.0"
     gemfile_pattern: "gemfiles/modular/rdoc/v{version}.gemfile"
     appraisal_gemfiles:
-      - "modular/documentation.gemfile"
       - "modular/x_std_libs.gemfile"
   # Include VCR/WebMock recording modular gemfiles in generated Appraisals.
   # Enable only for projects that actually require recording support.

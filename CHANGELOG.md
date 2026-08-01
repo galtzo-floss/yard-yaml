@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- RDoc framework appraisals no longer install current-Ruby documentation tools,
+  keeping their dependency set scoped to the RDoc compatibility axis.
+
 ### Security
 
 ## [0.2.4] - 2026-07-31
