@@ -256,38 +256,6 @@ readme:
     # Example:
     # fossa: git+github.com/pboling/example
     fossa: false
-  # Sections to preserve from the destination README during template merging.
-  # These section headings (case-insensitive) will keep the destination body
-  # instead of being overwritten by the template. Default when absent:
-  #   - synopsis
-  #   - configuration
-  #   - basic usage
-  #
-  # Built-in aliases (destination → template):
-  #   summary → synopsis, usage → basic usage,
-  #   configuration options → configuration, setup → basic usage
-  #
-  # preserve_sections:
-  #   - synopsis
-  #   - configuration
-  #   - basic usage
-  #   - usage
-  #   - summary
-  #
-  # Glob patterns for additional sections to preserve (e.g. Note:* headings).
-  # Default when absent: ["note:*"]
-  #
-  # preserve_patterns:
-  #   - "note:*"
-  #   - "setup*"
-  #
-  # Custom section aliases (destination heading → canonical template heading).
-  # Merged with built-in aliases above.
-  #
-  # section_aliases:
-  #   howto: basic usage
-  #   options: configuration
-
 # SPDX license identifiers for this project.
 # List one or more licenses that apply to the gem. Users may use the software
 # under the terms of any one license listed here (OR semantics, not AND).
@@ -344,7 +312,7 @@ machine_users:
 # Divergence is currently measured as the percent of produced files that would
 # change or be added during templating (100 - unchanged-file score).
 # ENV override: KJ_MIN_DIVERGENCE_THRESHOLD
-min_divergence_threshold:
+min_divergence_threshold: ""
 # Hostname used for generated YARD documentation links.
 # Defaults to <gem-name>.<author-email-domain>.
 # ENV override: KJ_YARD_HOST
