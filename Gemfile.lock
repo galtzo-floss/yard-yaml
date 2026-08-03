@@ -6,7 +6,7 @@ PATH
       yaml-converter (~> 0.2)
 
 PATH
-  remote: /var/home/pboling/src/my/galtzo-floss/yaml-converter
+  remote: /home/pboling/src/my/galtzo-floss/yaml-converter
   specs:
     yaml-converter (0.2.4)
       hexapdf (>= 1.8, < 2)
