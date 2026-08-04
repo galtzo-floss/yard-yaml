@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "anonymous_loader"
-require "yard-yaml"
+require "yard/yaml"
 RSpec.describe Yard::Yaml::Version do
   it_behaves_like "a Version module", described_class
 
