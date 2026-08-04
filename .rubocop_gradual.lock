@@ -1,4 +1,7 @@
 {
+  "gemfiles/modular/templating.gemfile:3018447732": [
+    [14, 3, 47, "Bundler/DuplicatedGem: Gem `tree_sitter_language_pack` requirements already given on line 10 of the Gemfile.", 3843603197]
+  ],
   "spec/yard/yaml/config_wiring_spec.rb:3507239968": [
     [3, 16, 26, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 223936692]
   ],
