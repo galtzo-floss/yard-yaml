@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "yaml/version"
-
 require_relative "yaml/config"
 require_relative "yaml/cli"
 require_relative "yaml/plugin"
@@ -12,6 +10,8 @@ require_relative "yaml/template_helpers"
 require_relative "yaml/tag_renderer"
 require_relative "yaml/tags"
 require_relative "yaml/templates"
+require "version_gem"
+require_relative "yaml/version"
 
 module Yard
   module Yaml
@@ -133,4 +133,8 @@ module Yard
       end
     end
   end
+end
+
+Yard::Yaml::Version.class_eval do
+  extend VersionGem::Basic
 end
