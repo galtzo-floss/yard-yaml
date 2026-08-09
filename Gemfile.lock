@@ -395,9 +395,9 @@ GEM
       kramdown-parser-gfm (~> 1.1)
       version_gem (~> 1.1, >= 1.1.15)
     yard (0.9.45)
-    yard-fence (0.9.7)
+    yard-fence (0.9.8)
       rdoc (>= 6.11, < 8)
-      version_gem (~> 1.1, >= 1.1.14)
+      version_gem (~> 1.1, >= 1.1.15)
       yard (~> 0.9, >= 0.9.37)
     yard-junk (0.1.0)
       benchmark
@@ -615,7 +615,7 @@ CHECKSUMS
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.5) sha256=a5214fe1a6c2df88bd34a35bcded1b1dcd30135548130df2e03b54ca8c0f2423
   yard (0.9.45) sha256=52e211493f7cb8a3ebf7e104a25a1e73937a3103092545d34cb88fafebb3dc51
-  yard-fence (0.9.7) sha256=028854d1a9d50157cca389dfbb46355686d46f49505bee3c083a34d0a676921c
+  yard-fence (0.9.8) sha256=73d935d43e3479d65ce8aff25c7d3100e8bb83528a2adaa0ed824e5046ac99e7
   yard-junk (0.1.0) sha256=e85fe2ec1afa47313decd333447b53458cb1ed49b510b70015fdc3041a94bcdd
   yard-lint (1.10.3) sha256=54765a128eaa2c4766b67fea5f681d14a333ce1f398c46f37b1e370eac96e70b
   yard-relative_markdown_links (0.6.0) sha256=3e5ffa85cbad9bac70bee5421774b190fb25d3bdf489323a5b3534f647d1a70e
