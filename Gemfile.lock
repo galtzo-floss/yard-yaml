@@ -171,6 +171,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.19.4-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-musl)
@@ -387,11 +389,11 @@ GEM
     unicode-display_width (2.6.0)
     version_gem (1.1.15)
     webrick (1.9.2)
-    yaml-converter (0.2.4)
+    yaml-converter (0.2.5)
       hexapdf (>= 1.8, < 2)
       kramdown (>= 2.4, < 3)
       kramdown-parser-gfm (~> 1.1)
-      version_gem (~> 1.1, >= 1.1.14)
+      version_gem (~> 1.1, >= 1.1.15)
     yard (0.9.45)
     yard-fence (0.9.7)
       rdoc (>= 6.11, < 8)
@@ -407,8 +409,8 @@ GEM
       zeitwerk (~> 2.6)
     yard-relative_markdown_links (0.6.0)
       nokogiri (>= 1.14.3, < 2)
-    yard-timekeeper (0.2.5)
-      version_gem (~> 1.1, >= 1.1.14)
+    yard-timekeeper (0.2.6)
+      version_gem (~> 1.1, >= 1.1.15)
     zeitwerk (2.8.3)
     zlib (3.2.3)
 
@@ -418,7 +420,7 @@ PLATFORMS
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin
-  x86_64-linux
+  x86_64-darwin
   x86_64-linux-gnu
   x86_64-linux-musl
 
@@ -478,7 +480,7 @@ CHECKSUMS
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235
   benchmark (0.5.0) sha256=465df122341aedcb81a2a24b4d3bd19b6c67c1530713fd533f3ff034e419236c
   bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
-  bundler (4.0.17) sha256=214e21431b5665dd2f99df8a5511c6b151d7a72e8015c8b38f8b775b61cbb6c1
+  bundler (4.0.18) sha256=02d9a17429de1847b4e0c9f27a9ee4b20c0a74c0a641b4e77195d6019e3618ac
   bundler-audit (0.9.3) sha256=81c8766c71e47d0d28a0f98c7eed028539f21a6ea3cd8f685eb6f42333c9b4e9
   cgi (0.5.2) sha256=61ca30298171190fd4fa0d8018e57ada456eae9b7a2b78526debf7f0a0e6f8bb
   cmdparse (3.0.7) sha256=f7c5cace10bec6abf853370ae095e4b97a84ed9d847b3fb38f41cc4fbc950739
@@ -529,6 +531,7 @@ CHECKSUMS
   nokogiri (1.19.4-arm-linux-gnu) sha256=a301313e38bb065d68239e79734bcd6f56fb6efaacebde29e9abf2a4735340ca
   nokogiri (1.19.4-arm-linux-musl) sha256=588923c101bcfa78869734d247d25b598674323e7f22474fc468f6e5647311eb
   nokogiri (1.19.4-arm64-darwin) sha256=a46db9853286e6597b36ebc6953817d15acf3a299583eb3f89fdc6f91dd63527
+  nokogiri (1.19.4-x86_64-darwin) sha256=7fd17057d3e1f00e9954a74b3cd76595d3d4a5ef233b7ed9599047c204f70551
   nokogiri (1.19.4-x86_64-linux-gnu) sha256=379fae440b28915e3f19d752ce2dcf8465ed2b2fbefd2a7ca0dd497bc981a06a
   nokogiri (1.19.4-x86_64-linux-musl) sha256=17dfb7c1fa194ae02fbf7c51a7afc8d278045ab3fdacfd86f91d02d7b274470b
   nomono (1.1.4) sha256=460736cab138cea68fb03dd7887ad315d8bcd5ad77b6a7a57866f0079a2cc7ce
@@ -610,16 +613,16 @@ CHECKSUMS
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
   version_gem (1.1.15) sha256=a73241587b29252e3567e0c818ded80730eb754d43b508f6ce4db22ca9ba27d0
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
-  yaml-converter (0.2.4) sha256=f243899c6608eda947c1be994a361a3fc9b1dafd92bd07c9f2c3366d0e3d1852
+  yaml-converter (0.2.5) sha256=a5214fe1a6c2df88bd34a35bcded1b1dcd30135548130df2e03b54ca8c0f2423
   yard (0.9.45) sha256=52e211493f7cb8a3ebf7e104a25a1e73937a3103092545d34cb88fafebb3dc51
   yard-fence (0.9.7) sha256=028854d1a9d50157cca389dfbb46355686d46f49505bee3c083a34d0a676921c
   yard-junk (0.1.0) sha256=e85fe2ec1afa47313decd333447b53458cb1ed49b510b70015fdc3041a94bcdd
   yard-lint (1.10.3) sha256=54765a128eaa2c4766b67fea5f681d14a333ce1f398c46f37b1e370eac96e70b
   yard-relative_markdown_links (0.6.0) sha256=3e5ffa85cbad9bac70bee5421774b190fb25d3bdf489323a5b3534f647d1a70e
-  yard-timekeeper (0.2.5) sha256=f9cee32ce1d17dbbfbd161e66b1ee4611aad93d3a91a89a5a114d956c6a24bb2
+  yard-timekeeper (0.2.6) sha256=8dc5f67f98f95339fa2a8e7c842fee3ec01e429e90d7dedc6d815c30a544fb3a
   yard-yaml (0.2.5)
   zeitwerk (2.8.3) sha256=2c85125a8467ce069e20123d1e709a08955c9d29c118c25b46b7b7fafdbb92e5
   zlib (3.2.3) sha256=5bd316698b32f31a64ab910a8b6c282442ca1626a81bbd6a1674e8522e319c20
 
 BUNDLED WITH
-  4.0.17
+  4.0.18

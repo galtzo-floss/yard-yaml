@@ -22,12 +22,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- kettle-jem-template-20260801-001 - Generated README gem dashboard links now
-  use ClickGems instead of BestGems.
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Security
+
+## [0.2.5] - 2026-08-09
+
+- TAG: [v0.2.5][0.2.5t]
+- COVERAGE: 95.13% -- 527/554 lines in 13 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 13 files
+- 79.73% documented
+
+### Changed
+
+- kettle-jem-template-20260801-001 - Generated README gem dashboard links now
+  use ClickGems instead of BestGems.
 
 ### Fixed
 
@@ -44,8 +57,6 @@ Please file a bug if you notice a violation of semantic versioning.
   preserving comments and trailing commas during template updates.
 
 - Load the version namespace from the public yard/yaml entrypoint
-
-### Security
 
 ## [0.2.4] - 2026-07-31
 
@@ -243,7 +254,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.4...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.4...v0.2.5
+[0.2.5t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.5
 [0.2.4]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.3...v0.2.4
 [0.2.4t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.4
 [0.2.3]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.2...v0.2.3

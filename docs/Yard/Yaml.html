@@ -350,19 +350,19 @@
       <pre class="lines">
 
 
+88
+89
+90
+91
 92
 93
 94
 95
 96
-97
-98
-99
-100
-101</pre>
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___reset_state__'>__reset_state__</span>
   <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -404,14 +404,14 @@
       <pre class="lines">
 
 
-50
-51
-52
-53
-54</pre>
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___set_pages__'>__set_pages__</span><span class='lparen'>(</span><span class='id identifier rubyid_list'>list</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pages'>pages</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:pages</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_list'>list</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -464,12 +464,12 @@ controlled contexts (e.g., tests or explicit configuration blocks).</p>
       <pre class="lines">
 
 
-38
-39
-40</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span>
   <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:config</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="#STATE_MUTEX-constant" title="Yard::Yaml::STATE_MUTEX (constant)">STATE_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:config</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Yaml/Config.html" title="Yard::Yaml::Config (class)">Config</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Yaml/Config.html#initialize-instance_method" title="Yard::Yaml::Config#initialize (method)">new</a></span></span> <span class='rbrace'>}</span>
@@ -561,16 +561,16 @@ controlled contexts (e.g., tests or explicit configuration blocks).</p>
       <pre class="lines">
 
 
+57
+58
+59
+60
 61
 62
-63
-64
-65
-66
-67</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='id identifier rubyid_overrides'>overrides</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cfg'>cfg</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span>
@@ -625,20 +625,20 @@ Uses YARD::Logger.error if available, else falls back to stderr with prefix.</p>
       <pre class="lines">
 
 
+75
+76
+77
+78
 79
 80
 81
 82
 83
 84
-85
-86
-87
-88
-89</pre>
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>YARD</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>::</span><span class='const'>YARD</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='symbol'>:Logger</span><span class='rparen'>)</span>
@@ -695,12 +695,12 @@ Each page is a Hash with keys: :path, :html, :title, :description, :meta</p>
       <pre class="lines">
 
 
-45
-46
-47</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pages'>pages</span>
   <span class='const'><span class='object_link'><a href="#STATE-constant" title="Yard::Yaml::STATE (constant)">STATE</a></span></span><span class='lbracket'>[</span><span class='symbol'>:pages</span><span class='rbracket'>]</span>
@@ -751,12 +751,12 @@ Prefix is standardized to “yard-yaml: “.</p>
       <pre class="lines">
 
 
-72
-73
-74</pre>
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/yard/yaml.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
   <span class='id identifier rubyid___warn'>__warn</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
