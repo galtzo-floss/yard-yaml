@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.2.6] - 2026-09-11
+
+- TAG: [v0.2.6][0.2.6t]
+- COVERAGE: 95.13% -- 527/554 lines in 13 files
+- BRANCH COVERAGE: 83.25% -- 164/197 branches in 13 files
+- 79.73% documented
+
+### Changed
+
 - [kc] kettle-jem/prepare: updated 8 project files:
   - dependencies (8)
 
@@ -30,14 +47,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - dependencies (2)
   - other (1)
   - workflows (1)
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [0.2.5] - 2026-08-09
 
@@ -263,7 +272,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.5...HEAD
+[Unreleased]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.6...HEAD
+[0.2.6]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.5...v0.2.6
+[0.2.6t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.6
 [0.2.5]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.4...v0.2.5
 [0.2.5t]: https://github.com/galtzo-floss/yard-yaml/releases/tag/v0.2.5
 [0.2.4]: https://github.com/galtzo-floss/yard-yaml/compare/v0.2.3...v0.2.4
