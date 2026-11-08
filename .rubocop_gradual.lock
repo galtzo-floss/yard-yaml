@@ -1,7 +1,4 @@
 {
-  "gemfiles/modular/style_local.gemfile:2349284340": [
-    [71, 23, 20, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 1851388465]
-  ],
   "spec/yard/yaml/config_wiring_spec.rb:3507239968": [
     [3, 16, 26, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 223936692]
   ],
